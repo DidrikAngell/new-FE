@@ -71,7 +71,9 @@ import { PropertyAddress } from "../components/PropertyAddress";
 import { ImageView } from "../components/ImageView";
 import { PropertyDetail } from "../components/PropertyDetail";
 import { Reviews } from "../components/Reviews";
-
+import { PropertyReserve } from "../components/PropertyReserve";
+import { setPage } from "../Actions/PageSlice";
+import { useDispatch } from "react-redux";
 export const DetailPage = () => {
   const [showReserveModal, setShowReserveModal] = useState(false);
   const handleCloseReserveModal = () => setShowReserveModal(false);
@@ -93,6 +95,7 @@ export const DetailPage = () => {
 
   const mode = useSelector((state) => state.header.mode);
   const submode = useSelector((state) => state.header.submode);
+  const dispatch = useDispatch();
 
   return (
     <div className="pt-[5px] bg-white w-full space-y-[20px] pb-[20px]">
@@ -284,240 +287,24 @@ export const DetailPage = () => {
 
         <div className="shadow-md w-full rounded-[10px] p-[20px] h-max">
           <div className="shadow-md w-full rounded-[10px] p-[20px]">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="font-bold text-[18px]">Price</div>
-
-                <div className="flex items-center text-[20px] gap-[5px]">
-                  <img src={NUSD}></img>
-                  <div className="text-[#5B1DEE] px-[4px] py-[2px] rounded-[8px] shadow-md">
-                    375
+            <PropertyReserve
+              action={
+                <>
+                  <div
+                    className="bg-[#5B1DEE] px-[20px] py-[12px] rounded-[16px] text-white w-full text-center my-[30px] cursor-pointer"
+                    onClick={() => {
+                      dispatch(setPage("confirmation"));
+                    }}
+                  >
+                    Reserve
                   </div>
-                  <div>NUSD</div>
-                  <div className="text-[#959595]">/night</div>
-                </div>
-                <div className="text-[#5B1DEE] underline">
-                  How do I get the best deal?
-                </div>
-              </div>
-              <div>
-                <div>Available from</div>
-                <div className="text-[20px]">11 Nov 2023</div>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-[16px] mt-[30px]">
-              <div className="space-y-[10px]">
-                <div className="text-[20px]">Check in</div>
-                <div className="globalInputForm radius40 flex w-full px-[24px] py-[13px] gap-[6px] items-center text-[14px]">
-                  <input
-                    className="w-full text-[14px]"
-                    placeholder="Select date"
-                  ></input>
-                  <img src={calendar}></img>
-                </div>
-              </div>
-              <div className="space-y-[10px]">
-                <div className="text-[20px]">Check out</div>
-                <div className="globalInputForm radius40 flex w-full px-[24px] py-[13px] gap-[6px] items-center text-[14px]">
-                  <input
-                    className="w-full text-[14px]"
-                    placeholder="Select date"
-                  ></input>
-                  <img src={calendar}></img>
-                </div>
-              </div>
-            </div>
-
-            {/* <div className="flex items-center px-[14px] py-[6px] rounded-[100px] shadow-md mt-[20px] gap-[10px] w-max">
-              <img src={warning}></img>
-              <div className="text-[#5B1DEE]">Available from 11 Nov 2023</div>
-            </div> */}
-
-            {/* <div className="space-y-[10px] mt-[30px]">
-              <div>Guests</div>
-              <div className="globalInputForm radius40 flex w-full px-[24px] py-[13px] gap-[6px] items-center text-[14px]">
-                <input
-                  className="w-full text-[14px]"
-                  placeholder="1 guest"
-                ></input>
-              </div>
-            </div> */}
-
-            <div className="space-y-[16px] mt-[30px]">
-              <div className="flex justify-between">
-                <div className="text-[#B6B6B6]">Rent per month</div>
-                <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                  <img src={NUSD}></img>
-                  {/* <div className="text-[#5B1DEE] font-bold"></div> */}
-                  <div>375 NUSD</div>
-                </div>
-              </div>
-              <div className="flex justify-between">
-                <div className="text-[#B6B6B6]">Rent VAT per month</div>
-                <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                  <img src={NUSD}></img>
-                  {/* <div className="text-[#5B1DEE] font-bold"></div> */}
-                  <div>375 NUSD</div>
-                </div>
-              </div>
-              <div className="flex justify-between">
-                <div className="text-[#B6B6B6]">Non-refundable deposit</div>
-                <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                  <img src={NUSD}></img>
-                  {/* <div className="text-[#5B1DEE] font-bold"></div> */}
-                  <div>375 NUSD</div>
-                </div>
-              </div>
-              <div className="flex justify-between">
-                <div className="text-[#B6B6B6] text-black">
-                  Monthly Subtotal
-                </div>
-                <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                  <img src={NUSD}></img>
-                  <div className="text-[#5B1DEE] font-bold">375</div>
-                  <div>NUSD</div>
-                </div>
-              </div>
-              <div className="bg-[#E3E3E3] w-full h-[2px]"></div>
-
-              <div className="flex justify-between">
-                <div className="text-[#B6B6B6]">Fee</div>
-                <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                  <img src={NUSD}></img>
-                  {/* <div className="text-[#5B1DEE] font-bold"></div> */}
-                  <div>375 NUSD</div>
-                </div>
-              </div>
-              <div className="flex justify-between">
-                <div className="text-[#B6B6B6] text-black">Total Payment</div>
-                <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                  <img src={NUSD}></img>
-                  <div className="text-[#5B1DEE] font-bold">375</div>
-                  <div>NUSD</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[#E3E3E3] w-full h-[2px] mt-[10px]"></div>
-            <div className="flex justify-between font-normal items-center mt-[10px]">
-              <div className="font-bold">TOTAL</div>
-              <div className="flex items-center gap-[5px] text-[24px]">
-                <img src={NUSD}></img>
-                <div className="text-[#5B1DEE] px-[4px] py-[2px] rounded-[8px] shadow-md">
-                  375
-                </div>
-                <div>NUSD</div>
-              </div>
-            </div>
-            <div className="flex justify-between font-normal items-center mt-[10px]">
-              <div className="text-[#B6B6B6]">Refundable Deposit</div>
-              <div className="flex items-center gap-[5px] text-[24px]">
-                <img src={NUSD}></img>
-                <div className="text-[#5B1DEE] px-[4px] py-[2px] rounded-[8px] shadow-md">
-                  375
-                </div>
-                <div>NUSD</div>
-              </div>
-            </div>
-            <div
-              className="bg-[#5B1DEE] px-[20px] py-[12px] rounded-[16px] text-white w-full text-center my-[30px]"
-              onClick={handleShowReserveModal}
-            >
-              Reserve
-            </div>
-
-            <Modal
-              show={showReserveModal}
-              onHide={handleCloseReserveModal}
-              centered
-            >
-              <Modal.Body>
-                <div className="w-full space-y-[20px] p-[24px] font-semibold">
-                  <div className="w-full flex justify-end">
-                    <img src={cross} onClick={handleCloseReserveModal}></img>
+                  <div className="text-center text-[#B6B6B6] mt-[30px]">
+                    You will not be charged yet. You will be required to sign a
+                    message from your wallet to confirm the reservation
                   </div>
-                  <div className="flex justify-between relative">
-                    <div>
-                      <div className="text-[24px] font-bold">2 nights</div>
-                      <div className="text-[#B6B6B6]">3 beds 0 baths</div>
-                    </div>
-                    <div className="p-[6px] rounded-[40px] shadow-md flex items-center w-[50%] gap-[20px]">
-                      <div className="px-[16px] rounded-[40px] shadow-md w-[50%]">
-                        <div className="font-bold">Check-in</div>
-                        <div className="text-[#B6B6B6]">{value.toString()}</div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Checkout</div>
-                        <div className="text-[#B6B6B6]">{value.toString()}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-[16px]">
-                    {/* <Calendar
-                      months={1}
-                      onChange={setValue}
-                      format="MM/DD/YYYY"
-                      minDate={new Date()}
-                    ></Calendar>
-                    <Calendar months={1} minDate={value}></Calendar> */}
-                    <Calendar
-                      highlightToday={false}
-                      range
-                      numberOfMonths={2}
-                      minDate={new Date()}
-                      // onChange={setValue}
-                    />
-                  </div>
-
-                  <div className="">
-                    <div className="font-bold">November 2023</div>
-                    <div className="grid grid-cols-3 mt-[20px] gap-[10px]">
-                      <div className="flex flex-col items-center rounded-[16px] py-[12px] shadow-md space-y-[4px]">
-                        <div className="text-[12px] font-bold">Your Dates</div>
-                        <div className="text-[#5B1DEE] text-[18px] font-bold">
-                          2000 NUSD
-                        </div>
-                        <div className="text-[#959595]">/month</div>
-                        <div>8 months & 24 days</div>
-                      </div>
-                      <div className="flex flex-col items-center rounded-[16px] py-[12px] shadow-md space-y-[4px]">
-                        <div className="text-[12px] font-bold">Your Dates</div>
-                        <div className="text-[#5B1DEE] text-[18px] font-bold">
-                          2000 NUSD
-                        </div>
-                        <div className="text-[#959595]">/month</div>
-                        <div>8 months & 24 days</div>
-                      </div>
-                      <div className="flex flex-col items-center rounded-[16px] py-[12px] shadow-md space-y-[4px]">
-                        <div className="text-[12px] font-bold">Your Dates</div>
-                        <div className="text-[#5B1DEE] text-[18px] font-bold">
-                          2000 NUSD
-                        </div>
-                        <div className="text-[#959595]">/month</div>
-                        <div>8 months & 24 days</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="text-[#6B349A] underline">Clear dates</div>
-                    <div
-                      className="bg-[#5D00CF] px-[16px] py-[10px] rounded-[16px] text-white"
-                      onClick={() => {
-                        navigate("/payment");
-                      }}
-                    >
-                      Save
-                    </div>
-                  </div>
-                </div>
-              </Modal.Body>
-            </Modal>
-
-            <div className="text-center text-[#B6B6B6] mt-[30px]">
-              You will not be charged yet. You will be required to sign a
-              message from your wallet to confirm the reservation
-            </div>
+                </>
+              }
+            />
           </div>
         </div>
       </div>

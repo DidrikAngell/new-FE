@@ -159,6 +159,15 @@ div.progress {
 .dropdown-toggle::after {
   display: none !important;
 }
+.dropdown-toggle {
+  --bs-btn-padding-x: none !important;
+}
+
+.dropdown-menu {
+  --bs-dropdown-min-width: none !important;
+  --bs-dropdown-item-padding-x: 10px !important;
+  --bs-dropdown-link-active-bg: #8e4bfa !important;
+}
 
 .btn-primary {
   --bs-btn-color: none !important;
@@ -175,25 +184,6 @@ div.progress {
   --bs-btn-disabled-color: none !important;
   --bs-btn-disabled-bg: none !important;
   --bs-btn-disabled-border-color: none !important;
-}
-
-.dropdown-menu {
-  --bs-dropdown-link-active-bg: none !important;
-  --bs-dropdown-link-active-color: black !important;
-  transform: translate(-10px, 0px) !important;
-  border-radius: 12px !important;
-  border-left: 1px solid var(--neutral-200, #e3e3e3);
-  background: var(--greyscale-base-white, #fff);
-
-  /* Shadow-Skeu */
-  box-shadow: -2px -2px 6px 0px rgba(253, 255, 255, 0.8),
-    2px 2px 6px 0px rgba(187, 195, 206, 0.6);
-  width: max-content !important;
-  --bs-dropdown-min-width: none !important;
-  /* padding-left: 10px !important; */
-  /* ml-[11px] mt-[-3px] */
-  margin-left: 11px !important;
-  margin-top: -3px !important;
 }
 
 table {

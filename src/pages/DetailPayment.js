@@ -26,6 +26,13 @@ import { Modal, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PaymentTimeline } from "../components/PaymentTimeline";
+import { PropertyAddress } from "../components/PropertyAddress";
+import { SelectionGroup, SelectionItem } from "../components/Selection";
+import { ImageView } from "../components/ImageView";
+import { PropertyReserve } from "../components/PropertyReserve";
+import { useDispatch } from "react-redux";
+import { setPage } from "../Actions/PageSlice";
+import { setAmountToPay } from "../Actions/RentSlice";
 
 export const DetailPayment = () => {
   const [show, setShow] = useState(false);
@@ -35,32 +42,20 @@ export const DetailPayment = () => {
 
   const mode = useSelector((state) => state.header.mode);
   const submode = useSelector((state) => state.header.submode);
+  const dates = useSelector((state) => state.rent.period);
+  const totalPrice = useSelector((state) => state.rent.totalPrice);
+
+  const pricePerMonth = useSelector((state) => state.nft.NftInfo.auction.price);
+
+  const metaData = useSelector((state) => state.nft.metaData);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div className="pt-[20px] bg-white w-full space-y-[20px]">
-      <div className="shadow-md w-[90%] mx-auto p-[20px] rounded-[10px] bg-white">
-        <div className="flex items-center gap-[10px]">
-          {mode == 1 ? <div className="text-[#A4A4A4]">Rent</div> : <></>}
-          {/* <div className="text-[#A4A4A4]">Buy</div> */}
-          <img src={arrow}></img>
-          <div className="text-[#A4A4A4]">Los Angeles, CA</div>
-          <img src={arrow}></img>
-
-          <div className="bg-[#202020] text-white rounded-[20px] px-[20px] py-[10px] ">
-            Confirmation and pay
-          </div>
-          {/* <div className="bg-[#202020] text-white rounded-[20px] px-[20px] py-[10px] ">
-            Placing a bid
-          </div> */}
-        </div>
-
-        <div className="shadow-md p-[16px] rounded-[16px] flex gap-[24px] items-center">
-          <img src={arrow1}></img>
-          <div className="text-[24px] font-bold">Confirmation and pay</div>
-          {/* <div className="text-[24px] font-bold">Placing a bid</div> */}
-        </div>
+      <div className="w-[90%] mx-auto">
+        <PropertyAddress />
       </div>
 
       <div className="w-[90%] mx-auto grid grid-cols-2 gap-[20px]">
@@ -70,7 +65,9 @@ export const DetailPayment = () => {
             <div className="flex justify-between items-center">
               <div>
                 <div className="text-[18px]">Dates</div>
-                <div className="text-[#5A5A5A]">May 13 - 17, 2024</div>
+                <div className="text-[#5A5A5A]">
+                  {dates[0].toString()} - {dates[1].toString()}
+                </div>
               </div>
               <div className="underline">Edit</div>
             </div>
@@ -109,26 +106,74 @@ export const DetailPayment = () => {
           <div className="bg-[#D9D9D9] w-full h-[1px]"></div>
           <div className="space-y-[8px]">
             <div className="font-bold text-[24px]">Choose how to pay</div>
-            <div className="flex items-center gap-[16px] shadow-md p-[12px] rounded-[16px]">
-              <img src={radio1}></img>
-              <div>
-                <div className="text-[18px]">Pay in full</div>
-                <div className="text-[#5A5A5A]">
-                  Pay the total (6,065.69 NUSD) now and you’re all set.
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-[16px] p-[12px] rounded-[16px]">
-              <img src={radio}></img>
-              <div>
-                <div className="text-[18px]">
-                  Pay part now, part later with Coded Estate
-                </div>
-                <div className="text-[#5A5A5A]">
-                  Pay the total (6,065.69 NUSD) now and you’re all set.
-                </div>
-              </div>
-            </div>
+            <SelectionGroup defaultItem={0}>
+              <SelectionItem
+                SelectedItem={
+                  <div className="flex items-center gap-[16px] shadow-md p-[12px] rounded-[16px]">
+                    <img src={radio1}></img>
+                    <div>
+                      <div className="text-[18px]">Pay in full</div>
+                      <div className="text-[#5A5A5A]">
+                        Pay the total ({totalPrice} NUSD) now and you’re all
+                        set.
+                      </div>
+                    </div>
+                  </div>
+                }
+                UnselectedItem={
+                  <div
+                    className="flex items-center gap-[16px] p-[12px] rounded-[16px]"
+                    onClick={() => {
+                      dispatch(setAmountToPay(totalPrice));
+                    }}
+                  >
+                    <img src={radio}></img>
+                    <div>
+                      <div className="text-[18px]">Pay in full</div>
+                      <div className="text-[#5A5A5A]">
+                        Pay the total ({totalPrice} NUSD) now and you’re all
+                        set.
+                      </div>
+                    </div>
+                  </div>
+                }
+              />
+              <SelectionItem
+                SelectedItem={
+                  <div className="flex items-center gap-[16px] p-[12px] shadow-md rounded-[16px]">
+                    <img src={radio1}></img>
+                    <div>
+                      <div className="text-[18px]">
+                        Pay part now, part later with Coded Estate
+                      </div>
+                      <div className="text-[#5A5A5A]">
+                        Pay for one month ({pricePerMonth} NUSD) now and you can
+                        rent.
+                      </div>
+                    </div>
+                  </div>
+                }
+                UnselectedItem={
+                  <div
+                    className="flex items-center gap-[16px] p-[12px] rounded-[16px]"
+                    onClick={() => {
+                      dispatch(setAmountToPay(pricePerMonth));
+                    }}
+                  >
+                    <img src={radio}></img>
+                    <div>
+                      <div className="text-[18px]">
+                        Pay part now, part later with Coded Estate
+                      </div>
+                      <div className="text-[#5A5A5A]">
+                        Pay for one month ({pricePerMonth} NUSD) now and you can
+                        rent.
+                      </div>
+                    </div>
+                  </div>
+                }
+              />
+            </SelectionGroup>
           </div>
 
           {/* <div className="p-[24px] rounded-[16px] shadow-md space-y-[8px]">
@@ -226,12 +271,15 @@ export const DetailPayment = () => {
           <div className="shadow-md p-[24px] h-max rounded-[8px] space-y-[24px]">
             <div className="p-[16px] space-y-[40px] rounded-[8px] shadow-md">
               <div className="flex items-center gap-[20px]">
-                <img
+                {/* <img
                   src={image}
                   className="w-[166px] h-[166px] rounded-[8px]"
-                ></img>
+                ></img> */}
+                <ImageView counts={1} />
                 <div className="space-y-[8px]">
-                  <div className="text-[#5a5a5a]">Entire cabin</div>
+                  <div className="text-[#5a5a5a]">
+                    {metaData["Building Name"].buildingNameEn}
+                  </div>
                   <div className="text-[24px]">
                     Separate and lovely Cottage - just by the lake
                   </div>
@@ -249,150 +297,22 @@ export const DetailPayment = () => {
                 </div>
               </div>
               <div className="bg-[#D9D9D9] w-full h-[1px]"></div>
-              <div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-bold text-[18px]">Price</div>
-
-                    <div className="flex items-center text-[20px] gap-[5px]">
-                      <img src={NUSD}></img>
-                      <div className="text-[#5B1DEE] px-[4px] py-[2px] rounded-[8px] shadow-md">
-                        375
-                      </div>
-                      <div>NUSD</div>
-                      <div className="text-[#959595]">/night</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-[16px] mt-[30px]">
-                  <div className="space-y-[10px]">
-                    <div className="text-[20px]">Check in</div>
-                    <div className="globalInputForm radius40 flex w-full px-[24px] py-[13px] gap-[6px] items-center text-[14px]">
-                      <input
-                        className="w-full text-[14px]"
-                        placeholder="Select date"
-                      ></input>
-                      <img src={calendarsm}></img>
-                    </div>
-                  </div>
-                  <div className="space-y-[10px]">
-                    <div className="text-[20px]">Check out</div>
-                    <div className="globalInputForm radius40 flex w-full px-[24px] py-[13px] gap-[6px] items-center text-[14px]">
-                      <input
-                        className="w-full text-[14px]"
-                        placeholder="Select date"
-                      ></input>
-                      <img src={calendarsm}></img>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center px-[14px] py-[6px] rounded-[100px] shadow-md mt-[20px] gap-[10px] w-max">
-                  <img src={warning}></img>
-                  <div className="text-[#5B1DEE]">
-                    Available from 11 Nov 2023
-                  </div>
-                </div>
-
-                {/* <div className="space-y-[10px] mt-[30px]">
-              <div>Guests</div>
-              <div className="globalInputForm radius40 flex w-full px-[24px] py-[13px] gap-[6px] items-center text-[14px]">
-                <input
-                  className="w-full text-[14px]"
-                  placeholder="1 guest"
-                ></input>
-              </div>
-            </div> */}
-
-                <div className="space-y-[16px] mt-[30px]">
-                  <div className="flex justify-between">
-                    <div className="text-[#B6B6B6]">Rent per month</div>
-                    <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                      <img src={NUSD}></img>
-                      {/* <div className="text-[#5B1DEE] font-bold"></div> */}
-                      <div>375 NUSD</div>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
-                    <div className="text-[#B6B6B6]">Rent VAT per month</div>
-                    <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                      <img src={NUSD}></img>
-                      {/* <div className="text-[#5B1DEE] font-bold"></div> */}
-                      <div>375 NUSD</div>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
-                    <div className="text-[#B6B6B6]">Non-refundable deposit</div>
-                    <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                      <img src={NUSD}></img>
-                      {/* <div className="text-[#5B1DEE] font-bold"></div> */}
-                      <div>375 NUSD</div>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
-                    <div className="text-[#B6B6B6] text-black">
-                      Monthly Subtotal
-                    </div>
-                    <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                      <img src={NUSD}></img>
-                      <div className="text-[#5B1DEE] font-bold">375</div>
-                      <div>NUSD</div>
-                    </div>
-                  </div>
-                  <div className="bg-[#E3E3E3] w-full h-[2px]"></div>
-
-                  <div className="flex justify-between">
-                    <div className="text-[#B6B6B6]">Fee</div>
-                    <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                      <img src={NUSD}></img>
-                      {/* <div className="text-[#5B1DEE] font-bold"></div> */}
-                      <div>375 NUSD</div>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
-                    <div className="text-[#B6B6B6] text-black">
-                      Total Payment
-                    </div>
-                    <div className="flex items-center text-[18px] gap-[5px] font-normal">
-                      <img src={NUSD}></img>
-                      <div className="text-[#5B1DEE] font-bold">375</div>
-                      <div>NUSD</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-[#E3E3E3] w-full h-[2px] mt-[10px]"></div>
-                <div className="flex justify-between font-normal items-center mt-[10px]">
-                  <div className="font-bold">TOTAL</div>
-                  <div className="flex items-center gap-[5px] text-[24px]">
-                    <img src={NUSD}></img>
-                    <div className="text-[#5B1DEE] px-[4px] py-[2px] rounded-[8px] shadow-md">
-                      375
-                    </div>
-                    <div>NUSD</div>
-                  </div>
-                </div>
-                <div className="flex justify-between font-normal items-center mt-[10px]">
-                  <div className="text-[#B6B6B6]">Refundable Deposit</div>
-                  <div className="flex items-center gap-[5px] text-[24px]">
-                    <img src={NUSD}></img>
-                    <div className="text-[#5B1DEE] px-[4px] py-[2px] rounded-[8px] shadow-md">
-                      375
-                    </div>
-                    <div>NUSD</div>
-                  </div>
-                </div>
-              </div>
+              <PropertyReserve />
             </div>
             <div
               className="px-[20px] py-[12px] text-white text-center bg-[#5B1DEE] rounded-[16px] shadow-md"
               onClick={() => {
                 // handleShow
-                navigate("/reservation");
+                // navigate("/reservation");
+                dispatch(setPage("confirmed"));
               }}
             >
               Reserve Now
             </div>
-
+            <div className="text-center text-[#B6B6B6] mt-[30px]">
+              You will not be charged yet. You will be required to sign a
+              message from your wallet to confirm the reservation
+            </div>
             <Modal show={show} onHide={handleClose} centered>
               <Modal.Body>
                 <div className="w-[400px]">
@@ -452,11 +372,6 @@ export const DetailPayment = () => {
               </div>
             </Modal.Body> */}
             </Modal>
-
-            <div className="text-center text-[#B6B6B6] mt-[30px]">
-              You will not be charged yet. You will be required to sign a
-              message from your wallet to confirm the reservation
-            </div>
           </div>
 
           <PaymentTimeline />

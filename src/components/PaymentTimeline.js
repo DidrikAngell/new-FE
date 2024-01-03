@@ -4,6 +4,7 @@ import icon from "../assets/images/Frame 1000005306 (2).png";
 
 import closemini from "../assets/images/close-mini.png";
 import NUSD from "../assets/images/NUSD.png";
+import { useSelector } from "react-redux";
 
 export const PaymentTimeline = () => {
   const [showDetailModal, setShowDetailModal] = useState(false);
@@ -11,11 +12,18 @@ export const PaymentTimeline = () => {
   const handleCloseDetailModal = () => setShowDetailModal(false);
   const handleShowDetailModal = () => setShowDetailModal(true);
 
+  const totalPrice = useSelector((state) => state.rent.totalPrice);
+  const pricePerMonth = useSelector((state) => state.nft.NftInfo.auction.price);
+  const refundableDeposit = 600;
+
   return (
     <div className="p-[24px] rounded-[12px] shadow-md h-max space-y-[24px]">
       <div className="flex justify-between">
         <div className="text-[24px]">Payment timeline</div>
-        <div className="underline text-[12px]" onClick={handleShowDetailModal}>
+        <div
+          className="underline text-[12px] cursor-pointer"
+          onClick={handleShowDetailModal}
+        >
           View Detail
         </div>
 
@@ -48,7 +56,7 @@ export const PaymentTimeline = () => {
                     </div>
                     <div className="flex items-center">
                       <img src={NUSD}></img>
-                      <div>400 NUSD</div>
+                      <div>{totalPrice} NUSD</div>
                     </div>
                   </div>
                   <div className="flex justify-between items-end bg-[#F6F6F6] p-[8px] rounded-[16px]">
@@ -58,19 +66,17 @@ export const PaymentTimeline = () => {
                     </div>
                     <div className="flex items-center">
                       <img src={NUSD}></img>
-                      <div>400 NUSD</div>
+                      <div>{totalPrice * 0.25} NUSD</div>
                     </div>
                   </div>
                   <div className="flex justify-between items-end">
                     <div>
-                      <div className="font-bold">
-                        Complete to reserve the apertment
-                      </div>
+                      <div className="font-bold">Monthly Payment Rate</div>
                       <div>Due 15 December 2023</div>
                     </div>
                     <div className="flex items-center">
                       <img src={NUSD}></img>
-                      <div>400 NUSD</div>
+                      <div>{pricePerMonth} NUSD</div>
                     </div>
                   </div>
                   <div className="flex justify-between items-end bg-[#F6F6F6] p-[8px] rounded-[16px]">
@@ -132,7 +138,7 @@ export const PaymentTimeline = () => {
                   <div className="flex justify-between items-end">
                     <div>
                       <div className="font-bold">
-                        Receive your 13,000.00 deposit back
+                        Receive your {refundableDeposit} deposit back
                       </div>
                       <div>Usually within 15 calendar days of move-out</div>
                     </div>
@@ -164,23 +170,23 @@ export const PaymentTimeline = () => {
             </div>
             <div className="flex items-center">
               <img src={NUSD}></img>
-              <div>400 NUSD</div>
+              <div>{totalPrice} NUSD</div>
             </div>
           </div>
           <div className="flex justify-between items-end">
             <div>
-              <div className="font-bold">Complete to reserve the apertment</div>
+              <div className="font-bold">Monthly Payment Rate</div>
               <div>Due 15 December 2023</div>
             </div>
             <div className="flex items-center">
               <img src={NUSD}></img>
-              <div>400 NUSD</div>
+              <div>{pricePerMonth} NUSD</div>
             </div>
           </div>
           <div className="flex justify-between items-end">
             <div>
               <div className="font-bold">
-                Receive your 13,000.00 deposit back
+                Receive your {refundableDeposit} deposit back
               </div>
               <div>Usually within 15 calendar days of move-out</div>
             </div>

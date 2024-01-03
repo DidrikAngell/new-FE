@@ -4,6 +4,10 @@ import GallerySlice from "../Actions/GallerySlice";
 import HeaderSlice from "../Actions/HeaderSlice";
 import PropertySlice from "../Actions/PropertySlice";
 import DashboardSlice from "../Actions/DashboardSlice";
+import MessageSlice from "../Actions/MessageSlice";
+import NFTSlice from "../Actions/NFTSlice";
+import PageSlice from "../Actions/PageSlice";
+import RentSlice from "../Actions/RentSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -12,5 +16,9 @@ export const Store = configureStore({
     header: HeaderSlice,
     property: PropertySlice,
     dashboard: DashboardSlice,
+    messages: MessageSlice,
+    nft: NFTSlice,
+    page: PageSlice,
+    rent: RentSlice,
   },
 });

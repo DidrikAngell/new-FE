@@ -1,7 +1,7 @@
 import { Header } from "./components/Header";
 import { MainPage } from "./pages/MainPage";
 import { DetailPage } from "./pages/DetailPage";
-import { DashboardTraveler } from "./pages/DashboardTraveler";
+import { DetailConfirm } from "./pages/DetailComfirm";
 import { DetailPayment } from "./pages/DetailPayment";
 import { Profile } from "./pages/Profile";
 import { Verify } from "./pages/Verify";
@@ -28,6 +28,7 @@ import { Gallery } from "./components/Gallery";
 import { DashboardGlobal } from "./pages/DashboardGlobal";
 import { DashboardLayout } from "./Layout/DashboardLayout";
 import { Swap } from "./pages/Swap";
+import { Rent } from "./pages/Rent";
 
 function App() {
   return (
@@ -132,13 +133,13 @@ function App() {
           <Route path="landing" element={<LandingPage />}></Route>
           <Route element={<MainLayout />}>
             <Route path="account" element={<Profile />}></Route>
-            <Route path="wallet" element={<Swap />}></Route>
+            <Route path="swap" element={<Swap />}></Route>
 
-            <Route path="yieldestate" element={<></>}></Route>
-            <Route path="rent" element={<MainPageComponent />}></Route>
-            <Route path="property" element={<DetailPage />}></Route>
-            <Route path="payment" element={<DetailPayment />}></Route>
-            <Route path="reservation" element={<DashboardTraveler />}></Route>
+            <Route path="yieldestate" element={<Verify />}></Route>
+            <Route path="rent" element={<Rent />}></Route>
+            {/* <Route path="property" element={<DetailPage />}></Route> */}
+            {/* <Route path="payment" element={<DetailPayment />}></Route> */}
+            {/* <Route path="reservation" element={<DetailConfirm />}></Route> */}
 
             <Route path="buy" element={<></>}></Route>
             <Route path="dashboard" element={<DashboardLayout />}>

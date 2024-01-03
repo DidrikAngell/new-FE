@@ -26,7 +26,7 @@ export const Profile = () => {
   return (
     <div className="pt-[6px] pb-[6px] bg-[#F2F2F2] w-full h-max">
       <div className="w-[80%] mx-auto bg-white shadow-md mt-[6px] rounded-[6px] p-[24px] flex gap-[40px]">
-        <div className="max-w-[30%] flex flex-col justify-center items-center space-y-[40px] h-max">
+        <div className="min-w-[30%] flex flex-col justify-center items-center space-y-[40px] h-max">
           {/* <div> */}
           <img src={profile}></img>
           <div className="flex items-center text-white px-[8px] bg-[#5D00CF] rounded-[400px] py-[2px] w-max mx-auto">
@@ -37,7 +37,7 @@ export const Profile = () => {
           <div className="px-[14px] py-[8px] bg-[#5D00CF] rounded-[16px] w-full text-white text-center">
             Verify
           </div>
-          <div className="p-[24px] shadow-md rounded-[6px] space-y-[16px]">
+          {/* <div className="p-[24px] shadow-md rounded-[6px] space-y-[16px]">
             <div className="font-bold text-[16px]">Mode</div>
             <div className="">
               If there any lock on these switch mode, you should
@@ -71,7 +71,7 @@ export const Profile = () => {
               </div>
               <img src={locked}></img>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="space-y-[20px] bg-blur">

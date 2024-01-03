@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext, useEffect } from "react";
 
 const GroupContext = createContext();
 
@@ -10,7 +10,9 @@ export const SelectionGroup = ({
   className,
 }) => {
   const [selectedItem, setSelectedItem] = useState(defaultItem);
-
+  useEffect(() => {
+    setSelectedItem(defaultItem);
+  }, [defaultItem]);
   const handleItemClick = (index) => {
     setSelectedItem(index);
   };

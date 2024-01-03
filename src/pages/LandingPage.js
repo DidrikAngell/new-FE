@@ -78,7 +78,8 @@ export const LandingPage = () => {
         alert("Please install leap extension");
       } else {
         try {
-          const chainId = "nibiru-itn-3";
+          // const chainId = "nibiru-itn-3";
+          const chainId = "nibiru-testnet-1";
 
           await window.leap.enable(chainId);
 
@@ -86,7 +87,7 @@ export const LandingPage = () => {
 
           const accounts = await offlineSigner.getAccounts();
 
-          console.log(accounts[0].address);
+          // console.log(accounts[0].address);
 
           setShow(false);
 
@@ -104,7 +105,8 @@ export const LandingPage = () => {
         alert("Please install keplr extension");
       } else {
         try {
-          const chainId = "nibiru-itn-3";
+          // const chainId = "nibiru-itn-3";
+          const chainId = "nibiru-testnet-1";
 
           await window.keplr.enable(chainId);
 
@@ -112,7 +114,7 @@ export const LandingPage = () => {
 
           const accounts = await offlineSigner.getAccounts();
 
-          console.log(accounts[0].address);
+          // console.log(accounts[0].address);
 
           setShow(false);
 
@@ -207,7 +209,7 @@ export const LandingPage = () => {
 
                   <div className="grid grid-cols-2 gap-[12px] mt-[50px]">
                     <div
-                      className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center"
+                      className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center cursor-pointer"
                       onClick={() => {
                         connect("xdefi");
                       }}
@@ -220,7 +222,7 @@ export const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center">
+                    <div className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center cursor-pointer">
                       <img src={metamask}></img>
                       <div>
                         <div className="font-bold">Metamask</div>
@@ -230,7 +232,7 @@ export const LandingPage = () => {
                       </div>
                     </div>
                     <div
-                      className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center"
+                      className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center cursor-pointer"
                       onClick={() => {
                         connect("keplr");
                       }}
@@ -248,7 +250,7 @@ export const LandingPage = () => {
                         )}
                       </div>
                     </div>
-                    <div className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center">
+                    <div className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center cursor-pointer">
                       <img src={phantom}></img>
                       <div>
                         <div className="font-bold">Phantom</div>
@@ -257,7 +259,7 @@ export const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center">
+                    <div className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center cursor-pointer">
                       <img src={coinbase}></img>
                       <div>
                         <div className="font-bold">Coinbase</div>
@@ -266,7 +268,7 @@ export const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center">
+                    <div className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center cursor-pointer">
                       <img src={walletconnect}></img>
                       <div>
                         <div className="font-bold">WalletConnect</div>
@@ -277,8 +279,10 @@ export const LandingPage = () => {
                     </div>
 
                     <div
-                      className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center"
-                      onClick={() => connect("leap")}
+                      className="px-[8px] py-[12px] rounded-[8px] shadow-md flex gap-[12px] items-center cursor-pointer"
+                      onClick={() => {
+                        connect("leap");
+                      }}
                     >
                       <img src={leap} className="w-[40px]"></img>
                       <div>

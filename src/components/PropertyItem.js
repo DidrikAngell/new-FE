@@ -62,7 +62,7 @@ export const PropertyItem = () => {
       </div>
 
       <div className="bg-[#5D00CF] py-[10px] rounded-[16px] text-white text-center mt-[10px]">
-        List
+        Verify
       </div>
     </div>
   );

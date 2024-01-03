@@ -29,6 +29,17 @@ import wishlistactive from "../assets/images/sidebar/wishlist-active.png";
 import rentalinactive from "../assets/images/sidebar/rental-inactive.png";
 import rentalactive from "../assets/images/sidebar/rental-active.png";
 
+import propertyactive from "../assets/images/sidebar/property-active.png";
+import propertyinactive from "../assets/images/sidebar/property-inactive.png";
+import walletactive from "../assets/images/sidebar/wallet-active.png";
+import walletinactive from "../assets/images/sidebar/wallet-inactive.png";
+import rewardactive from "../assets/images/sidebar/reward-active.png";
+import rewardinactive from "../assets/images/sidebar/reward-inactive.png";
+import cartactive from "../assets/images/sidebar/cart-active.png";
+import cartinactive from "../assets/images/sidebar/cart-inactive.png";
+import transactionactive from "../assets/images/sidebar/transaction-active.png";
+import transactioninactive from "../assets/images/sidebar/transaction-inactive.png";
+
 import light from "../assets/images/light.png";
 
 import host from "../assets/images/hand-key.png";
@@ -545,6 +556,29 @@ export const SideBar = () => {
                 SelectedItem={
                   <div className="flex items-center justify-between px-[14px] py-[8px] rounded-[16px] shadow-md bg-[#F6F6F6]">
                     <div className="flex items-center">
+                      <img src={transactionactive}></img>
+                      <div>Transaction</div>
+                    </div>
+
+                    <img src={light}></img>
+                  </div>
+                }
+                UnselectedItem={
+                  <div
+                    className="flex items-center justify-between px-[14px] py-[8px]"
+                    onClick={() => dispatch(setDashboardMode(2))}
+                  >
+                    <div className="flex items-center">
+                      <img src={transactioninactive}></img>
+                      <div className="text-[#959595]">Transaction</div>
+                    </div>
+                  </div>
+                }
+              />
+              <SelectionItem
+                SelectedItem={
+                  <div className="flex items-center justify-between px-[14px] py-[8px] rounded-[16px] shadow-md bg-[#F6F6F6]">
+                    <div className="flex items-center">
                       <img src={tripsactive}></img>
                       <div>Trips</div>
                     </div>
@@ -555,7 +589,7 @@ export const SideBar = () => {
                 UnselectedItem={
                   <div
                     className="flex items-center justify-between px-[14px] py-[8px]"
-                    onClick={() => dispatch(setDashboardMode(2))}
+                    onClick={() => dispatch(setDashboardMode(3))}
                   >
                     <div className="flex items-center">
                       <img src={tripsinactive}></img>
@@ -578,7 +612,7 @@ export const SideBar = () => {
                 UnselectedItem={
                   <div
                     className="flex items-center justify-between px-[14px] py-[8px]"
-                    onClick={() => dispatch(setDashboardMode(3))}
+                    onClick={() => dispatch(setDashboardMode(4))}
                   >
                     <div className="flex items-center">
                       <img src={wishlistinactive}></img>
@@ -602,7 +636,7 @@ export const SideBar = () => {
                 UnselectedItem={
                   <div
                     className="flex items-center justify-between px-[14px] py-[8px]"
-                    onClick={() => dispatch(setDashboardMode(4))}
+                    onClick={() => dispatch(setDashboardMode(5))}
                   >
                     <div className="flex items-center">
                       <img src={inboxinactive}></img>
@@ -668,6 +702,139 @@ export const SideBar = () => {
               }
             />
           </SelectionGroup>
+        </div>
+      ) : (
+        <></>
+      )}
+      {dashboardMode == 6 ? (
+        <div className="w-[300px] bg-white rounded-[8px] h-full p-[10px] flex flex-col justify-between">
+          <div className="space-y-[10px] h-max">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-[10px]">
+                <img src={landlord}></img>
+                <div className="text-[18px]">YieldEstate</div>
+              </div>
+              <img src={arrowtoleft}></img>
+            </div>
+            <SelectionGroup defaultItem={mode}>
+              <SelectionItem
+                SelectedItem={
+                  <div className="flex items-center justify-between px-[14px] py-[8px] rounded-[16px] shadow-md bg-[#F6F6F6]">
+                    <div className="flex items-center">
+                      <img src={propertyactive}></img>
+                      <div>Properties</div>
+                    </div>
+
+                    <img src={light}></img>
+                  </div>
+                }
+                UnselectedItem={
+                  <div
+                    className="flex items-center justify-between px-[14px] py-[8px]"
+                    onClick={() => dispatch(setDashboardMode(0))}
+                  >
+                    <div className="flex items-center">
+                      <img src={propertyinactive}></img>
+                      <div className="text-[#959595]">Properties</div>
+                    </div>
+                  </div>
+                }
+              />
+              <SelectionItem
+                SelectedItem={
+                  <div className="flex items-center justify-between px-[14px] py-[8px] rounded-[16px] shadow-md bg-[#F6F6F6]">
+                    <div className="flex items-center">
+                      <img src={walletactive}></img>
+                      <div>Wallet</div>
+                    </div>
+
+                    <img src={light}></img>
+                  </div>
+                }
+                UnselectedItem={
+                  <div
+                    className="flex items-center justify-between px-[14px] py-[8px]"
+                    onClick={() => dispatch(setDashboardMode(1))}
+                  >
+                    <div className="flex items-center">
+                      <img src={walletinactive}></img>
+                      <div className="text-[#959595]">Wallet</div>
+                    </div>
+                  </div>
+                }
+              />
+              <SelectionItem
+                SelectedItem={
+                  <div className="flex items-center justify-between px-[14px] py-[8px] rounded-[16px] shadow-md bg-[#F6F6F6]">
+                    <div className="flex items-center">
+                      <img src={insightsactive}></img>
+                      <div>Portfolio</div>
+                    </div>
+
+                    <img src={light}></img>
+                  </div>
+                }
+                UnselectedItem={
+                  <div
+                    className="flex items-center justify-between px-[14px] py-[8px]"
+                    onClick={() => dispatch(setDashboardMode(2))}
+                  >
+                    <div className="flex items-center">
+                      <img src={insightsinactive}></img>
+                      <div className="text-[#959595]">Portfolio</div>
+                    </div>
+                  </div>
+                }
+              />
+
+              <SelectionItem
+                SelectedItem={
+                  <div className="flex items-center justify-between px-[14px] py-[8px] rounded-[16px] shadow-md bg-[#F6F6F6]">
+                    <div className="flex items-center">
+                      <img src={rentalactive}></img>
+                      <div>Reward</div>
+                    </div>
+
+                    <img src={light}></img>
+                  </div>
+                }
+                UnselectedItem={
+                  <div
+                    className="flex items-center justify-between px-[14px] py-[8px]"
+                    onClick={() => dispatch(setDashboardMode(3))}
+                  >
+                    <div className="flex items-center">
+                      <img src={rentalinactive}></img>
+                      <div className="text-[#959595]">Reward</div>
+                    </div>
+                  </div>
+                }
+              />
+              <SelectionItem
+                SelectedItem={
+                  <div className="flex items-center justify-between px-[14px] py-[8px] rounded-[16px] shadow-md bg-[#F6F6F6]">
+                    <div className="flex items-center">
+                      <img src={cartactive}></img>
+                      <div>Cart</div>
+                    </div>
+
+                    <img src={light}></img>
+                  </div>
+                }
+                UnselectedItem={
+                  <div
+                    className="flex items-center justify-between px-[14px] py-[8px]"
+                    onClick={() => dispatch(setDashboardMode(4))}
+                  >
+                    <div className="flex items-center">
+                      <img src={cartinactive}></img>
+                      <div className="text-[#959595]">Cart</div>
+                    </div>
+                  </div>
+                }
+              />
+            </SelectionGroup>
+          </div>
         </div>
       ) : (
         <></>

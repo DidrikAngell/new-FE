@@ -77,7 +77,7 @@ export const DashboardListing = () => {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className="bg-white w-full mx-[5px] mb-[5px] rounded-[8px] shadow-md p-[16px] flex flex-col">
+    <div className="bg-white w-full sidebarheight rounded-[8px] shadow-md p-[16px] flex flex-col">
       {/* <div className="text-[24px]">Listing page</div>
       <div className="flex w-full h-full">
         <div className="m-auto flex flex-col items-center space-y-[24px]">
@@ -510,7 +510,7 @@ export const DashboardListing = () => {
             </div>
           </div>
         </div> */}
-        {/* <div className="m-auto space-y-[20px] flex flex-col items-center">
+        <div className="m-auto space-y-[20px] flex flex-col items-center">
           <div className="text-center text-[32px] font-bold">
             Create your description
           </div>
@@ -523,7 +523,7 @@ export const DashboardListing = () => {
           <div className="flex justify-start w-full min-w-[600px] text-[#595959]">
             <div>11/32</div>
           </div>
-        </div> */}
+        </div>
         {/* <div className="m-auto space-y-[10px] flex flex-col items-center">
           <div className="text-center text-[32px] font-bold">
             Now, set your price
@@ -676,7 +676,7 @@ export const DashboardListing = () => {
             ullamcorper sedcing ut morbi Lorem ipsum ornare id.
           </div>
         </div> */}
-        <div className="w-full h-full relative">
+        {/* <div className="w-full h-full relative">
           <img src={festivalback} className="m-auto max-w-[100vh]"></img>
           <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center space-y-[80px]">
             <div className="text-[32px] font-bold">Your Property Valuation</div>
@@ -697,7 +697,7 @@ export const DashboardListing = () => {
               Add to NFT
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <ProgressBar className="progressbg" now={10} />
       <div className="w-full flex justify-between mt-[10px]">

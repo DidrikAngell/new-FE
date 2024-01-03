@@ -47,7 +47,7 @@ export const Header = () => {
 
   const [walletIcon, setWalletIcon] = useState(User);
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const account = useSelector((state) => state.auth.account);
   const wallet = useSelector((state) => state.auth.wallet);
 
@@ -66,9 +66,9 @@ export const Header = () => {
   const [showRentDropdown, setShowRentDropdown] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated) navigate("/landing");
+    // if (!isAuthenticated) navigate("/landing");
     setCurrentWalletIcon();
-  }, [isAuthenticated]);
+  }, []);
   const handleClose = (e) => {
     for (
       let i = 0;
@@ -231,6 +231,7 @@ export const Header = () => {
             <div
               onMouseEnter={() => setShowDashDropdown(true)}
               onMouseLeave={() => setShowDashDropdown(false)}
+              onClick={() => navigate("/dashboard")}
               className="relative text-black"
             >
               <div className="w-[130px] flex justify-between px-[12px] py-[2px] items-center gap-[10px] shadow-md rounded-[10px]">
@@ -451,11 +452,11 @@ export const Header = () => {
             </div>
           </Modal.Body>
         </Modal>
-        <Link to="/wallet">
+        <Link to="/swap">
           <img src={frame1}></img>
         </Link>
         <div
-          className="bg-[#5B1DEE] rounded-[16px] px-[12px] py-[10px] text-[14px] text-white"
+          className="bg-[#5B1DEE] rounded-[16px] px-[12px] py-[10px] text-[14px] text-white cursor-pointer"
           onClick={handleShow}
         >
           {account?.substring(0, 5) +
@@ -493,13 +494,19 @@ export const Header = () => {
 
               <div className="grid grid-cols-2 gap-[20px]">
                 <Link to="/wallet">
-                  <div className="border-[1px] border-[#FFFFFF] shadow-md rounded-[16px] flex items-center px-[20px] py-[12px] gap-[8px]">
+                  <div
+                    className="border-[1px] border-[#FFFFFF] shadow-md rounded-[16px] flex items-center px-[20px] py-[12px] gap-[8px]"
+                    onClick={handleClose}
+                  >
                     <img src={wallet1}></img>
                     <div className="text-black">Wallet</div>
                   </div>
                 </Link>
                 <Link to="/account">
-                  <div className="border-[1px] border-[#FFFFFF] shadow-md rounded-[16px] flex items-center px-[20px] py-[12px] gap-[8px]">
+                  <div
+                    className="border-[1px] border-[#FFFFFF] shadow-md rounded-[16px] flex items-center px-[20px] py-[12px] gap-[8px]"
+                    onClick={handleClose}
+                  >
                     <img src={user}></img>
                     <div className="text-black">Account</div>
                   </div>

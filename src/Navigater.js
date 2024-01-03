@@ -6,7 +6,7 @@ export const Navigater = () => {
   const mode = useSelector((state) => state.header.mode);
   const submode = useSelector((state) => state.header.submode);
   const propertyID = useSelector((state) => state.property.id);
-
+  const account = useSelector((state) => state.auth.account);
   const navigate = useNavigate();
 
   useEffect(() => {
