@@ -62,6 +62,7 @@ export const PropertyDetail = ({ editable }) => {
     tv: false,
   };
   const [offers, setOffers] = useState(defaultOffers);
+  const [tempOffers, setTempOffers] = useState(defaultOffers);
 
   const metaDataDescription = useSelector(
     (state) => state.nft.currentNFT.metaData.descrition
@@ -270,7 +271,10 @@ export const PropertyDetail = ({ editable }) => {
               {editable ? (
                 <div
                   className="underline cursor-pointer"
-                  onClick={handleShowOfferModal}
+                  onClick={() => {
+                    setTempOffers({ ...offers });
+                    handleShowOfferModal();
+                  }}
                 >
                   Edit
                 </div>
@@ -380,21 +384,24 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({ ...offers, garden_View: !offers.garden_View })
+                      setTempOffers({
+                        ...tempOffers,
+                        garden_View: !tempOffers.garden_View,
+                      })
                     }
                   >
                     <div className="flex items-center">
                       <img src={gardenView}></img>
                       <div>Garden View</div>
                     </div>
-                    <Checkbox checked={offers.garden_View} />
+                    <Checkbox checked={tempOffers.garden_View} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
-                        city_Skyline_View: !offers.city_Skyline_View,
+                        ...tempOffers,
+                        city_Skyline_View: !tempOffers.city_Skyline_View,
                       })
                     }
                   >
@@ -402,14 +409,14 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={Cityskylineview}></img>
                       <div>City skyline view</div>
                     </div>
-                    <Checkbox checked={offers.city_Skyline_View} />
+                    <Checkbox checked={tempOffers.city_Skyline_View} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
-                        kitchen: !offers.kitchen,
+                        ...tempOffers,
+                        kitchen: !tempOffers.kitchen,
                       })
                     }
                   >
@@ -417,14 +424,14 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={kitchen}></img>
                       <div>Kitchen</div>
                     </div>
-                    <Checkbox checked={offers.kitchen} />
+                    <Checkbox checked={tempOffers.kitchen} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
-                        wifi: !offers.wifi,
+                        ...tempOffers,
+                        wifi: !tempOffers.wifi,
                       })
                     }
                   >
@@ -432,14 +439,14 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={wifi}></img>
                       <div>Wifi</div>
                     </div>
-                    <Checkbox checked={offers.wifi} />
+                    <Checkbox checked={tempOffers.wifi} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
-                        dedicated_Workspace: !offers.dedicated_Workspace,
+                        ...tempOffers,
+                        dedicated_Workspace: !tempOffers.dedicated_Workspace,
                       })
                     }
                   >
@@ -447,15 +454,15 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={dework}></img>
                       <div>Dedicated Workspace</div>
                     </div>
-                    <Checkbox checked={offers.dedicated_Workspace} />
+                    <Checkbox checked={tempOffers.dedicated_Workspace} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
+                        ...tempOffers,
                         free_Parking_On_Premiese:
-                          !offers.free_Parking_On_Premiese,
+                          !tempOffers.free_Parking_On_Premiese,
                       })
                     }
                   >
@@ -463,14 +470,14 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={fpp}></img>
                       <div>Free Parking on premiese</div>
                     </div>
-                    <Checkbox checked={offers.free_Parking_On_Premiese} />
+                    <Checkbox checked={tempOffers.free_Parking_On_Premiese} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
-                        pool: !offers.pool,
+                        ...tempOffers,
+                        pool: !tempOffers.pool,
                       })
                     }
                   >
@@ -478,14 +485,15 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={pool}></img>
                       <div>Pool</div>
                     </div>
-                    <Checkbox checked={offers.pool} />
+                    <Checkbox checked={tempOffers.pool} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
-                        carbon_Monoxide_Alarm: !offers.carbon_Monoxide_Alarm,
+                        ...tempOffers,
+                        carbon_Monoxide_Alarm:
+                          !tempOffers.carbon_Monoxide_Alarm,
                       })
                     }
                   >
@@ -493,14 +501,14 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={cma}></img>
                       <div>Carbon monoxide alarm</div>
                     </div>
-                    <Checkbox checked={offers.carbon_Monoxide_Alarm} />
+                    <Checkbox checked={tempOffers.carbon_Monoxide_Alarm} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
-                        smoking_Alarm: !offers.smoking_Alarm,
+                        ...tempOffers,
+                        smoking_Alarm: !tempOffers.smoking_Alarm,
                       })
                     }
                   >
@@ -508,14 +516,14 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={sa}></img>
                       <div>Smoking alarm</div>
                     </div>
-                    <Checkbox checked={offers.smoking_Alarm} />
+                    <Checkbox checked={tempOffers.smoking_Alarm} />
                   </div>
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
                       setOffers({
-                        ...offers,
-                        tv: !offers.tv,
+                        ...tempOffers,
+                        tv: !tempOffers.tv,
                       })
                     }
                   >
@@ -523,14 +531,17 @@ export const PropertyDetail = ({ editable }) => {
                       <img src={tv}></img>
                       <div>TV</div>
                     </div>
-                    <Checkbox checked={offers.tv} />
+                    <Checkbox checked={tempOffers.tv} />
                   </div>
                 </div>
 
                 <div className="w-full flex justify-end px-[20px] my-[20px]">
                   <div
                     className="px-[20px] py-[8px] rounded-[16px] bg-[#5D00CF] text-white shadow-md cursor-pointer"
-                    onClick={handleCloseOfferModal}
+                    onClick={() => {
+                      setOffers({ ...tempOffers });
+                      handleCloseOfferModal();
+                    }}
                   >
                     Save
                   </div>
