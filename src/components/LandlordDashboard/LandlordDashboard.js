@@ -78,10 +78,9 @@ export const LandlordDashboard = () => {
         </div>
         <div className="my-[40px] flex gap-[16px]">
           <div>
-            <div className="font-bold">Verify NFTs</div>
+            <div className="font-bold">Verify ID</div>
             <div className="rounded-[8px] shadow-md px-[12px] py-[18px] space-y-[20px] w-[260px] flex flex-col items-center">
               <img src={IDIcon} className="w-[88px]"></img>
-              {/* <Link to="/account"> */}
               <div
                 className="py-[8px] bg-black text-white text-center rounded-[100px] w-full cursor-pointer"
                 onClick={() => {
@@ -90,7 +89,6 @@ export const LandlordDashboard = () => {
               >
                 Verify ID
               </div>
-              {/* </Link> */}
             </div>
           </div>
           <div className="w-full">

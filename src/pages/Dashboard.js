@@ -79,6 +79,7 @@ import { LandlordCalendar } from "../components/LandlordDashboard/LandlordCalend
 import { TenantDashboard } from "../components/TenantDashboard/TenantDashboard";
 import { TenantMyRental } from "../components/TenantDashboard/TenantMyRental";
 import { TenantTransaction } from "../components/TenantDashboard/TenantTransaction";
+import { LandlordTransaction } from "../components/LandlordDashboard/LandlordTransaction";
 
 export const Dashboard = () => {
   const headerMode = useSelector((state) => state.header.submode);
@@ -186,11 +187,11 @@ export const Dashboard = () => {
 
           {dashboardMode == 1 ? <LandlordTenantOverview /> : <></>}
           {dashboardMode == 2 ? <LandlordNFTs /> : <></>}
-          {/* {dashboardMode == 3 ? <></> : <></>} */}
-          {dashboardMode == 3 ? <DashboardListing /> : <></>}
-          {dashboardMode == 4 ? <LandlordCalendar /> : <></>}
+          {dashboardMode == 3 ? <LandlordTransaction /> : <></>}
+          {dashboardMode == 4 ? <DashboardListing /> : <></>}
+          {dashboardMode == 5 ? <LandlordCalendar /> : <></>}
 
-          {dashboardMode == 5 ? (
+          {dashboardMode == 6 ? (
             <>
               <div className="bg-[#F6F6F6] rounded-[8px] w-full h-full flex gap-[5px]">
                 <div className="w-full rounded-[8px] bg-white">

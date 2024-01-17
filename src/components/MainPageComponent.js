@@ -39,11 +39,11 @@ export const MainPageComponent = () => {
   const assets = useSelector((state) => state.nft.allNFTs);
 
   const handleClose = () => {
-    document.getElementById("sortby").classList.remove("z-[1200]");
+    // document.getElementById("sortby").classList.remove("z-[1200]");
     setShow(false);
   };
   const handleShow = (e) => {
-    e.target.parentNode.classList.add("z-[1200]");
+    // e.target.parentNode.classList.add("z-[1200]");
     setShow(true);
   };
 
@@ -118,8 +118,8 @@ export const MainPageComponent = () => {
         </div>
 
         <div
-          id="sortby"
-          className="flex items-center gap-[8px] shadow-md bg-white rounded-[20px] px-[20px] py-[10px] z-[1000] cursor-pointer"
+          // id="sortby"
+          className="flex items-center gap-[8px] shadow-md bg-white rounded-[20px] px-[20px] py-[10px] z-[1000] cursor-pointer mr-[240px]"
           onClick={handleShow}
         >
           <img src={iconFilter}></img>
@@ -796,11 +796,11 @@ export const MainPageComponent = () => {
             );
         })}
       </div>
-      <div className="flex absolute w-full">
+      {/* <div className="flex absolute w-full">
         <div className="bg-[#5B1DEE] mx-auto px-[50px] rounded-[15px] text-white mt-[-15px] py-[8px] z-[10]">
           Show map
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

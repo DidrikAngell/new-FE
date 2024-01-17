@@ -208,10 +208,10 @@ export const PropertyDetail = ({ editable }) => {
                 through smart contracts, with the real world data verified
                 on-chain by zero-knowledge proof.
               </div>
-              <div className="flex items-center text-[#6B349A] rounded-[10px] px-[10px] py-[5px] shadow-md w-max">
+              {/* <div className="flex items-center text-[#6B349A] rounded-[10px] px-[10px] py-[5px] shadow-md w-max">
                 <div className="">Learn more</div>
                 <img src={arrow1}></img>
-              </div>
+              </div> */}
             </div>
           )}
 

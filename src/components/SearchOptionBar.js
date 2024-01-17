@@ -377,7 +377,7 @@ export const SearchOptionBar = () => {
               onlyMonthPicker={onlyMonthPicker}
             />
 
-            <SelectionGroup
+            {/* <SelectionGroup
               defaultItem={0}
               className="m-[10px] flex gap-[8px] text-[#D5D5D5]"
             >
@@ -441,7 +441,7 @@ export const SearchOptionBar = () => {
                   </div>
                 }
               />
-            </SelectionGroup>
+            </SelectionGroup> */}
           </Modal.Body>
         ) : (
           <></>

@@ -329,7 +329,7 @@ export const DetailPage = () => {
       </div>
 
       <div className="shadow-md w-[90%] mx-auto p-[20px] rounded-[10px]">
-        <div className="grid grid-cols-2 gap-[10px]">
+        {/* <div className="grid grid-cols-2 gap-[10px]">
           <div className="shadow-sm">
             DEMit Bookiply finden Sie ganz einfach Ihre perfekte
             Ferienunterkunft. Eine schöne Villa mit Meerblick auf Sardinien? Ein
@@ -340,7 +340,7 @@ export const DetailPage = () => {
             Italiano, Português, Español
             <br /> Response rate : 100% <br /> Response time : within an hour
           </div>
-        </div>
+        </div> */}
         <div className="flex">
           <div
             className="bg-[#5B1DEE] mx-auto mt-[20px] px-[50px] rounded-[15px] text-white py-[8px] cursor-pointer"
