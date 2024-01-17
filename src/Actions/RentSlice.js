@@ -19,9 +19,12 @@ export const RentSlice = createSlice({
     setAmountToPay: (state, action) => {
       state.amountToPay = action.payload;
     },
+    setPeriod: (state, action) => {
+      state.period = action.payload;
+    },
   },
 });
 
-export const { setRentDetail, setAmountToPay } = RentSlice.actions;
+export const { setRentDetail, setAmountToPay, setPeriod } = RentSlice.actions;
 
 export default RentSlice.reducer;

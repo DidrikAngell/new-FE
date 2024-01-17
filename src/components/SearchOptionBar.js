@@ -31,6 +31,7 @@ import {
   setRegion,
 } from "../Actions/SearchSlice";
 import { SelectionGroup, SelectionItem } from "./Selection";
+import { setPeriod } from "../Actions/RentSlice";
 
 export const SearchOptionBar = () => {
   const [show, setShow] = useState(false);
@@ -44,14 +45,16 @@ export const SearchOptionBar = () => {
     setShow(true);
   };
 
-  const [value, setValue] = useState([
-    useSelector((state) => state.search.checkIn),
-    useSelector((state) => state.search.checkOut),
-  ]);
+  // const [value, setValue] = useState([
+  //   ,
+  // ]);
+
+  const [value, setValue] = useState(useSelector((state) => state.rent.period));
 
   useEffect(() => {
-    dispatch(setCheckIn(value[0]));
-    if (value.length > 1) dispatch(setCheckOut(value[1]));
+    // dispatch(setCheckIn(value[0]));
+    // if (value.length > 1) dispatch(setCheckOut(value[1]));
+    dispatch(setPeriod(value));
   }, [value]);
 
   const region = useSelector((state) => state.search.region);
@@ -374,6 +377,7 @@ export const SearchOptionBar = () => {
               numberOfMonths={2}
               minDate={new Date()}
               onChange={setValue}
+              value={value}
               onlyMonthPicker={onlyMonthPicker}
             />
 
