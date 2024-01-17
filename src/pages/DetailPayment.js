@@ -63,6 +63,7 @@ export const DetailPayment = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const guests = useSelector((state) => state.search.guests);
   const handleReserveNow = async () => {
     const message = {
       set_reservation_for_long_term: {
@@ -106,7 +107,7 @@ export const DetailPayment = () => {
             <div className="flex justify-between items-center">
               <div>
                 <div className="text-[18px]">Tenant</div>
-                <div className="text-[#5A5A5A]">1 guest</div>
+                <div className="text-[#5A5A5A]">{guests.toString()}</div>
               </div>
               {/* <div className="underline">Edit</div> */}
             </div>
