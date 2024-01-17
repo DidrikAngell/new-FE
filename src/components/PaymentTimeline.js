@@ -21,6 +21,8 @@ export const PaymentTimeline = () => {
       state.nft.currentNFT.longtermrentalInfo.landlord.refundableDeposit
   );
 
+  const date = useSelector((state) => state.rent.period);
+
   return (
     <div className="p-[24px] rounded-[12px] shadow-md h-max space-y-[24px]">
       <div className="flex justify-between">
@@ -77,14 +79,14 @@ export const PaymentTimeline = () => {
                   <div className="flex justify-between items-end">
                     <div>
                       <div className="font-bold">Monthly Payment Rate</div>
-                      <div>Due 15 December 2023</div>
+                      <div>Due {date[0].toString()}</div>
                     </div>
                     <div className="flex items-center">
                       <img src={NUSD}></img>
                       <div>{pricePerMonth} NUSD</div>
                     </div>
                   </div>
-                  <div className="flex justify-between items-end bg-[#F6F6F6] p-[8px] rounded-[16px]">
+                  {/* <div className="flex justify-between items-end bg-[#F6F6F6] p-[8px] rounded-[16px]">
                     <div>
                       <div className="font-bold">Pro-rated charges</div>
                       <div>Rent</div>
@@ -101,8 +103,8 @@ export const PaymentTimeline = () => {
                         <div>400 NUSD</div>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#F6F6F6] p-[8px] rounded-[16px]">
+                  </div> */}
+                  {/* <div className="bg-[#F6F6F6] p-[8px] rounded-[16px]">
                     <div className="font-bold">One-time charges</div>
 
                     <div className="flex items-center justify-between">
@@ -138,7 +140,7 @@ export const PaymentTimeline = () => {
                         <div>400 NUSD</div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="flex justify-between items-end">
                     <div>
@@ -181,7 +183,7 @@ export const PaymentTimeline = () => {
           <div className="flex justify-between items-end">
             <div>
               <div className="font-bold">Monthly Payment Rate</div>
-              <div>Due 15 December 2023</div>
+              <div>Due {date[0].toString()}</div>
             </div>
             <div className="flex items-center">
               <img src={NUSD}></img>
