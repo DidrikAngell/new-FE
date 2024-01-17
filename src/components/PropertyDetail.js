@@ -73,6 +73,7 @@ export const PropertyDetail = ({ editable }) => {
 
   useEffect(() => {
     if (!editable) {
+      alert("setting metadata");
       setDescription(metaDataDescription);
       setOffers(metaDataOffers);
     }
