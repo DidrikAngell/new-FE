@@ -14,7 +14,7 @@ import iconEjari from "../../assets/images/dashboard/iconEjari.png";
 import hourGlass from "../../assets/images/dashboard/Group 1000004833.png";
 
 export const TenantTransaction = () => {
-  const [transactionFlow, setTransactionFlow] = useState(1);
+  const [transactionFlow, setTransactionFlow] = useState(0);
   const walletEx = useSelector((state) => state.auth.wallet);
   const account = useSelector((state) => state.auth.account);
   const assets = useSelector((state) => state.nft.allNFTs);

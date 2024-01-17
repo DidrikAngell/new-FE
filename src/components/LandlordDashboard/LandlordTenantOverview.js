@@ -24,6 +24,7 @@ import location from "../../assets/images/location.png";
 import { useState, useEffect } from "react";
 import { getMyNFTsInfo } from "../NFTs";
 import { useSelector } from "react-redux";
+import empty from "../../assets/images/Frame 1000005568.png";
 
 export const LandlordTenantOverview = () => {
   const [viewDetailFlag, setViewDetailFlag] = useState(false);
@@ -442,82 +443,82 @@ export const LandlordTenantOverview = () => {
               </div>
             </div>
             <div className="p-[20px] h-full">
-              <div className="grid grid-cols-4 gap-[20px]">
-                {/* <PropertyItem /> */}
+              {assets.length > 0 ? (
+                <div className="grid grid-cols-4 gap-[20px]">
+                  {assets.map((item) => {
+                    if (NFTsFlag == 1)
+                      if (
+                        item.longtermrental_info.islisted &&
+                        item.longtermrental_info.isreserved &&
+                        item.longtermrental_info.deposit_amount != "0"
+                      )
+                        return (
+                          <div className="w-[400px]">
+                            <CarouselCompo
+                              nftInfo={item.nft_info}
+                              metaData={item.metaData}
+                              longtermrentalInfo={item.longtermrental_info}
+                              totalPriceHide={true}
+                              imageHeight={"200px"}
+                              btn={
+                                <div
+                                  className="bg-[#5D00CF] py-[10px] rounded-[16px] text-white text-center mt-[10px] cursor-pointer"
+                                  onClick={() => {
+                                    setCurrentToken(item);
+                                    //   setMyRentalFlag(!myRentalFlag);
+                                    setTenantOverviewFlag(!tenantOverviewFlag);
+                                  }}
+                                >
+                                  View Details
+                                </div>
+                              }
+                            />
+                          </div>
+                        );
 
-                {assets.map((item) => {
-                  if (NFTsFlag == 1)
-                    if (
-                      item.longtermrental_info.islisted &&
-                      item.longtermrental_info.isreserved &&
-                      item.longtermrental_info.deposit_amount != "0"
-                    )
-                      return (
-                        <div className="w-[400px]">
-                          <CarouselCompo
-                            nftInfo={item.nft_info}
-                            metaData={item.metaData}
-                            longtermrentalInfo={item.longtermrental_info}
-                            totalPriceHide={true}
-                            imageHeight={"200px"}
-                            btn={
-                              <div
-                                className="bg-[#5D00CF] py-[10px] rounded-[16px] text-white text-center mt-[10px] cursor-pointer"
-                                onClick={() => {
-                                  setCurrentToken(item);
-                                  //   setMyRentalFlag(!myRentalFlag);
-                                  setTenantOverviewFlag(!tenantOverviewFlag);
-                                }}
-                              >
-                                View Details
-                              </div>
-                            }
-                          />
-                        </div>
-                      );
-
-                  if (NFTsFlag == 0)
-                    if (
-                      item.longtermrental_info.islisted &&
-                      item.longtermrental_info.isreserved &&
-                      item.longtermrental_info.deposit_amount == "0"
-                    )
-                      return (
-                        <div className="w-[400px]">
-                          <CarouselCompo
-                            nftInfo={item.nft_info}
-                            metaData={item.metaData}
-                            longtermrentalInfo={item.longtermrental_info}
-                            totalPriceHide={true}
-                            imageHeight={"200px"}
-                            btn={
-                              <div
-                                className="bg-[#5D00CF] py-[10px] rounded-[16px] text-white text-center mt-[10px] cursor-pointer"
-                                onClick={() => {
-                                  setCurrentToken(item);
-                                  //   setMyRentalFlag(!myRentalFlag);
-                                  setTenantOverviewFlag(!tenantOverviewFlag);
-                                }}
-                              >
-                                View Details
-                              </div>
-                            }
-                          />
-                        </div>
-                      );
-                })}
-              </div>
-
-              {/* <div className="w-full shadow-md bg-[#F6F6F6] h-full flex flex-col">
-                    <div className="m-auto flex flex-col">
-                      <img src={empty} className="m-auto"></img>
-                      <div>You don´t have any verified NFTs minted yet.</div>
-                      <div className="m-auto flex gap-[30px] text-[#6B349A]">
-                        <div className="underline">Listing page</div>
-                        <div className="underline">Mint</div>
-                      </div>
-                    </div>
+                    if (NFTsFlag == 0)
+                      if (
+                        item.longtermrental_info.islisted &&
+                        item.longtermrental_info.isreserved &&
+                        item.longtermrental_info.deposit_amount == "0"
+                      )
+                        return (
+                          <div className="w-[400px]">
+                            <CarouselCompo
+                              nftInfo={item.nft_info}
+                              metaData={item.metaData}
+                              longtermrentalInfo={item.longtermrental_info}
+                              totalPriceHide={true}
+                              imageHeight={"200px"}
+                              btn={
+                                <div
+                                  className="bg-[#5D00CF] py-[10px] rounded-[16px] text-white text-center mt-[10px] cursor-pointer"
+                                  onClick={() => {
+                                    setCurrentToken(item);
+                                    //   setMyRentalFlag(!myRentalFlag);
+                                    setTenantOverviewFlag(!tenantOverviewFlag);
+                                  }}
+                                >
+                                  View Details
+                                </div>
+                              }
+                            />
+                          </div>
+                        );
+                  })}
+                </div>
+              ) : (
+                <div className="w-full shadow-md bg-[#F6F6F6] h-full flex flex-col">
+                  <div className="m-auto flex flex-col">
+                    <img src={empty} className="m-auto"></img>
+                    <div>No Rentals Yet</div>
+                    {/* <div className="m-auto flex gap-[30px] text-[#6B349A]">
+                    <div className="underline">Listing page</div>
+                    <div className="underline">Mint</div>
                   </div> */}
+                  </div>
+                </div>
+              )}
             </div>
           </>
         )

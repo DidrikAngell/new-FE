@@ -7,7 +7,6 @@ import icon from "../assets/images/icon.png";
 import icon1 from "../assets/images/icon (1).png";
 import icon2 from "../assets/images/icon (2).png";
 
-import empty from "../assets/images/Frame 1000005568.png";
 import { CarouselCompo } from "../components/CarouselCompo";
 import { PropertyItem } from "../components/PropertyItem";
 import { SelectionGroup, SelectionItem } from "../components/Selection";
@@ -187,11 +186,11 @@ export const Dashboard = () => {
 
           {dashboardMode == 1 ? <LandlordTenantOverview /> : <></>}
           {dashboardMode == 2 ? <LandlordNFTs /> : <></>}
-          {dashboardMode == 3 ? <></> : <></>}
-          {dashboardMode == 4 ? <DashboardListing /> : <></>}
-          {dashboardMode == 5 ? <LandlordCalendar /> : <></>}
+          {/* {dashboardMode == 3 ? <></> : <></>} */}
+          {dashboardMode == 3 ? <DashboardListing /> : <></>}
+          {dashboardMode == 4 ? <LandlordCalendar /> : <></>}
 
-          {dashboardMode == 6 ? (
+          {dashboardMode == 5 ? (
             <>
               <div className="bg-[#F6F6F6] rounded-[8px] w-full h-full flex gap-[5px]">
                 <div className="w-full rounded-[8px] bg-white">
