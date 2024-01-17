@@ -38,7 +38,7 @@ export const PropertyDetail = ({ editable }) => {
   const handleCloseDescriptionModal = () => setShowDescriptionModal(false);
   const handleShowDescriptionModal = () => setShowDescriptionModal(true);
 
-  const [descrition, setDescription] = useState("");
+  const [description, setDescription] = useState("");
   const [tempDescription, setTempDescription] = useState("");
 
   const metaData = useSelector((state) => state.nft.currentNFT.metaData);
@@ -210,7 +210,10 @@ export const PropertyDetail = ({ editable }) => {
               {editable ? (
                 <div
                   className="underline cursor-pointer"
-                  onClick={handleShowDescriptionModal}
+                  onClick={() => {
+                    setTempDescription(description);
+                    handleShowDescriptionModal();
+                  }}
                 >
                   Edit
                 </div>
@@ -218,7 +221,7 @@ export const PropertyDetail = ({ editable }) => {
                 <></>
               )}
             </div>
-            <div>{descrition}</div>
+            <div>{description}</div>
           </div>
 
           <Modal
