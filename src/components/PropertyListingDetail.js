@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NUSD from "../assets/images/NUSD.png";
 import arrowdown from "../assets/images/arrowdown (2).png";
 import { Toggle } from "./Toggle";
@@ -18,6 +18,7 @@ export const PropertyListingDetail = ({
   const handle = (e) => {
     setRefundableDeposit(e.target.value);
   };
+
   return (
     <div className="p-[24px] rounded-[12px] shadow-md w-full bg-white h-max space-y-[24px]">
       <div className="font-bold text-[18px]">Property Listing Details</div>
@@ -61,8 +62,10 @@ export const PropertyListingDetail = ({
           <div className="font-bold text-[18px]">TOTAL AMOUNT</div>
           <div className="flex items-center gap-[4px]">
             <img src={NUSD}></img>
-            <div className="text-[#4C37C3]">2400</div>
-            <div>NUSD</div>
+            <div className="text-[#4C37C3]">
+              {Number(refundable_deposit) + Number(price_per_month)}
+            </div>
+            <div>NUSD (a month) </div>
           </div>
         </div>
         {/* <div className="flex justify-between">
@@ -93,17 +96,17 @@ export const PropertyListingDetail = ({
             );
           }}
         >
-          Apply Changes
+          List For Rental
         </div>
 
         <div className="flex gap-[16px]">
           <div
-            className="px-[20px] py-[12px] rounded-[16px] text-center text-white bg-black w-full"
+            className="px-[20px] py-[12px] rounded-[16px] text-center text-white bg-black w-full cursor-pointer"
             onClick={editMetaData}
           >
             Edit Metadata
           </div>
-          <div className="px-[20px] py-[12px] rounded-[16px] text-center text-white bg-black w-full">
+          <div className="px-[20px] py-[12px] rounded-[16px] text-center text-white bg-[#E3E3E3] w-full cursor-pointer">
             Unlist Property
           </div>
         </div>
