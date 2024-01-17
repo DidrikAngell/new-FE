@@ -50,7 +50,7 @@ export const PaymentTimeline = () => {
                   <img src={icon}></img>
                   <div className="bg-[#EFE8FD] w-[4px] h-[110px]"></div>
                   <img src={icon}></img>
-                  <div className="bg-[#EFE8FD] w-[4px] h-[300px]"></div>
+                  <div className="bg-[#EFE8FD] w-[4px] h-[55px]"></div>
                   <img src={icon}></img>
                 </div>
                 <div className="w-full space-y-[10px]">
