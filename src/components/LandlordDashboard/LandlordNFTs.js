@@ -123,6 +123,9 @@ export const LandlordNFTs = () => {
     // setUpdateFlag(!updateFlag);
     dispatch(setDashboardMode(2));
   };
+
+  const editMetaData = () => setActionMode(false);
+
   const pinFileToIPFS = async () => {
     console.log("Uploading images...");
     const hashes = [];
@@ -586,6 +589,7 @@ export const LandlordNFTs = () => {
               <PropertyListingDetail
                 token_id={currentToken.token_id}
                 setListNFT={setListNFT}
+                editMetaData={editMetaData}
               />
             </div>
           </div>

@@ -74,10 +74,7 @@ export const PropertyDetail = ({ editable }) => {
 
   useEffect(() => {
     if (editable) {
-      // setDescription("")
-      // setOffers()
     } else {
-      alert("setting with metadata");
       setDescription(metaDataDescription);
       setOffers(metaDataOffers);
     }

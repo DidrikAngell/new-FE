@@ -3,7 +3,11 @@ import NUSD from "../assets/images/NUSD.png";
 import arrowdown from "../assets/images/arrowdown (2).png";
 import { Toggle } from "./Toggle";
 
-export const PropertyListingDetail = ({ token_id, setListNFT = () => {} }) => {
+export const PropertyListingDetail = ({
+  token_id,
+  setListNFT = () => {},
+  editMetaData = () => {},
+}) => {
   console.log(token_id);
   const [status, setStatus] = useState(false);
   const [price_per_month, setPrice] = useState(0);
@@ -93,7 +97,10 @@ export const PropertyListingDetail = ({ token_id, setListNFT = () => {} }) => {
         </div>
 
         <div className="flex gap-[16px]">
-          <div className="px-[20px] py-[12px] rounded-[16px] text-center text-white bg-black w-full">
+          <div
+            className="px-[20px] py-[12px] rounded-[16px] text-center text-white bg-black w-full"
+            onClick={editMetaData}
+          >
             Edit Metadata
           </div>
           <div className="px-[20px] py-[12px] rounded-[16px] text-center text-white bg-black w-full">
