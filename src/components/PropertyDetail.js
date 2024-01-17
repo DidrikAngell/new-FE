@@ -66,7 +66,7 @@ export const PropertyDetail = ({ editable }) => {
   const [tempOffers, setTempOffers] = useState(defaultOffers);
 
   const metaDataDescription = useSelector(
-    (state) => state.nft.currentNFT.metaData.descrition
+    (state) => state.nft.currentNFT.metaData.description
   );
   const metaDataOffers = useSelector(
     (state) => state.nft.currentNFT.metaData.offers

@@ -45,6 +45,10 @@ export const LandlordNFTs = () => {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzMWEyZjc5ZS1iNDQyLTQzOWUtOGNlNC0wZmRiMTIzYmNkNDciLCJlbWFpbCI6ImJsb2NrY2hhaW5zdGFyMThAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImJkZjAxNDE1NGYxOTBhZjY4M2Y3Iiwic2NvcGVkS2V5U2VjcmV0IjoiZDUxNGZjOTljMGZkMGJlYTA1NzA4OTkzOGFkZGQyOTI5OWQ1ZjkyZTUyOGY2NWRjZjQ0NGIzODdmOTQ2YmEyMCIsImlhdCI6MTcwMjk2NDQxOX0.2KDJPbgRnpIbvgYbvGZnkwnjAZw7NiRhtif_SqW1z2E";
 
   const assets = useSelector((state) => state.nft.myNFTs);
+  const description = useSelector(
+    (state) => state.nft.uploadingData.description
+  );
+  const offers = useSelector((state) => state.nft.uploadingData.offers);
 
   const updateMetadata = async (hash, key_values) => {
     const metaData = { ...(await getMetadata(gateWay + hash)) };
@@ -153,14 +157,6 @@ export const LandlordNFTs = () => {
     let currentURI = currentToken.nft_info.info.token_uri.replace(gateWay, "");
     const imageHashes = await pinFileToIPFS();
 
-    const offers = [
-      "Garden View",
-      "Kitchen",
-      "Dedicated Workspace",
-      "Pool",
-      "Smoking alarm",
-    ];
-
     const newHash = await updateMetadata(currentURI, [
       {
         key: "images",
@@ -168,7 +164,11 @@ export const LandlordNFTs = () => {
       },
       {
         key: "offers",
-        value: offers.toString(),
+        value: offers,
+      },
+      {
+        key: "description",
+        value: description,
       },
     ]);
 
