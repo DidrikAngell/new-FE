@@ -399,7 +399,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         city_Skyline_View: !tempOffers.city_Skyline_View,
                       })
@@ -414,7 +414,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         kitchen: !tempOffers.kitchen,
                       })
@@ -429,7 +429,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         wifi: !tempOffers.wifi,
                       })
@@ -444,7 +444,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         dedicated_Workspace: !tempOffers.dedicated_Workspace,
                       })
@@ -459,7 +459,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         free_Parking_On_Premiese:
                           !tempOffers.free_Parking_On_Premiese,
@@ -475,7 +475,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         pool: !tempOffers.pool,
                       })
@@ -490,7 +490,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         carbon_Monoxide_Alarm:
                           !tempOffers.carbon_Monoxide_Alarm,
@@ -506,7 +506,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         smoking_Alarm: !tempOffers.smoking_Alarm,
                       })
@@ -521,7 +521,7 @@ export const PropertyDetail = ({ editable }) => {
                   <div
                     className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
                     onClick={() =>
-                      setOffers({
+                      setTempOffers({
                         ...tempOffers,
                         tv: !tempOffers.tv,
                       })
