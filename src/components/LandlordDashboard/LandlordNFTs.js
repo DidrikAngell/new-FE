@@ -149,6 +149,7 @@ export const LandlordNFTs = () => {
   };
 
   const handleUpdateMetadata = async () => {
+    setActionMode(null);
     let currentURI = currentToken.nft_info.info.token_uri.replace(gateWay, "");
     const imageHashes = await pinFileToIPFS();
 
@@ -458,9 +459,9 @@ export const LandlordNFTs = () => {
                     <img src={circlechecked} /> */}
               </div>
               <div className="grid grid-cols-3 justify-items-center gap-[120px]">
-                <div>Describe</div>
-                <div>Highlight</div>
-                <div>Publish</div>
+                <div>Autofill Metadata</div>
+                <div>Manual Metadata</div>
+                <div>Finished</div>
                 {/* <div>Valuation</div> */}
               </div>
               <div className="p-[16px] rounded-[12px] shadow-md w-[600px] h-[400px] space-y-[12px] flex flex-col my-[20px] select-none">
@@ -562,7 +563,7 @@ export const LandlordNFTs = () => {
                 </div> */}
               </div>
               <div className="w-[600px]">
-                <PropertyDetail />
+                <PropertyDetail editable={true} />
               </div>
             </div>
             <div className="w-full flex justify-end h-[50px]">

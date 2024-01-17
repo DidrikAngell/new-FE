@@ -19,7 +19,7 @@ import cma from "../assets/images/Frame 1000001460 (8).png";
 import tv from "../assets/images/Frame 1000001460 (9).png";
 import close from "../assets/images/Group 1000004790.png";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
@@ -29,7 +29,7 @@ import { setDashboardMode } from "../Actions/DashboardSlice";
 import { setSomeoneToContact } from "../Actions/MessageSlice";
 import { Checkbox } from "./Checkbox";
 
-export const PropertyDetail = () => {
+export const PropertyDetail = ({ editable }) => {
   const [showOfferModal, setShowOfferModal] = useState(false);
   const handleCloseOfferModal = () => setShowOfferModal(false);
   const handleShowOfferModal = () => setShowOfferModal(true);
@@ -39,6 +39,7 @@ export const PropertyDetail = () => {
   const handleShowDescriptionModal = () => setShowDescriptionModal(true);
 
   const [descrition, setDescription] = useState("");
+  const [tempDescription, setTempDescription] = useState("");
 
   const metaData = useSelector((state) => state.nft.currentNFT.metaData);
   const landlord = useSelector(
@@ -61,6 +62,22 @@ export const PropertyDetail = () => {
     tv: false,
   };
   const [offers, setOffers] = useState(defaultOffers);
+
+  const metaDataDescription = useSelector(
+    (state) => state.nft.currentNFT.metaData.descrition
+  );
+  const metaDataOffers = useSelector(
+    (state) => state.nft.currentNFT.metaData.offers
+  );
+
+  useEffect(() => {
+    if (!editable) {
+      setDescription(metaDataDescription);
+      setOffers(metaDataOffers);
+    }
+  }, []);
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -190,12 +207,16 @@ export const PropertyDetail = () => {
           <div>
             <div className="flex justify-between items-center mb-[10px]">
               <div className="text-[22px]">Description</div>
-              <div
-                className="underline cursor-pointer"
-                onClick={handleShowDescriptionModal}
-              >
-                Edit
-              </div>
+              {editable ? (
+                <div
+                  className="underline cursor-pointer"
+                  onClick={handleShowDescriptionModal}
+                >
+                  Edit
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
             <div>{descrition}</div>
           </div>
@@ -218,15 +239,18 @@ export const PropertyDetail = () => {
                   <div className="globalInputForm p-[16px] h-full">
                     <textarea
                       className="w-full h-full"
-                      value={descrition}
-                      onChange={(e) => setDescription(e.target.value)}
+                      value={tempDescription}
+                      onChange={(e) => setTempDescription(e.target.value)}
                     />
                   </div>
                 </div>
                 <div className="w-full flex justify-end px-[20px] mb-[20px]">
                   <div
                     className="px-[20px] py-[8px] rounded-[16px] bg-[#5D00CF] text-white shadow-md cursor-pointer"
-                    onClick={handleCloseDescriptionModal}
+                    onClick={() => {
+                      handleCloseDescriptionModal();
+                      setDescription(tempDescription);
+                    }}
                   >
                     Save
                   </div>
@@ -240,12 +264,16 @@ export const PropertyDetail = () => {
           <div className="space-y-[10px]">
             <div className="flex justify-between items-center mb-[10px]">
               <div className="text-[24px]">What this place offers</div>
-              <div
-                className="underline cursor-pointer"
-                onClick={handleShowOfferModal}
-              >
-                Edit
-              </div>
+              {editable ? (
+                <div
+                  className="underline cursor-pointer"
+                  onClick={handleShowOfferModal}
+                >
+                  Edit
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="grid grid-cols-2">
               {offers.garden_View ? (
