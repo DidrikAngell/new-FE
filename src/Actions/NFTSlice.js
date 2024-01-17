@@ -5,6 +5,10 @@ const initialState = {
   myNFTs: [],
   allNFTs: [],
   NFTsSection: 0,
+  uploadingData: {
+    description: null,
+    offers: null,
+  },
 };
 
 export const NFTSlice = createSlice({
@@ -23,10 +27,18 @@ export const NFTSlice = createSlice({
     setNFTsSection: (state, action) => {
       state.NFTsSection = action.payload;
     },
+    setUploadingData: (state, action) => {
+      state.uploadingData = action.payload;
+    },
   },
 });
 
-export const { setNFT, setAllNFTs, setMyNFTs, setNFTsSection } =
-  NFTSlice.actions;
+export const {
+  setNFT,
+  setAllNFTs,
+  setMyNFTs,
+  setNFTsSection,
+  setUploadingData,
+} = NFTSlice.actions;
 
 export default NFTSlice.reducer;

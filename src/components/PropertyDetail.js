@@ -28,6 +28,7 @@ import { setHeaderMode } from "../Actions/HeaderSlice";
 import { setDashboardMode } from "../Actions/DashboardSlice";
 import { setSomeoneToContact } from "../Actions/MessageSlice";
 import { Checkbox } from "./Checkbox";
+import { setUploadingData } from "../Actions/NFTSlice";
 
 export const PropertyDetail = ({ editable }) => {
   const [showOfferModal, setShowOfferModal] = useState(false);
@@ -82,7 +83,16 @@ export const PropertyDetail = ({ editable }) => {
     }
   }, []);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (editable) {
+      dispatch(
+        setUploadingData({
+          description: description,
+          offers: offers,
+        })
+      );
+    }
+  }, [description, offers]);
 
   return (
     <>
