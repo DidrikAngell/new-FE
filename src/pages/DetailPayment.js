@@ -107,7 +107,9 @@ export const DetailPayment = () => {
             <div className="flex justify-between items-center">
               <div>
                 <div className="text-[18px]">Tenant</div>
-                <div className="text-[#5A5A5A]">{guests.toString()}</div>
+                <div className="text-[#5A5A5A]">
+                  {guests.adults + guests.children}
+                </div>
               </div>
               {/* <div className="underline">Edit</div> */}
             </div>
