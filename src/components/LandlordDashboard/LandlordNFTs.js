@@ -120,8 +120,9 @@ export const LandlordNFTs = () => {
       },
     };
     await executeContract(dispatch, listingMessage, account, walletEx);
-    // setUpdateFlag(!updateFlag);
-    dispatch(setDashboardMode(2));
+
+    setActionMode(null);
+    dispatch(setNFTsSection(2));
   };
 
   const editMetaData = () => setActionMode(false);
