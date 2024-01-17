@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { executeContract } from "../InteractToContract";
 import uploadimage from "../../assets/images/dashboardListing/uploadimage.png";
-import { setNFT } from "../../Actions/NFTSlice";
+import { setNFT, setNFTsSection } from "../../Actions/NFTSlice";
 import { getMyNFTsInfo } from "../NFTs";
 import axios from "axios";
 import { getMetadata, pinMetadata } from "../NFTs";
@@ -31,7 +31,8 @@ export const LandlordNFTs = () => {
   const [totalListedNFTsCount, setTotalListedNFTsCount] = useState(0);
   const [totalUnverifedNFTsCount, setTotalUnverifiedNFTsCount] = useState(0);
   const dispatch = useDispatch();
-  const [NFTsFlag, setNFTsFlag] = useState(0);
+  // const [NFTsFlag, setNFTsFlag] = useState(0);
+  const NFTsFlag = useSelector((state) => state.nft.NFTsSection);
   const account = useSelector((state) => state.auth.account);
   const walletEx = useSelector((state) => state.auth.wallet);
   const [currentToken, setCurrentToken] = useState();
@@ -229,7 +230,7 @@ export const LandlordNFTs = () => {
                   UnselectedItem={
                     <div
                       className="w-[160px] rounded-[10px] flex items-center justify-between gap-[10px] px-[10px] py-[4px]"
-                      onClick={() => setNFTsFlag(0)}
+                      onClick={() => dispatch(setNFTsSection(0))}
                     >
                       <div>Verified NFTs</div>
                     </div>
@@ -245,7 +246,7 @@ export const LandlordNFTs = () => {
                   UnselectedItem={
                     <div
                       className="w-[160px] rounded-[10px] flex items-center justify-between gap-[10px] px-[10px] py-[4px]"
-                      onClick={() => setNFTsFlag(1)}
+                      onClick={() => dispatch(setNFTsSection(1))}
                     >
                       <div>Unverified NFTs</div>
                     </div>
@@ -261,7 +262,7 @@ export const LandlordNFTs = () => {
                   UnselectedItem={
                     <div
                       className="w-[160px] rounded-[10px] flex items-center justify-between gap-[10px] px-[10px] py-[4px]"
-                      onClick={() => setNFTsFlag(2)}
+                      onClick={() => dispatch(setNFTsSection(2))}
                     >
                       <div>My Listings</div>
                     </div>

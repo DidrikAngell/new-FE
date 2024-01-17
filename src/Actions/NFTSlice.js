@@ -26,6 +26,7 @@ export const NFTSlice = createSlice({
   },
 });
 
-export const { setNFT, setAllNFTs, setMyNFTs } = NFTSlice.actions;
+export const { setNFT, setAllNFTs, setMyNFTs, setNFTsSection } =
+  NFTSlice.actions;
 
 export default NFTSlice.reducer;

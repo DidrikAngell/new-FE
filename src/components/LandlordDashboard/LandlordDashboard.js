@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import { getMyNFTsInfo } from "../NFTs";
 import { useNavigate } from "react-router-dom";
 import verifyIcon from "../../assets/images/dashboard/Frame 1000005568.png";
+import { setNFTsSection } from "../../Actions/NFTSlice";
 
 export const LandlordDashboard = () => {
   const dispatch = useDispatch();
@@ -103,7 +104,10 @@ export const LandlordDashboard = () => {
                         return (
                           <div
                             className="min-w-[250px]"
-                            onClick={() => dispatch(setDashboardMode(2))}
+                            onClick={() => {
+                              dispatch(setNFTsSection(0));
+                              dispatch(setDashboardMode(2));
+                            }}
                           >
                             <CarouselCompo
                               nftInfo={item.nft_info}
@@ -119,7 +123,11 @@ export const LandlordDashboard = () => {
                         return (
                           <div
                             className="min-w-[250px]"
-                            onClick={() => dispatch(setDashboardMode(2))}
+                            onClick={() => {
+                              dispatch(setNFTsSection(1));
+
+                              dispatch(setDashboardMode(2));
+                            }}
                           >
                             <CarouselCompo
                               nftInfo={item.nft_info}
