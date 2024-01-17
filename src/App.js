@@ -29,8 +29,12 @@ import { DashboardGlobal } from "./pages/DashboardGlobal";
 import { DashboardLayout } from "./Layout/DashboardLayout";
 import { Swap } from "./pages/Swap";
 import { Rent } from "./pages/Rent";
+import { useSelector } from "react-redux";
+import { Account } from "./pages/Account";
 
 function App() {
+  const show = useSelector((state) => state.gallery.show);
+
   return (
     <div className="w-full bg-[#F6F6F6] font-semibold flex flex-col">
       {/* <Router>
@@ -127,28 +131,30 @@ function App() {
         </Routes>
       </Router> */}
 
-      <Router>
-        <Navigater />
-        <Routes>
-          <Route path="landing" element={<LandingPage />}></Route>
-          <Route element={<MainLayout />}>
-            <Route path="account" element={<Profile />}></Route>
-            <Route path="swap" element={<Swap />}></Route>
+      <div hidden={show}>
+        <Router>
+          <Navigater />
+          <Routes>
+            <Route path="landing" element={<LandingPage />}></Route>
+            <Route element={<MainLayout />}>
+              <Route path="account" element={<Account />}></Route>
+              <Route path="swap" element={<Swap />}></Route>
 
-            <Route path="yieldestate" element={<Verify />}></Route>
-            <Route path="rent" element={<Rent />}></Route>
-            {/* <Route path="property" element={<DetailPage />}></Route> */}
-            {/* <Route path="payment" element={<DetailPayment />}></Route> */}
-            {/* <Route path="reservation" element={<DetailConfirm />}></Route> */}
+              <Route path="yieldestate" element={<Verify />}></Route>
+              <Route path="rent" element={<Rent />}></Route>
+              {/* <Route path="property" element={<DetailPage />}></Route> */}
+              {/* <Route path="payment" element={<DetailPayment />}></Route> */}
+              {/* <Route path="reservation" element={<DetailConfirm />}></Route> */}
 
-            <Route path="buy" element={<></>}></Route>
-            <Route path="dashboard" element={<DashboardLayout />}>
-              {/* <Route path="landlord" element={<Dashboard />}></Route> */}
+              <Route path="buy" element={<></>}></Route>
+              <Route path="dashboard" element={<DashboardLayout />}>
+                {/* <Route path="landlord" element={<Dashboard />}></Route> */}
+              </Route>
             </Route>
-          </Route>
-          <Route path="*" element={<Navigater />}></Route>
-        </Routes>
-      </Router>
+            <Route path="*" element={<Navigater />}></Route>
+          </Routes>
+        </Router>
+      </div>
       <Gallery />
     </div>
   );

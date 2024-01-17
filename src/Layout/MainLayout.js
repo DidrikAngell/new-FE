@@ -10,6 +10,8 @@ import {
   setReadingNow,
   setMessagesToSend,
 } from "../Actions/MessageSlice";
+import { getMyNFTsInfo } from "../components/NFTs";
+import { setMyNFTs } from "../Actions/NFTSlice";
 
 export const MainLayout = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -18,6 +20,12 @@ export const MainLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [socket, setSocket] = useState(null);
+
+  const getMyAssets = async () => {
+    const result = await getMyNFTsInfo(account);
+    dispatch(setMyNFTs(result));
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       const temp_socket = io("http://57.180.34.157:443");
@@ -32,6 +40,8 @@ export const MainLayout = () => {
         dispatch(setReadingNow(res));
       });
       setSocket(temp_socket);
+
+      getMyAssets();
     }
     if (!isAuthenticated) {
       if (socket !== null) socket.disconnect();

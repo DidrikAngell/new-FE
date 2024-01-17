@@ -24,6 +24,7 @@ import { setNFT } from "../Actions/NFTSlice";
 export const CarouselCompo = ({
   nftInfo,
   metaData,
+  longtermrentalInfo,
   onlyImages,
   topRightIcon,
   imageHeight,
@@ -32,6 +33,7 @@ export const CarouselCompo = ({
   emptyImage,
   PriceHide,
   onClick = () => {},
+  stopPropagation,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,10 +68,12 @@ export const CarouselCompo = ({
       onClick={onClick}
     >
       <Carousel
-        className="w-full cursor-auto"
+        className="w-full"
         interval={null}
         fade={true}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          if (!stopPropagation) e.stopPropagation();
+        }}
         prevIcon={<img src={btnprev}></img>}
         nextIcon={<img src={btnnext}></img>}
       >
@@ -109,7 +113,7 @@ export const CarouselCompo = ({
             <div className="flex items-center ml-[10px] my-[10px] font-semibold text-[14px] gap-[10px]">
               <img src={NUSD1}></img>
               <div className="shadow-md px-[4px] py-[2px] rounded-[8px] text-[#5B1DEE] font-bold text-[16px]">
-                {nftInfo.auction.price}
+                {longtermrentalInfo.landlord.price_per_month}
               </div>
               <div className="font-bold text-[16px]">NUSD</div>
               <div className="text-[#959595]">/month</div>

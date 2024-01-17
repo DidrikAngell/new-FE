@@ -8,6 +8,7 @@ import MessageSlice from "../Actions/MessageSlice";
 import NFTSlice from "../Actions/NFTSlice";
 import PageSlice from "../Actions/PageSlice";
 import RentSlice from "../Actions/RentSlice";
+import SearchSlice from "../Actions/SearchSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const Store = configureStore({
     nft: NFTSlice,
     page: PageSlice,
     rent: RentSlice,
+    search: SearchSlice,
   },
 });

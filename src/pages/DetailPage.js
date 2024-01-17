@@ -74,6 +74,10 @@ import { Reviews } from "../components/Reviews";
 import { PropertyReserve } from "../components/PropertyReserve";
 import { setPage } from "../Actions/PageSlice";
 import { useDispatch } from "react-redux";
+import { setSomeoneToContact } from "../Actions/MessageSlice";
+import { setHeaderMode } from "../Actions/HeaderSlice";
+import { setDashboardMode } from "../Actions/DashboardSlice";
+
 export const DetailPage = () => {
   const [showReserveModal, setShowReserveModal] = useState(false);
   const handleCloseReserveModal = () => setShowReserveModal(false);
@@ -92,10 +96,14 @@ export const DetailPage = () => {
   const [value, setValue] = useState(
     new Date().toLocaleString(undefined, options)
   );
+  const landlord = useSelector(
+    (state) => state.nft.currentNFT.NftInfo?.access.owner
+  );
 
   const mode = useSelector((state) => state.header.mode);
   const submode = useSelector((state) => state.header.submode);
   const dispatch = useDispatch();
+  const dates = useSelector((state) => state.rent.period);
 
   return (
     <div className="pt-[5px] bg-white w-full space-y-[20px] pb-[20px]">
@@ -293,7 +301,7 @@ export const DetailPage = () => {
                   <div
                     className="bg-[#5B1DEE] px-[20px] py-[12px] rounded-[16px] text-white w-full text-center my-[30px] cursor-pointer"
                     onClick={() => {
-                      dispatch(setPage("confirmation"));
+                      if (dates.length) dispatch(setPage("confirmation"));
                     }}
                   >
                     Reserve
@@ -309,9 +317,9 @@ export const DetailPage = () => {
         </div>
       </div>
 
-      <div className="w-[90%] mx-auto">
+      {/* <div className="w-[90%] mx-auto">
         <Reviews />
-      </div>
+      </div> */}
 
       <div className="mx-auto w-[90%]">
         <iframe
@@ -334,8 +342,20 @@ export const DetailPage = () => {
           </div>
         </div>
         <div className="flex">
-          <div className="bg-[#5B1DEE] mx-auto mt-[20px] px-[50px] rounded-[15px] text-white py-[8px]">
-            Contact Seller
+          <div
+            className="bg-[#5B1DEE] mx-auto mt-[20px] px-[50px] rounded-[15px] text-white py-[8px] cursor-pointer"
+            onClick={() => {
+              dispatch(setSomeoneToContact(landlord));
+              dispatch(
+                setHeaderMode({
+                  mode: 3,
+                  submode: 3,
+                })
+              );
+              dispatch(setDashboardMode(5));
+            }}
+          >
+            Contact Landlord
           </div>
         </div>
       </div>

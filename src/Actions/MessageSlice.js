@@ -5,6 +5,7 @@ const initialState = {
   messages: [],
   receiverReadingChat: null,
   messagesToSend: null,
+  someoneToContact: null,
 };
 
 export const MessageSlice = createSlice({
@@ -25,10 +26,18 @@ export const MessageSlice = createSlice({
     setMessagesToSend: (state, action) => {
       state.messagesToSend = action.payload;
     },
+    setSomeoneToContact: (state, action) => {
+      state.someoneToContact = action.payload;
+    },
   },
 });
 
-export const { setNewMessage, setMessagesToSend, setEmpty, setReadingNow } =
-  MessageSlice.actions;
+export const {
+  setNewMessage,
+  setMessagesToSend,
+  setEmpty,
+  setReadingNow,
+  setSomeoneToContact,
+} = MessageSlice.actions;
 
 export default MessageSlice.reducer;

@@ -12,7 +12,7 @@ import { setPage } from "../Actions/PageSlice";
 export const PropertyAddress = () => {
   const mode = useSelector((state) => state.header.mode);
   const submode = useSelector((state) => state.header.submode);
-  const metaData = useSelector((state) => state.nft.metaData);
+  const metaData = useSelector((state) => state.nft.currentNFT.metaData);
 
   const page = useSelector((state) => state.page.page);
 
@@ -23,7 +23,18 @@ export const PropertyAddress = () => {
         <div className="shadow-md w-full h-max p-[20px] rounded-[10px] space-y-[20px] bg-white">
           <div className="flex items-center gap-[10px]">
             {/* <div className="text-[#A4A4A4]">Buy</div> */}
-            {mode == 1 ? <div className="text-[#A4A4A4]">Rent</div> : <></>}
+            {mode == 1 ? (
+              <div
+                className="text-[#A4A4A4] cursor-pointer"
+                onClick={() => {
+                  dispatch(setPage(null));
+                }}
+              >
+                Rent
+              </div>
+            ) : (
+              <></>
+            )}
             {mode == 3 && submode == 2 ? (
               <div className="text-[#A4A4A4]">My Listings</div>
             ) : (

@@ -15,6 +15,7 @@ export const NumberSpin = ({
         onClick={() => {
           if (value - 1 >= min) onChange(value - 1);
         }}
+        className="cursor-pointer"
       ></img>
       <div>{value}</div>
       <img
@@ -22,6 +23,7 @@ export const NumberSpin = ({
         onClick={() => {
           if (value + 1 <= max) onChange(value + 1);
         }}
+        className="cursor-pointer"
       ></img>
     </div>
   );

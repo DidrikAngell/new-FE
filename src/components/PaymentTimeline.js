@@ -13,8 +13,13 @@ export const PaymentTimeline = () => {
   const handleShowDetailModal = () => setShowDetailModal(true);
 
   const totalPrice = useSelector((state) => state.rent.totalPrice);
-  const pricePerMonth = useSelector((state) => state.nft.NftInfo.auction.price);
-  const refundableDeposit = 600;
+  const pricePerMonth = useSelector(
+    (state) => state.nft.currentNFT.longtermrentalInfo.landlord.price_per_month
+  );
+  const refundableDeposit = useSelector(
+    (state) =>
+      state.nft.currentNFT.longtermrentalInfo.landlord.refundableDeposit
+  );
 
   return (
     <div className="p-[24px] rounded-[12px] shadow-md h-max space-y-[24px]">

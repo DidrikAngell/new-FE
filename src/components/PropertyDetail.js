@@ -23,33 +23,83 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setHeaderMode } from "../Actions/HeaderSlice";
+import { setDashboardMode } from "../Actions/DashboardSlice";
+import { setSomeoneToContact } from "../Actions/MessageSlice";
+import { Checkbox } from "./Checkbox";
 
 export const PropertyDetail = () => {
   const [showOfferModal, setShowOfferModal] = useState(false);
   const handleCloseOfferModal = () => setShowOfferModal(false);
   const handleShowOfferModal = () => setShowOfferModal(true);
 
-  const metaData = useSelector((state) => state.nft.metaData);
-  const landlord = useSelector((state) => state.nft.NftInfo?.access.owner);
+  const [showDescriptionModal, setShowDescriptionModal] = useState(false);
+  const handleCloseDescriptionModal = () => setShowDescriptionModal(false);
+  const handleShowDescriptionModal = () => setShowDescriptionModal(true);
+
+  const [descrition, setDescription] = useState("");
+
+  const metaData = useSelector((state) => state.nft.currentNFT.metaData);
+  const landlord = useSelector(
+    (state) => state.nft.currentNFT.NftInfo?.access.owner
+  );
+
+  const headerMode = useSelector((state) => state.header.submode);
+  const dispatch = useDispatch();
+
+  const defaultOffers = {
+    garden_View: false,
+    city_Skyline_View: false,
+    kitchen: false,
+    wifi: false,
+    dedicated_Workspace: false,
+    free_Parking_On_Premiese: false,
+    pool: false,
+    carbon_Monoxide_Alarm: false,
+    smoking_Alarm: false,
+    tv: false,
+  };
+  const [offers, setOffers] = useState(defaultOffers);
 
   return (
     <>
       {metaData && landlord ? (
         <div className="shadow-md w-full rounded-[10px] p-[20px] space-y-[24px] bg-white">
-          <div className="flex items-center justify-between">
-            <div className="text-[24px]">
-              Landlord:
-              {" " +
-                landlord?.substring(0, 8) +
-                "..." +
-                landlord?.substring(landlord?.length - 7)}
-            </div>
-            {/* <div className="bg-[#5B1DEE] text-white px-[20px] py-[12px] rounded-[16px] flex items-center gap-[4px]">
+          {headerMode == 2 ? (
+            <></>
+          ) : (
+            <div className="flex items-center justify-between">
+              <div className="text-[24px]">
+                Landlord:
+                {" " +
+                  landlord?.substring(0, 8) +
+                  "..." +
+                  landlord?.substring(landlord?.length - 7)}
+              </div>
+              {/* <div className="bg-[#5B1DEE] text-white px-[20px] py-[12px] rounded-[16px] flex items-center gap-[4px]">
             <img src={delivery}></img>
             <div>Virtual tour</div>
           </div> */}
-          </div>
-          <div className="flex gap-[20px] text-[18px] ">
+              <div
+                className="bg-[#5B1DEE] px-[24px] rounded-[15px] text-white py-[8px] cursor-pointer"
+                onClick={() => {
+                  dispatch(setSomeoneToContact(landlord));
+                  dispatch(
+                    setHeaderMode({
+                      mode: 3,
+                      submode: 3,
+                    })
+                  );
+                  dispatch(setDashboardMode(5));
+                }}
+              >
+                Contact
+              </div>
+            </div>
+          )}
+
+          {/* <div className="flex gap-[20px] text-[18px] ">
             <div>
               <div>Bedroom</div>
               <div className="flex items-center">
@@ -71,12 +121,12 @@ export const PropertyDetail = () => {
                 <div>2</div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="bg-[#E3E3E3] w-full h-[2px]"></div>
+          {/* <div className="bg-[#E3E3E3] w-full h-[2px]"></div> */}
 
           <div className="space-y-[10px]">
-            <div className="text-[24px] ">Location</div>
+            <div className="text-[24px]">Location</div>
             <div className="flex items-center text-[18px]  gap-[10px]">
               <img src={location}></img>
               <div>{metaData["Building Name"].buildingNameEn}</div>
@@ -85,112 +135,205 @@ export const PropertyDetail = () => {
           </div>
           <div className="bg-[#E3E3E3] w-full h-[2px]"></div>
 
-          <div className="space-y-[10px]">
-            <div className="flex items-center gap-[10px]">
-              <img src={SwimmingPool}></img>
-              <div>
-                <div className="text-[18px] ">Property type</div>
-                <div className="text-[#959595]">
-                  {metaData["Property Type and Usage"].usageNameEn}
+          {headerMode == 2 ? (
+            <></>
+          ) : (
+            <div className="space-y-[10px]">
+              <div className="flex items-center gap-[10px]">
+                <img src={SwimmingPool}></img>
+                <div>
+                  <div className="text-[18px] ">Property type</div>
+                  <div className="text-[#959595]">
+                    {metaData["Property Type and Usage"].usageNameEn}
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-[10px]">
+                <img src={Star}></img>
+                <div>
+                  <div className="text-[18px] ">Maximum People</div>
+                  <div className="text-[#959595]">4 people</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-[10px]">
+                <img src={Heart}></img>
+                <div>
+                  <div className="text-[18px] ">Flexible payment plan</div>
+                  <div className="text-[#959595]">
+                    This Landlord accepts flexible payment plans
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-[10px]">
-              <img src={Star}></img>
+          )}
+
+          {/* <div className="bg-[#E3E3E3] w-full h-[2px]"></div> */}
+
+          {headerMode == 2 ? (
+            <></>
+          ) : (
+            <div className="space-y-[10px]">
+              <img src={logo}></img>
               <div>
-                <div className="text-[18px] ">Maximum People</div>
-                <div className="text-[#959595]">4 people</div>
+                All transactions are done securely on the Nibiru blockchain
+                through smart contracts, with the real world data verified
+                on-chain by zero-knowledge proof.
+              </div>
+              <div className="flex items-center text-[#6B349A] rounded-[10px] px-[10px] py-[5px] shadow-md w-max">
+                <div className="">Learn more</div>
+                <img src={arrow1}></img>
               </div>
             </div>
-            <div className="flex items-center gap-[10px]">
-              <img src={Heart}></img>
-              <div>
-                <div className="text-[18px] ">Flexible payment plan</div>
-                <div className="text-[#959595]">
-                  This Landlord accepts flexible payment plans
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-[#E3E3E3] w-full h-[2px]"></div>
+          )}
 
-          <div className="space-y-[10px]">
-            <img src={logo}></img>
-            <div>
-              Every transaction includes the possibility for undercollateralized
-              loans through Coded Estate´s partners.
-            </div>
-            <div className="flex items-center text-[#6B349A] rounded-[10px] px-[10px] py-[5px] shadow-md w-max">
-              <div className="">Learn more</div>
-              <img src={arrow1}></img>
-            </div>
-          </div>
-          <div className="bg-[#E3E3E3] w-full h-[2px]"></div>
-
+          {/* <div className="bg-[#E3E3E3] w-full h-[2px]"></div> */}
           <div>
-            The new Villa Goyen - The View House impresses with its exclusive
-            location and the unique panoramic views of the surrounding mountain
-            panorama and the Merano valley basin. The large window areas, the
-            elegant sun terraces with glass balustrade and the modern Desgin
-            make the mansion Goyen an exclusive vacation domicile, which
-            fulfills highest requirements at cosiness, comfort and situation.
-            200m² living space, 400m² garden, sun terrace and roof terrace with
-            floating bed. 3 suites all with terrace.
+            <div className="flex justify-between items-center mb-[10px]">
+              <div className="text-[22px]">Description</div>
+              <div
+                className="underline cursor-pointer"
+                onClick={handleShowDescriptionModal}
+              >
+                Edit
+              </div>
+            </div>
+            <div>{descrition}</div>
           </div>
+
+          <Modal
+            show={showDescriptionModal}
+            onHide={handleCloseDescriptionModal}
+            centered
+          >
+            <Modal.Body>
+              <div className="w-[500px]">
+                <div className="flex items-center justify-between rounded-t-[8px] px-[20px] pt-[20px]">
+                  <div className="font-bold text-[18px] text-center">
+                    Description
+                  </div>
+                  <img src={close} onClick={handleCloseDescriptionModal}></img>
+                </div>
+
+                <div className="w-full h-[200px] p-[20px]">
+                  <div className="globalInputForm p-[16px] h-full">
+                    <textarea
+                      className="w-full h-full"
+                      value={descrition}
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="w-full flex justify-end px-[20px] mb-[20px]">
+                  <div
+                    className="px-[20px] py-[8px] rounded-[16px] bg-[#5D00CF] text-white shadow-md cursor-pointer"
+                    onClick={handleCloseDescriptionModal}
+                  >
+                    Save
+                  </div>
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
+
           <div className="bg-[#E3E3E3] w-full h-[2px]"></div>
 
           <div className="space-y-[10px]">
-            <div className="text-[24px] ">What this place offers</div>
+            <div className="flex justify-between items-center mb-[10px]">
+              <div className="text-[24px]">What this place offers</div>
+              <div
+                className="underline cursor-pointer"
+                onClick={handleShowOfferModal}
+              >
+                Edit
+              </div>
+            </div>
             <div className="grid grid-cols-2">
-              <div className="flex items-center">
-                <img src={gardenView}></img>
-                <div>Garden View</div>
-              </div>
-              <div className="flex items-center">
-                <img src={Cityskylineview}></img>
-                <div>City skyline view</div>
-              </div>
-              <div className="flex items-center">
-                <img src={kitchen}></img>
-                <div>Kitchen</div>
-              </div>
-              <div className="flex items-center">
-                <img src={wifi}></img>
-                <div>Wifi</div>
-              </div>
-              <div className="flex items-center">
-                <img src={dework}></img>
-                <div>Dedicated Workspace</div>
-              </div>
-              <div className="flex items-center">
-                <img src={fpp}></img>
-                <div>Free Parking on premiese</div>
-              </div>
-              <div className="flex items-center">
-                <img src={pool}></img>
-                <div>Pool</div>
-              </div>
-              <div className="flex items-center">
-                <img src={cma}></img>
-                <div>Carbon monoxide alarm</div>
-              </div>
-              <div className="flex items-center">
-                <img src={sa}></img>
-                <div>Smoking alarm</div>
-              </div>
-              <div className="flex items-center">
-                <img src={tv}></img>
-                <div>TV</div>
-              </div>
+              {offers.garden_View ? (
+                <div className="flex items-center">
+                  <img src={gardenView}></img>
+                  <div>Garden View</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.city_Skyline_View ? (
+                <div className="flex items-center">
+                  <img src={Cityskylineview}></img>
+                  <div>City skyline view</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.kitchen ? (
+                <div className="flex items-center">
+                  <img src={kitchen}></img>
+                  <div>Kitchen</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.wifi ? (
+                <div className="flex items-center">
+                  <img src={wifi}></img>
+                  <div>Wifi</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.dedicated_Workspace ? (
+                <div className="flex items-center">
+                  <img src={dework}></img>
+                  <div>Dedicated Workspace</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.free_Parking_On_Premiese ? (
+                <div className="flex items-center">
+                  <img src={fpp}></img>
+                  <div>Free Parking on premiese</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.pool ? (
+                <div className="flex items-center">
+                  <img src={pool}></img>
+                  <div>Pool</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.carbon_Monoxide_Alarm ? (
+                <div className="flex items-center">
+                  <img src={cma}></img>
+                  <div>Carbon monoxide alarm</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.smoking_Alarm ? (
+                <div className="flex items-center">
+                  <img src={sa}></img>
+                  <div>Smoking alarm</div>
+                </div>
+              ) : (
+                <></>
+              )}
+              {offers.tv ? (
+                <div className="flex items-center">
+                  <img src={tv}></img>
+                  <div>TV</div>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
 
-          <div
-            className="bg-[#202020] text-white rounded-[20px] px-[20px] py-[10px] w-max"
-            onClick={handleShowOfferModal}
-          >
+          {/* <div className="bg-[#202020] text-white rounded-[20px] px-[20px] py-[10px] w-max cursor-pointer">
             Show All
-          </div>
+          </div> */}
 
           <Modal show={showOfferModal} onHide={handleCloseOfferModal} centered>
             <Modal.Body>
@@ -202,45 +345,164 @@ export const PropertyDetail = () => {
                   <img src={close} onClick={handleCloseOfferModal}></img>
                 </div>
 
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={gardenView}></img>
-                  <div>Garden View</div>
+                <div className="h-[500px] overflow-auto scrollbarwidth mr-[20px]">
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({ ...offers, garden_View: !offers.garden_View })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={gardenView}></img>
+                      <div>Garden View</div>
+                    </div>
+                    <Checkbox checked={offers.garden_View} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        city_Skyline_View: !offers.city_Skyline_View,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={Cityskylineview}></img>
+                      <div>City skyline view</div>
+                    </div>
+                    <Checkbox checked={offers.city_Skyline_View} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        kitchen: !offers.kitchen,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={kitchen}></img>
+                      <div>Kitchen</div>
+                    </div>
+                    <Checkbox checked={offers.kitchen} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        wifi: !offers.wifi,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={wifi}></img>
+                      <div>Wifi</div>
+                    </div>
+                    <Checkbox checked={offers.wifi} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        dedicated_Workspace: !offers.dedicated_Workspace,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={dework}></img>
+                      <div>Dedicated Workspace</div>
+                    </div>
+                    <Checkbox checked={offers.dedicated_Workspace} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        free_Parking_On_Premiese:
+                          !offers.free_Parking_On_Premiese,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={fpp}></img>
+                      <div>Free Parking on premiese</div>
+                    </div>
+                    <Checkbox checked={offers.free_Parking_On_Premiese} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        pool: !offers.pool,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={pool}></img>
+                      <div>Pool</div>
+                    </div>
+                    <Checkbox checked={offers.pool} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        carbon_Monoxide_Alarm: !offers.carbon_Monoxide_Alarm,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={cma}></img>
+                      <div>Carbon monoxide alarm</div>
+                    </div>
+                    <Checkbox checked={offers.carbon_Monoxide_Alarm} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        smoking_Alarm: !offers.smoking_Alarm,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={sa}></img>
+                      <div>Smoking alarm</div>
+                    </div>
+                    <Checkbox checked={offers.smoking_Alarm} />
+                  </div>
+                  <div
+                    className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px] justify-between"
+                    onClick={() =>
+                      setOffers({
+                        ...offers,
+                        tv: !offers.tv,
+                      })
+                    }
+                  >
+                    <div className="flex items-center">
+                      <img src={tv}></img>
+                      <div>TV</div>
+                    </div>
+                    <Checkbox checked={offers.tv} />
+                  </div>
                 </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={Cityskylineview}></img>
-                  <div>City skyline view</div>
-                </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={kitchen}></img>
-                  <div>Kitchen</div>
-                </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={wifi}></img>
-                  <div>Wifi</div>
-                </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={dework}></img>
-                  <div>Dedicated Workspace</div>
-                </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={fpp}></img>
-                  <div>Free Parking on premiese</div>
-                </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={pool}></img>
-                  <div>Pool</div>
-                </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={cma}></img>
-                  <div>Carbon monoxide alarm</div>
-                </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={sa}></img>
-                  <div>Smoking alarm</div>
-                </div>
-                <div className="flex items-center border-b-[1px] border-[#E3E3E3] py-[6px] mx-[20px]">
-                  <img src={tv}></img>
-                  <div>TV</div>
+
+                <div className="w-full flex justify-end px-[20px] my-[20px]">
+                  <div
+                    className="px-[20px] py-[8px] rounded-[16px] bg-[#5D00CF] text-white shadow-md cursor-pointer"
+                    onClick={handleCloseOfferModal}
+                  >
+                    Save
+                  </div>
                 </div>
               </div>
             </Modal.Body>

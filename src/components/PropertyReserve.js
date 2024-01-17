@@ -26,10 +26,15 @@ export const PropertyReserve = ({ action, hide }) => {
   const handleShowReserveModal = () => setShowReserveModal(true);
   const dispatch = useDispatch();
   const [months, setMonths] = useState();
-  const pricePerMonth = useSelector((state) => state.nft.NftInfo.auction.price);
+  const pricePerMonth = useSelector(
+    (state) => state.nft.currentNFT.longtermrentalInfo.landlord.price_per_month
+  );
   const [totalPayment, setTotalPayment] = useState();
   const fee = 300;
-  const refundableDeposit = 600;
+  const refundableDeposit = useSelector(
+    (state) =>
+      state.nft.currentNFT.longtermrentalInfo.landlord.refundable_deposit
+  );
   useEffect(() => {
     if (value.length == 2) {
       // console.log(value[0]);
@@ -65,9 +70,9 @@ export const PropertyReserve = ({ action, hide }) => {
                 <div>NUSD</div>
                 <div className="text-[#959595]">/month</div>
               </div>
-              <div className="text-[#5B1DEE] underline">
+              {/* <div className="text-[#5B1DEE] underline">
                 How do I get the best deal?
-              </div>
+              </div> */}
             </div>
             <div>
               <div>Available from</div>
@@ -176,6 +181,7 @@ export const PropertyReserve = ({ action, hide }) => {
             <div className="text-[#5B1DEE] font-bold">
               {totalPayment - refundableDeposit}
             </div>
+            <div>({months} months)</div>
             <div>NUSD</div>
           </div>
         </div>

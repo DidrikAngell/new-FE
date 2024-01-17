@@ -22,6 +22,9 @@ export const Inbox = () => {
   const [searchValue, setSearchValue] = useState(null);
   const isNewMessage = useSelector((state) => state.messages.isNewMessage);
   const newMessages = useSelector((state) => state.messages.messages);
+  const someoneToContact = useSelector(
+    (state) => state.messages.someoneToContact
+  );
   const receiverReadingChat = useSelector(
     (state) => state.messages.receiverReadingChat
   );
@@ -99,6 +102,12 @@ export const Inbox = () => {
   }, []);
 
   useEffect(() => {
+    if (someoneToContact && chats.length) {
+      checkIfExistingChat(someoneToContact);
+    }
+  }, [chats]);
+
+  useEffect(() => {
     if (receiverReadingChat)
       if (receiverReadingChat == currentChatId) {
         // setReceiverReadingState(0);
@@ -158,6 +167,7 @@ export const Inbox = () => {
   }, [messages.length]);
 
   const checkIfExistingChat = async (selectedAccount) => {
+    console.log(selectedAccount, chats.length);
     console.log("checking if chat is exist...");
     let isExist = false;
     for (let i = 0; i < chats.length; i++) {
@@ -175,6 +185,7 @@ export const Inbox = () => {
         setDefaultSelected(i);
       }
     }
+    console.log(isExist);
     if (!isExist) {
       console.log(currentChatId);
       setReceiver(selectedAccount);

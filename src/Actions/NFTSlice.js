@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  NftInfo: null,
-  metaData: null,
+  currentNFT: null,
+  myNFTs: [],
+  allNFTs: [],
+  NFTsSection: 0,
 };
 
 export const NFTSlice = createSlice({
@@ -10,12 +12,20 @@ export const NFTSlice = createSlice({
   initialState,
   reducers: {
     setNFT: (state, action) => {
-      state.NftInfo = action.payload.NftInfo;
-      state.metaData = action.payload.metaData;
+      state.currentNFT = action.payload;
+    },
+    setAllNFTs: (state, action) => {
+      state.allNFTs = action.payload;
+    },
+    setMyNFTs: (state, action) => {
+      state.myNFTs = action.payload;
+    },
+    setNFTsSection: (state, action) => {
+      state.NFTsSection = action.payload;
     },
   },
 });
 
-export const { setNFT } = NFTSlice.actions;
+export const { setNFT, setAllNFTs, setMyNFTs } = NFTSlice.actions;
 
 export default NFTSlice.reducer;

@@ -12,10 +12,15 @@ import { PropertyReserve } from "../components/PropertyReserve";
 import { useDispatch } from "react-redux";
 import { setHeaderMode } from "../Actions/HeaderSlice";
 import { setPage } from "../Actions/PageSlice";
+import { setDashboardMode } from "../Actions/DashboardSlice";
 
 export const DetailConfirm = () => {
   const dates = useSelector((state) => state.rent.period);
-  const metaData = useSelector((state) => state.nft.metaData);
+  const metaData = useSelector((state) => state.nft.currentNFT.metaData);
+  const landlord = useSelector(
+    (state) => state.nft.currentNFT.NftInfo?.access.owner
+  );
+
   const dispatch = useDispatch();
 
   return (
@@ -52,12 +57,12 @@ export const DetailConfirm = () => {
                 {dates[0].toString()} - {dates[1].toString()}
               </div>
             </div>
-            <div className="underline">Edit</div>
+            {/* <div className="underline">Edit</div> */}
           </div>
 
           <div className="space-y-[8px]">
             <div className="font-bold text-[24px]">
-              Documents need to be completed after payment
+              Documents need to be completed before payment
             </div>
             <div className="flex gap-[10px]">
               <img src={checked}></img>
@@ -66,11 +71,16 @@ export const DetailConfirm = () => {
           </div>
           <div className="bg-[#E3E3E3] w-full h-[1px] my-[32px]"></div>
 
-          <div className="font-bold text-[18px] mt-[32px]">Meet your host</div>
+          <div className="font-bold text-[18px] mt-[32px]">
+            Meet your Landlord
+          </div>
           <div className="flex items-center my-[24px]">
             <img src={profile}></img>
             <div className="text-[#5A5A5A]">
-              Marit is here to help you if you have any questions
+              {" " +
+                landlord?.substring(0, 8) +
+                "..." +
+                landlord?.substring(landlord?.length - 7)}
             </div>
           </div>
           <div className="globalInputForm p-[20px] w-[60%]">
@@ -160,7 +170,7 @@ export const DetailConfirm = () => {
 
             <PropertyReserve hide={true} />
             <div
-              className="px-[20px] py-[12px] text-white bg-[#5B1DEE] rounded-[16px] text-center"
+              className="px-[20px] py-[12px] text-white bg-[#5B1DEE] rounded-[16px] text-center cursor-pointer"
               onClick={() => {
                 dispatch(
                   setHeaderMode({
@@ -168,10 +178,12 @@ export const DetailConfirm = () => {
                     submode: 3,
                   })
                 );
+                dispatch(setDashboardMode(2));
+
                 dispatch(setPage(null));
               }}
             >
-              My Stay
+              Complete Rental Contract
             </div>
           </div>
           <PaymentTimeline />

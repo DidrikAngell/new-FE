@@ -53,6 +53,11 @@ import { connected } from "../Actions/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import NetworkManager from "@xdefi/wallets-connector";
 
+import { OverlayTrigger } from "react-bootstrap";
+import { Tooltip } from "react-bootstrap";
+import { setAllNFTs } from "../Actions/NFTSlice";
+import { getAllNFTsInfo } from "../components/NFTs";
+
 export const LandingPage = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
@@ -63,6 +68,8 @@ export const LandingPage = () => {
     isKeplrInstalled: null,
     isLeapInstalled: null,
   });
+
+  const [flag, setFlag] = useState([1, 0, 0]);
 
   const connect = async (wallet) => {
     if (wallet == "xdefi") {
@@ -135,7 +142,14 @@ export const LandingPage = () => {
     });
   };
 
+  const getAllAssets = async () => {
+    const result = await getAllNFTsInfo();
+    dispatch(setAllNFTs(result));
+  };
+
   useEffect(() => {
+    getAllAssets();
+
     checkInstalledWallets();
     // connect("keplr");
   }, []);
@@ -159,19 +173,25 @@ export const LandingPage = () => {
           >
             How it Works
           </div>
-          <div
-            onClick={() => {
-              document.getElementById("document").scrollIntoView();
-            }}
-          >
-            Documents
+          <div>
+            <a
+              href="https://coded-estate.gitbook.io/coded-estate/"
+              target="blank"
+            >
+              Documents
+            </a>
           </div>
-          <div
-            className="bg-[#5D00CF] text-white px-[18px] py-[10px] rounded-[16px] cursor-pointer"
-            onClick={handleShow}
+          <OverlayTrigger
+            placement={"bottom"}
+            overlay={<Tooltip className="margin">Available Soon</Tooltip>}
           >
-            Connect Wallet
-          </div>
+            <div
+              className="bg-[#5D00CF] text-white px-[18px] py-[10px] rounded-[16px] cursor-pointer"
+              onClick={handleShow}
+            >
+              Connect Wallet
+            </div>
+          </OverlayTrigger>
 
           <Modal
             show={show}
@@ -314,29 +334,54 @@ export const LandingPage = () => {
         <img src={map} className="w-full"></img>
         <div className="absolute w-full h-full flex z-[10]">
           <div className="m-auto">
-            <div className="text-[48px]">Easy way to Find Property</div>
+            <div className="text-[48px]">RWA Real Estate On-Chain</div>
             <div className="globalInputForm p-[4px] pl-[16px] flex items-center w-full gap-[12px] radius40 mt-[20px]">
               <img src={home}></img>
               <input placeholder="Search properties" className="w-full"></input>
-              <div className="bg-[#202020] p-[10px] rounded-[40px]">
-                <img src={home1}></img>
-              </div>
+              <OverlayTrigger
+                placement={"bottom"}
+                overlay={<Tooltip>Available Soon</Tooltip>}
+              >
+                <div className="bg-[#202020] p-[10px] rounded-[40px] cursor-pointer">
+                  <img src={home1}></img>
+                </div>
+              </OverlayTrigger>
             </div>
             <div className="p-[24px] rounded-[12px] shadow-md bg-white mt-[16px] space-y-[10px]">
               <div className="text-center text-[20px]">Get Started</div>
               <div className="flex gap-[12px]">
-                <div className="px-[18px] py-[10px] rounded-[16px] text-[#5D00CF] border-[#5D00CF] border-[1px]">
-                  I'm Buyer
-                </div>
-                <div className="px-[18px] py-[10px] rounded-[16px] text-[#5D00CF] border-[#5D00CF] border-[1px]">
-                  I'm Owner
-                </div>
-                <div className="px-[18px] py-[10px] rounded-[16px] text-[#5D00CF] border-[#5D00CF] border-[1px]">
-                  I'm Renting
-                </div>
-                <div className="px-[18px] py-[10px] rounded-[16px] text-white bg-black">
-                  Just Looking
-                </div>
+                <OverlayTrigger
+                  placement={"bottom"}
+                  overlay={<Tooltip>Available Soon</Tooltip>}
+                >
+                  <div className="px-[18px] py-[10px] rounded-[16px] text-[#5D00CF] border-[#5D00CF] border-[1px] cursor-pointer">
+                    I'm Buyer
+                  </div>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement={"bottom"}
+                  overlay={<Tooltip>Available Soon</Tooltip>}
+                >
+                  <div className="px-[18px] py-[10px] rounded-[16px] text-[#5D00CF] border-[#5D00CF] border-[1px] cursor-pointer">
+                    I'm Owner
+                  </div>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement={"bottom"}
+                  overlay={<Tooltip>Available Soon</Tooltip>}
+                >
+                  <div className="px-[18px] py-[10px] rounded-[16px] text-[#5D00CF] border-[#5D00CF] border-[1px] cursor-pointer">
+                    I'm Renting
+                  </div>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement={"bottom"}
+                  overlay={<Tooltip>Available Soon</Tooltip>}
+                >
+                  <div className="px-[18px] py-[10px] rounded-[16px] text-white bg-black cursor-pointer">
+                    Just Looking
+                  </div>
+                </OverlayTrigger>
               </div>
             </div>
           </div>
@@ -462,9 +507,13 @@ export const LandingPage = () => {
             <div className="w-[8px] rounded-[10px] h-full shadow-md"></div>
 
             <div className="flex flex-col justify-between">
-              <div>
-                <div className="text-[40px]">Marketplace</div>
-                <div className="text-[#5A5A5A] max-w-[450px]">
+              <div onMouseEnter={() => setFlag([1, 0, 0])}>
+                {flag[0] ? (
+                  <div className="text-[40px]">Marketplace</div>
+                ) : (
+                  <div className="text-[#959595] text-[32px]">Marketplace</div>
+                )}
+                <div className="text-[#5A5A5A] max-w-[450px]" hidden={!flag[0]}>
                   Making buying and selling real estate simpler than ever
                   combining traditional property transactions with smart
                   contracts, leveraging the blockchain. Coded Estate removes
@@ -472,8 +521,33 @@ export const LandingPage = () => {
                   property ownership
                 </div>
               </div>
-              <div className="text-[#959595] text-[32px]">Rental</div>
-              <div className="text-[#959595] text-[32px]">YieldEstate</div>
+              <div onMouseEnter={() => setFlag([0, 1, 0])}>
+                {flag[1] ? (
+                  <div className="text-[40px]">Rental</div>
+                ) : (
+                  <div className="text-[#959595] text-[32px]">Rental</div>
+                )}
+                <div className="text-[#5A5A5A] max-w-[450px]" hidden={!flag[1]}>
+                  Your Key to Unforgettable Rentals. Unlock a world of adventure
+                  and discovery with blockchain-powered rentals. Explore unique
+                  spaces, create lasting memories, and embark on extraordinary
+                  journeys with us, on-chain
+                </div>
+              </div>
+              <div onMouseEnter={() => setFlag([0, 0, 1])}>
+                {flag[2] ? (
+                  <div className="text-[40px]">YieldEstate</div>
+                ) : (
+                  <div className="text-[#959595] text-[32px]">YieldEstate</div>
+                )}
+                <div className="text-[#5A5A5A] max-w-[450px]" hidden={!flag[2]}>
+                  Coded Estate redefines property ownership with fractionalized
+                  real estate investments. Join us to stake your claim in prime
+                  properties and experience the future of real estate. Explore
+                  flexible ownership options and embark on a new era in real
+                  estate investment.
+                </div>
+              </div>
             </div>
           </div>
           <img src={image}></img>
@@ -521,12 +595,33 @@ export const LandingPage = () => {
               <img src={logowhite}></img>
             </div>
             <div className="flex text-white gap-[24px]">
-              <div>Home</div>
-              <div>How it Works</div>
-              <div>Documents</div>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  document.getElementById("home").scrollIntoView();
+                }}
+              >
+                Home
+              </div>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  document.getElementById("howitworks").scrollIntoView();
+                }}
+              >
+                How it Works
+              </div>
+              <div>
+                <a
+                  href="https://coded-estate.gitbook.io/coded-estate/"
+                  target="blank"
+                >
+                  Documents
+                </a>
+              </div>
             </div>
           </div>
-          <div className="w-[30%]">
+          {/* <div className="w-[30%]">
             <div className="text-white">
               Ready to join our community? Subscribe to our newsletter now.
             </div>
@@ -537,7 +632,7 @@ export const LandingPage = () => {
                 <img src={send}></img>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="w-full bg-[#959595] h-[1px] my-[24px]"></div>
         <div className="flex justify-between">

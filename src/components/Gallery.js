@@ -20,13 +20,13 @@ export const Gallery = () => {
     >
       <div className="flex justify-between w-full text-white">
         <div
-          className="flex items-center"
+          className="flex items-center cursor-pointer"
           onClick={() => dispatch(hideGallery())}
         >
           <img src={close}></img>
           <div>Close</div>
         </div>
-        <div>2/20</div>
+        <div>1/{images.length}</div>
         <div className="flex gap-[10px]">
           <div className="flex items-center">
             <img src={share}></img>

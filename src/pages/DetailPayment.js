@@ -20,7 +20,7 @@ import icon from "../assets/images/Frame 1000005306 (2).png";
 import closemini from "../assets/images/close-mini.png";
 
 import StarRatings from "react-star-ratings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
@@ -33,6 +33,7 @@ import { PropertyReserve } from "../components/PropertyReserve";
 import { useDispatch } from "react-redux";
 import { setPage } from "../Actions/PageSlice";
 import { setAmountToPay } from "../Actions/RentSlice";
+import { executeContract } from "../components/InteractToContract";
 
 export const DetailPayment = () => {
   const [show, setShow] = useState(false);
@@ -45,12 +46,43 @@ export const DetailPayment = () => {
   const dates = useSelector((state) => state.rent.period);
   const totalPrice = useSelector((state) => state.rent.totalPrice);
 
-  const pricePerMonth = useSelector((state) => state.nft.NftInfo.auction.price);
+  const pricePerMonth = useSelector(
+    (state) => state.nft.currentNFT.longtermrentalInfo.landlord.price_per_month
+  );
 
-  const metaData = useSelector((state) => state.nft.metaData);
+  const metaData = useSelector((state) => state.nft.currentNFT.metaData);
+  const landlord = useSelector(
+    (state) => state.nft.currentNFT.NftInfo?.access.owner
+  );
 
+  const token_id = useSelector((state) => state.nft.currentNFT.tokenId);
+  const deposit_amount = useSelector((state) => state.rent.amountToPay);
+  const renting_period = useSelector((state) => state.rent.period);
+  const walletEx = useSelector((state) => state.auth.wallet);
+  const account = useSelector((state) => state.auth.account);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleReserveNow = async () => {
+    const message = {
+      set_reservation_for_long_term: {
+        token_id: token_id,
+        isreserved: true,
+        deposit_amount: deposit_amount,
+        deposit_denom: "unibi",
+        renting_period: [
+          renting_period[0].toString(),
+          renting_period[1].toString(),
+        ],
+      },
+    };
+    await executeContract(dispatch, message, account, walletEx);
+    dispatch(setPage("confirmed"));
+  };
+
+  useEffect(() => {
+    dispatch(setAmountToPay(totalPrice));
+  }, []);
 
   return (
     <div className="pt-[20px] bg-white w-full space-y-[20px]">
@@ -61,7 +93,7 @@ export const DetailPayment = () => {
       <div className="w-[90%] mx-auto grid grid-cols-2 gap-[20px]">
         <div className="shadow-md p-[16px] space-y-[24px]">
           <div className="space-y-[8px]">
-            <div className="font-bold text-[24px]">Your trip</div>
+            <div className="font-bold text-[24px]">Your Stay</div>
             <div className="flex justify-between items-center">
               <div>
                 <div className="text-[18px]">Dates</div>
@@ -69,14 +101,14 @@ export const DetailPayment = () => {
                   {dates[0].toString()} - {dates[1].toString()}
                 </div>
               </div>
-              <div className="underline">Edit</div>
+              {/* <div className="underline">Edit</div> */}
             </div>
             <div className="flex justify-between items-center">
               <div>
-                <div className="text-[18px]">Guest</div>
+                <div className="text-[18px]">Tenant</div>
                 <div className="text-[#5A5A5A]">1 guest</div>
               </div>
-              <div className="underline">Edit</div>
+              {/* <div className="underline">Edit</div> */}
             </div>
           </div>
 
@@ -192,24 +224,31 @@ export const DetailPayment = () => {
               <img src={NUSD}></img>
             </div>
             <div className="px-[20px] py-[10px] flex items-center justify-between shadow-md rounded-[6px]">
-              <img src={NUSD}></img>
               <div className="text-[#AAAAAA]">Pay with</div>
+              <div className="flex items-center gap-[6px]">
+                <img src={NUSD}></img>
+                <div className="text-[#AAAAAA]">NUSD</div>
+              </div>
             </div>
           </div>
           <div className="bg-[#D9D9D9] w-full h-[1px]"></div>
           <div className="space-y-[16px]">
             {/* <div className="font-bold text-[24px]">Required for your trip</div> */}
             {/* <div className="text-[18px]">Message the host</div> */}
-            <div className="text-[18px]">Message the Seller</div>
+            <div className="text-[18px]">Message the Landlord</div>
             <div className="text-[#5A5A5A]">
-              Share why you’re traveling, who’s coming with you, and what you
-              love about the space.
+              Feel free to add a comment or questions to your reservation.
             </div>
             <div className="flex items-center gap-[10px]">
               <img src={avatar}></img>
               <div>
-                <div className="font-bold">Sara</div>
-                <div className="text-[#5A5A5A]">Joined in 2020</div>
+                <div className="font-bold">
+                  {" " +
+                    landlord?.substring(0, 8) +
+                    "..." +
+                    landlord?.substring(landlord?.length - 7)}
+                </div>
+                {/* <div className="text-[#5A5A5A]">Joined in 2023</div> */}
               </div>
             </div>
             <div className="globalInputForm px-[20px] py-[10px]">
@@ -217,7 +256,7 @@ export const DetailPayment = () => {
             </div>
           </div>
           <div className="bg-[#D9D9D9] w-full h-[1px]"></div>
-          <div className="space-y-[16px]">
+          {/* <div className="space-y-[16px]">
             <div className="font-bold text-[24px]">Cancellation policy</div>
             <p className="text-[#5A5A5A]">
               <b className="text-[#202020]">Free cancellation before May 12</b>
@@ -225,7 +264,7 @@ export const DetailPayment = () => {
               <span className="text-black">Learn more</span>
             </p>
           </div>
-          <div className="bg-[#D9D9D9] w-full h-[1px]"></div>
+          <div className="bg-[#D9D9D9] w-full h-[1px]"></div> */}
           <div className="space-y-[16px]">
             <div className="font-bold text-[24px]">Ground rules</div>
             <div className="text-[#5A5A5A]">
@@ -251,7 +290,7 @@ export const DetailPayment = () => {
             </div>
           </div>
           <div className="bg-[#D9D9D9] w-full h-[1px]"></div> */}
-          <p className="text-[#5A5A5A]">
+          {/* <p className="text-[#5A5A5A]">
             By selecting the button below, I agree to the
             <b className="text-[#202020] font-bold">
               Host’s House Rules, Ground rules for guests, Airbnb’s Rebooking
@@ -264,7 +303,7 @@ export const DetailPayment = () => {
             if I’m responsible for damage. I agree to pay the total amount shown
             if the Host accepts my booking request. Payment Terms between you
             and Airbnb Payments Luxembourg S.A.
-          </p>
+          </p> */}
         </div>
 
         <div className="flex flex-col">
@@ -275,15 +314,15 @@ export const DetailPayment = () => {
                   src={image}
                   className="w-[166px] h-[166px] rounded-[8px]"
                 ></img> */}
-                <ImageView counts={1} />
+                <div className="w-[50%]">
+                  <ImageView counts={1} />
+                </div>
                 <div className="space-y-[8px]">
                   <div className="text-[#5a5a5a]">
                     {metaData["Building Name"].buildingNameEn}
                   </div>
-                  <div className="text-[24px]">
-                    Separate and lovely Cottage - just by the lake
-                  </div>
-                  <div className="flex gap-[10px]">
+                  <div className="text-[24px]">{metaData.Area.areaEn}</div>
+                  {/* <div className="flex gap-[10px]">
                     <StarRatings
                       numberOfStars={1}
                       rating={5}
@@ -293,18 +332,16 @@ export const DetailPayment = () => {
                     <div>4.95</div>
                     <div className="text-[#5a5a5a]">(41 reviews)</div>
                   </div>
-                  <div className="font-bold">Super Host</div>
+                  <div className="font-bold">Super Host</div> */}
                 </div>
               </div>
               <div className="bg-[#D9D9D9] w-full h-[1px]"></div>
               <PropertyReserve />
             </div>
             <div
-              className="px-[20px] py-[12px] text-white text-center bg-[#5B1DEE] rounded-[16px] shadow-md"
+              className="px-[20px] py-[12px] text-white text-center bg-[#5B1DEE] rounded-[16px] shadow-md cursor-pointer"
               onClick={() => {
-                // handleShow
-                // navigate("/reservation");
-                dispatch(setPage("confirmed"));
+                handleReserveNow();
               }}
             >
               Reserve Now

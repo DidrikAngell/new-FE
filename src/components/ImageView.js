@@ -1,21 +1,37 @@
 import image from "../assets/images/image.png";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { showGallery } from "../Actions/GallerySlice";
 
 export const ImageView = ({ counts = 5 }) => {
-  const imagesHash = useSelector((state) => state.nft.metaData?.images);
+  const imagesHash = useSelector(
+    (state) => state.nft.currentNFT.metaData?.images
+  );
+  const dispatch = useDispatch();
 
   const gateWay = "https://olive-raw-pony-643.mypinata.cloud/ipfs/";
 
   const images = imagesHash?.split(",");
+
+  const imagesURL = [];
+
+  const pushImages = () => {
+    for (let i = 0; i < images.length; i++) {
+      imagesURL.push(gateWay + images[i]);
+    }
+  };
+
+  pushImages();
 
   console.log(counts);
   return (
     <>
       {images ? (
         <div
-          className={`shadow-md bg-white p-[8px] rounded-[10px] ${
+          className={`shadow-md bg-white p-[8px] rounded-[10px] cursor-pointer ${
             counts > 2 ? "grid grid-cols-2" : ""
           } gap-[20px]`}
+          onClick={() => dispatch(showGallery(imagesURL))}
         >
           {counts == 1 ? (
             <img
