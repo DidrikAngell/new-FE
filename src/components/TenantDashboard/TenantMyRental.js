@@ -19,7 +19,7 @@ import { getAllNFTsInfo } from "../NFTs";
 
 export const TenantMyRental = () => {
   const [myRentalFlag, setMyRentalFlag] = useState(0);
-  const [rentingAssetsFlag, setRentingAssetsFlag] = useState(1);
+  const [rentingAssetsFlag, setRentingAssetsFlag] = useState(0);
   const account = useSelector((state) => state.auth.account);
   const [currentToken, setCurrentToken] = useState();
   const assets = useSelector((state) => state.nft.allNFTs);

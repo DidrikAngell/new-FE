@@ -46,9 +46,9 @@ export const DetailConfirm = () => {
           <div className="font-bold text-[24px]">
             Your reservation is confirmed!
           </div>
-          <div className="text-[#5A5A5A]">
+          {/* <div className="text-[#5A5A5A]">
             We emailed the details to didrik.angell@hotmail.no.
-          </div>
+          </div> */}
 
           <div className="flex justify-between items-center my-[30px]">
             <div>

@@ -178,9 +178,7 @@ export const DetailPayment = () => {
                   <div className="flex items-center gap-[16px] p-[12px] shadow-md rounded-[16px]">
                     <img src={radio1}></img>
                     <div>
-                      <div className="text-[18px]">
-                        Pay part now, part later with Coded Estate
-                      </div>
+                      <div className="text-[18px]">Pay Monthly</div>
                       <div className="text-[#5A5A5A]">
                         Pay for one month ({pricePerMonth} NUSD) now and you can
                         rent.
@@ -197,9 +195,7 @@ export const DetailPayment = () => {
                   >
                     <img src={radio}></img>
                     <div>
-                      <div className="text-[18px]">
-                        Pay part now, part later with Coded Estate
-                      </div>
+                      <div className="text-[18px]">Pay Monthly</div>
                       <div className="text-[#5A5A5A]">
                         Pay for one month ({pricePerMonth} NUSD) now and you can
                         rent.
