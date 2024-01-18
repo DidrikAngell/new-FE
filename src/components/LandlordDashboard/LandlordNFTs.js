@@ -168,6 +168,7 @@ export const LandlordNFTs = () => {
         console.log(error);
       }
     }
+    setImages([]);
     return hashes;
   };
 
