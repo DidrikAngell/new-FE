@@ -575,7 +575,7 @@ export const SideBar = () => {
                   </div>
                 }
               />
-              <SelectionItem
+              {/* <SelectionItem
                 SelectedItem={
                   <div className="flex items-center justify-between px-[14px] py-[8px] rounded-[16px] shadow-md bg-[#F6F6F6]">
                     <div className="flex items-center">
@@ -620,7 +620,7 @@ export const SideBar = () => {
                     </div>
                   </div>
                 }
-              />
+              /> */}
 
               <SelectionItem
                 SelectedItem={
@@ -636,7 +636,7 @@ export const SideBar = () => {
                 UnselectedItem={
                   <div
                     className="flex items-center justify-between px-[14px] py-[8px]"
-                    onClick={() => dispatch(setDashboardMode(5))}
+                    onClick={() => dispatch(setDashboardMode(3))}
                   >
                     <div className="flex items-center">
                       <img src={inboxinactive}></img>

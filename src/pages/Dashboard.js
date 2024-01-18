@@ -230,7 +230,7 @@ export const Dashboard = () => {
             // </div>
             <></>
           )}
-          {dashboardMode == 5 ? (
+          {dashboardMode == 3 ? (
             <>
               <div className="bg-[#F6F6F6] rounded-[8px] w-full h-full flex gap-[5px]">
                 <div className="w-full rounded-[8px] bg-white">
