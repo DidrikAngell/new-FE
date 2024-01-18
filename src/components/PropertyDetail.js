@@ -73,11 +73,11 @@ export const PropertyDetail = ({ editable }) => {
   );
 
   useEffect(() => {
-    if (editable) {
-      // } else {
-      setDescription(metaDataDescription);
-      setOffers(metaDataOffers);
-    }
+    // if (editable) {
+    // } else {
+    setDescription(metaDataDescription);
+    setOffers(metaDataOffers);
+    // }
   }, []);
 
   useEffect(() => {
