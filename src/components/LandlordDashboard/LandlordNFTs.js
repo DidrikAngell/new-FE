@@ -168,7 +168,7 @@ export const LandlordNFTs = () => {
         console.log(error);
       }
     }
-    setImages([]);
+
     return hashes;
   };
 
@@ -193,6 +193,7 @@ export const LandlordNFTs = () => {
     ]);
 
     await updateTokenURI(currentToken.token_id, gateWay + newHash);
+    setImages([]);
     setActionMode(null);
   };
 
