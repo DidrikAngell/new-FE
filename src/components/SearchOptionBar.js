@@ -134,11 +134,11 @@ export const SearchOptionBar = () => {
     //   <img src={search}></img>
     // </div>
     <div
-      className="flex p-[8px] rounded-[40px] bg-white gap-[8px] shadow-md"
+      className="flex rounded-[40px] bg-white shadow-md mt-[8px]"
       id="searchbar"
     >
       <div
-        className="px-[16px] py-[6px] cursor-pointer"
+        className="px-[24px] py-[12px] cursor-pointer hover:bg-[#efefef] rounded-[400px]"
         onClick={() => {
           setSearchMode(0);
           handleShow();
@@ -149,9 +149,9 @@ export const SearchOptionBar = () => {
           {region ? region : "Search Destination"}
         </div>
       </div>
-      <div className="w-[1px] h-[40px] bg-[#E3E3E3] my-auto"></div>
+      {/* <div className="w-[1px] h-[40px] bg-[#E3E3E3] my-auto"></div> */}
       <div
-        className="px-[16px] py-[6px] cursor-pointer"
+        className="px-[24px] py-[12px] cursor-pointer hover:bg-[#efefef] rounded-[400px]"
         onClick={() => {
           setSearchMode(1);
           handleShow();
@@ -162,10 +162,10 @@ export const SearchOptionBar = () => {
           {value[0] ? value[0].toString() : "Add Dates"}
         </div>
       </div>
-      <div className="w-[1px] h-[40px] bg-[#E3E3E3] my-auto"></div>
+      {/* <div className="w-[1px] h-[40px] bg-[#E3E3E3] my-auto"></div> */}
 
       <div
-        className="px-[16px] py-[6px] cursor-pointer"
+        className="px-[24px] py-[12px] cursor-pointer hover:bg-[#efefef] rounded-[400px]"
         onClick={() => {
           setSearchMode(1);
           handleShow();
@@ -176,10 +176,10 @@ export const SearchOptionBar = () => {
           {value[1] ? value[1].toString() : "Add Dates"}
         </div>
       </div>
-      <div className="w-[1px] h-[40px] bg-[#E3E3E3] my-auto"></div>
+      {/* <div className="w-[1px] h-[40px] bg-[#E3E3E3] my-auto"></div> */}
 
       <div
-        className="px-[16px] py-[6px] cursor-pointer"
+        className="px-[24px] py-[12px] cursor-pointer hover:bg-[#efefef] rounded-[400px]"
         onClick={() => {
           setSearchMode(2);
           handleShow();
@@ -196,10 +196,10 @@ export const SearchOptionBar = () => {
             guestsPets}
         </div>
       </div>
-      <div className="w-[1px] h-[40px] bg-[#E3E3E3] my-auto"></div>
+      {/* <div className="w-[1px] h-[40px] bg-[#E3E3E3] my-auto"></div> */}
 
       <div
-        className="px-[16px] py-[6px] cursor-pointer"
+        className="px-[24px] py-[12px] cursor-pointer hover:bg-[#efefef] rounded-[400px]"
         onClick={() => {
           setSearchMode(3);
           handleShow();

@@ -113,7 +113,7 @@ export const Header = () => {
           }
           UnselectedItem={
             <div
-              className="w-[130px] flex justify-between py-[2px] px-[20px] items-center gap-[10px]"
+              className="w-[130px] flex justify-between py-[2px] px-[20px] items-center gap-[10px] hover:bg-[#efefef] rounded-[10px]"
               onClick={() =>
                 dispatch(setHeaderMode({ mode: 0, submode: null }))
               }
@@ -144,7 +144,7 @@ export const Header = () => {
                 </div>
 
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 1, submode: 0 }));
                     setShowRentDropdown(false);
@@ -153,10 +153,9 @@ export const Header = () => {
                   Long-term
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 1, submode: 1 }));
-
                     setShowRentDropdown(false);
                   }}
                 >
@@ -185,7 +184,7 @@ export const Header = () => {
                 </div>
 
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 1, submode: 0 }));
                     setShowRentDropdown(false);
@@ -194,7 +193,7 @@ export const Header = () => {
                   Long-term
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 1, submode: 1 }));
 
@@ -216,7 +215,7 @@ export const Header = () => {
           }
           UnselectedItem={
             <div
-              className="w-[130px] flex justify-between py-[2px] px-[40px] items-center gap-[10px]"
+              className="w-[130px] flex justify-between py-[2px] px-[40px] items-center gap-[10px] hover:bg-[#efefef] rounded-[10px]"
               onClick={() =>
                 dispatch(setHeaderMode({ mode: 2, submode: null }))
               }
@@ -250,7 +249,7 @@ export const Header = () => {
                   Marketplace
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 0 }));
                     setShowDashDropdown(false);
@@ -259,7 +258,7 @@ export const Header = () => {
                   Buy Mode
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 1 }));
                     setShowDashDropdown(false);
@@ -271,7 +270,7 @@ export const Header = () => {
                   Long-term Rental
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 2 }));
                     setShowDashDropdown(false);
@@ -280,7 +279,7 @@ export const Header = () => {
                   Landlord Mode
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 3 }));
                     setShowDashDropdown(false);
@@ -292,7 +291,7 @@ export const Header = () => {
                   Short-term Rental
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 4 }));
                     setShowDashDropdown(false);
@@ -301,7 +300,7 @@ export const Header = () => {
                   Host Mode
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 5 }));
                     setShowDashDropdown(false);
@@ -310,7 +309,7 @@ export const Header = () => {
                   Traveler Mode
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 6 }));
                     setShowDashDropdown(false);
@@ -343,7 +342,7 @@ export const Header = () => {
                   Marketplace
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 0 }));
                     setShowDashDropdown(false);
@@ -352,7 +351,7 @@ export const Header = () => {
                   Buy Mode
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 1 }));
                     setShowDashDropdown(false);
@@ -364,7 +363,7 @@ export const Header = () => {
                   Long-term Rental
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 2 }));
                     setShowDashDropdown(false);
@@ -373,7 +372,7 @@ export const Header = () => {
                   Landlord Mode
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 3 }));
                     setShowDashDropdown(false);
@@ -385,7 +384,7 @@ export const Header = () => {
                   Short-term Rental
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 4 }));
                     setShowDashDropdown(false);
@@ -394,7 +393,7 @@ export const Header = () => {
                   Host Mode
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 5 }));
                     setShowDashDropdown(false);
@@ -403,7 +402,7 @@ export const Header = () => {
                   Traveler Mode
                 </div>
                 <div
-                  className="pl-[15px] py-[3px] cursor-pointer"
+                  className="pl-[15px] py-[3px] cursor-pointer hover:bg-[#efefef]"
                   onClick={() => {
                     dispatch(setHeaderMode({ mode: 3, submode: 6 }));
                     setShowDashDropdown(false);

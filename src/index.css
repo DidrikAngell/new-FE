@@ -271,3 +271,7 @@ span.input-range__label-container {
   background: #5b1dee !important;
   border: 1px solid #5b1dee !important;
 }
+
+div {
+  transition: all ease 0.2s !important;
+}
