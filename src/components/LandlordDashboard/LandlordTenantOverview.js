@@ -1,5 +1,5 @@
 import arrowtoLeft from "../../assets/images/ArrowToLeft.png";
-import circleIcon from "../../assets/images/Frame 1000005306 (2).png";
+import circleIcon from "../../assets/images/Frame 1000005306.png";
 import clockAlarm from "../../assets/images/dashboard/Social (2).png";
 import profileIcon from "../../assets/images/Profile.png";
 import { CarouselCompo } from "../CarouselCompo";

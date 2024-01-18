@@ -35,9 +35,24 @@ export const LandlordNFTs = () => {
   const NFTsFlag = useSelector((state) => state.nft.NFTsSection);
   const account = useSelector((state) => state.auth.account);
   const walletEx = useSelector((state) => state.auth.wallet);
+
+  const uploadedImages = useSelector(
+    (state) => state.nft.currentNFT.metaData.images
+  );
+  const [currentImages, setCurrentImages] = useState([]);
+  useEffect(() => {
+    setCurrentImages(uploadedImages?.split(","));
+  }, [uploadedImages]);
+
+  const onImageRemoveFromCurrent = (index) => {
+    let tempArray = currentImages;
+    const toDelete = tempArray.splice(index, 1);
+    // deletePinFromIPFS(toDelete);
+    setCurrentImages(tempArray);
+  };
+
   const [currentToken, setCurrentToken] = useState();
   const [actionMode, setActionMode] = useState(null);
-  //   const [assets, setAssets] = useState([]);
   const gateWay = "https://olive-raw-pony-643.mypinata.cloud/ipfs/";
   const [images, setImages] = useState([]);
   const maxNumber = 69;
@@ -128,7 +143,7 @@ export const LandlordNFTs = () => {
   const editMetaData = () => setActionMode(false);
 
   const pinFileToIPFS = async () => {
-    console.log("Uploading images...");
+    console.log("Uploading newly added images...");
     const hashes = [];
     for (let i = 0; i < images.length; i++) {
       const formData = new FormData();
@@ -157,10 +172,10 @@ export const LandlordNFTs = () => {
   };
 
   const handleUpdateMetadata = async () => {
-    setActionMode(null);
     let currentURI = currentToken.nft_info.info.token_uri.replace(gateWay, "");
-    const imageHashes = await pinFileToIPFS();
+    const imageHashes = [...currentImages, ...(await pinFileToIPFS())];
 
+    console.log(imageHashes);
     const newHash = await updateMetadata(currentURI, [
       {
         key: "images",
@@ -177,6 +192,7 @@ export const LandlordNFTs = () => {
     ]);
 
     await updateTokenURI(currentToken.token_id, gateWay + newHash);
+    setActionMode(null);
   };
 
   return (
@@ -310,7 +326,18 @@ export const LandlordNFTs = () => {
                         <div
                           className="bg-[#5D00CF] py-[10px] rounded-[16px] text-white text-center mt-[10px] cursor-pointer"
                           onClick={() => {
-                            setListNFT(item.token_id, false, "unibi", 0, 0, []);
+                            // setListNFT(item.token_id, false, "unibi", 0, 0, []);
+
+                            dispatch(
+                              setNFT({
+                                NftInfo: item.nft_info,
+                                metaData: item.metaData,
+                                tokenId: item.token_id,
+                                longtermrentalInfo: item.longtermrental_info,
+                              })
+                            );
+                            setCurrentToken(item);
+                            setActionMode(true);
                           }}
                         >
                           Unlist
@@ -441,10 +468,10 @@ export const LandlordNFTs = () => {
           <div className="p-[16px]">
             <div className="w-full flex justify-end">
               <div
-                className="px-[14px] py-[6px] rounded-[100px] shadow-md cursor-pointer"
+                className="px-[14px] py-[6px] rounded-[100px] shadow-md cursor-pointer text-white bg-[#4C37C3]"
                 onClick={() => handleUpdateMetadata()}
               >
-                Save and exit
+                Save Metadata
               </div>
             </div>
             <div className="w-full flex flex-col items-center">
@@ -459,14 +486,11 @@ export const LandlordNFTs = () => {
                 <img src={circlechecked} />
                 <div className="bg-[#EFE8FD] w-[160px] h-[4px]" />
                 <img src={circlechecked} />
-                {/* <div className="bg-[#EFE8FD] w-[160px] h-[4px]" />
-                    <img src={circlechecked} /> */}
               </div>
-              <div className="grid grid-cols-3 justify-items-center gap-[120px]">
+              <div className="grid grid-cols-3 justify-items-center gap-[60px]">
                 <div>Autofill Metadata</div>
                 <div>Manual Metadata</div>
                 <div>Finished</div>
-                {/* <div>Valuation</div> */}
               </div>
               <div className="p-[16px] rounded-[12px] shadow-md w-[600px] h-[400px] space-y-[12px] flex flex-col my-[20px] select-none">
                 <ImageUploading
@@ -480,39 +504,10 @@ export const LandlordNFTs = () => {
                   {({
                     imageList,
                     onImageUpload,
-                    onImageRemoveAll,
-                    onImageUpdate,
                     onImageRemove,
                     isDragging,
                     dragProps,
                   }) => (
-                    // write your building UI
-                    // <div className="upload__image-wrapper">
-                    //   <button
-                    //     style={isDragging ? { color: "red" } : null}
-                    //     onClick={onImageUpload}
-                    //     {...dragProps}
-                    //   >
-                    //     Click or Drop here
-                    //   </button>
-                    //   &nbsp;
-                    //   <button onClick={onImageRemoveAll}>
-                    //     Remove all images
-                    //   </button>
-                    //   {imageList.map((image, index) => (
-                    //     <div key={index} className="image-item">
-                    //       <img src={image.data_url} alt="" width="100" />
-                    //       <div className="image-item__btn-wrapper">
-                    //         <button onClick={() => onImageUpdate(index)}>
-                    //           Update
-                    //         </button>
-                    //         <button onClick={() => onImageRemove(index)}>
-                    //           Remove
-                    //         </button>
-                    //       </div>
-                    //     </div>
-                    //   ))}
-                    // </div>
                     <div
                       className={
                         isDragging
@@ -522,8 +517,26 @@ export const LandlordNFTs = () => {
                       {...dragProps}
                     >
                       <div className="m-auto flex flex-col items-center space-y-[20px]">
-                        {imageList.length ? (
+                        {imageList.length || currentImages.length ? (
                           <div className="flex gap-[10px] w-full overflow-auto">
+                            {currentImages.map((hash, index) => {
+                              return (
+                                <div className="mx-auto flex flex-col items-center">
+                                  <img
+                                    src={gateWay + hash}
+                                    className="w-[120px] h-[100px] rounded-[5px]"
+                                  />
+                                  <img
+                                    className="cursor-pointer"
+                                    src={deleteIcon}
+                                    onClick={() => {
+                                      onImageRemoveFromCurrent(index);
+                                      onImageRemove(-1);
+                                    }}
+                                  />
+                                </div>
+                              );
+                            })}
                             {imageList.map((im, index) => {
                               return (
                                 <div className="mx-auto flex flex-col items-center">

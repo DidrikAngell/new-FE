@@ -50,8 +50,10 @@ export const TenantDashboard = () => {
                 Explore the best of the best in real estate with our recommended
                 properties.
               </div>
-              <div className="bg-[#5D00CF] text-white px-[14px] py-[8px] w-max rounded-[16px]">
-                Explore
+              <div className="flex justify-center">
+                <div className="bg-[#5D00CF] text-white px-[14px] py-[8px] w-max rounded-[16px] cursor-pointer">
+                  Explore
+                </div>
               </div>
             </div>
           </div>

@@ -4,14 +4,21 @@ import checked from "../assets/images/Frame 1000005306 (1).png";
 import unchecked from "../assets/images/Frame 1000005306.png";
 
 import { GenerateProof } from "@reclaimprotocol/reclaim-connect-react";
+import { useNavigate } from "react-router-dom";
 
 export const Verify = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-[#F2F2F2] p-[5px] w-full sidebarheight">
       <div className="bg-white shadow-md rounded-[6px] w-full h-full p-[24px] flex flex-col">
         <div className="flex items-center gap-[20px] h-max mb-[20px]">
-          <img src={close}></img>
-          <div className="text-[24px] font-bold">Status Verify</div>
+          <img
+            src={close}
+            onClick={() => navigate(-1)}
+            className="cursor-pointer"
+          ></img>
+          <div className="text-[24px] font-bold">Verify Your ID</div>
         </div>
         <div className="flex gap-[40px] w-full h-full">
           <div className="w-[400px] shadow-md rounded-[6px] p-[24px] h-max flex gap-[10px] border-t-[1px] border-[#f1f1f1]">
@@ -35,10 +42,12 @@ export const Verify = () => {
             <div className="m-auto space-y-[24px]">
               <img src={icon} className="m-auto"></img>
               <div>
-                <div className="text-center text-[24px]">Status Verified</div>
+                <div className="text-center text-[24px]">Verify Your ID</div>
                 <div className="text-center text-[#959595] mt-[20px] w-[600px]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  We´re utilizing Zero-Knowledge Proof Technology to verify your
+                  ID, which means that all of your private data will stay
+                  off-chain and we´re only validating the claim on-chain to
+                  verify your identity.
                 </div>
               </div>
 

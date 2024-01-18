@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NUSD from "../assets/images/NUSD.png";
 import arrowdown from "../assets/images/arrowdown (2).png";
 import { Toggle } from "./Toggle";
+import { useSelector } from "react-redux";
 
 export const PropertyListingDetail = ({
   token_id,
@@ -18,6 +19,10 @@ export const PropertyListingDetail = ({
   const handle = (e) => {
     setRefundableDeposit(e.target.value);
   };
+
+  const islisted = useSelector(
+    (state) => state.nft.currentNFT.longtermrentalInfo.islisted
+  );
 
   return (
     <div className="p-[24px] rounded-[12px] shadow-md w-full bg-white h-max space-y-[24px]">
@@ -62,10 +67,16 @@ export const PropertyListingDetail = ({
           <div className="font-bold text-[18px]">TOTAL AMOUNT</div>
           <div className="flex items-center gap-[4px]">
             <img src={NUSD}></img>
-            <div className="text-[#4C37C3]">
-              {Number(refundable_deposit) + Number(price_per_month)}
-            </div>
-            <div>NUSD (a month) </div>
+            <div className="text-[#4C37C3]">{price_per_month}</div>
+            <div>NUSD / month </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <div></div>
+          <div className="flex items-center gap-[4px]">
+            <img src={NUSD}></img>
+            <div className="text-[#4C37C3]">{refundable_deposit}</div>
+            <div>NUSD in refundable deposit</div>
           </div>
         </div>
         {/* <div className="flex justify-between">
@@ -106,7 +117,17 @@ export const PropertyListingDetail = ({
           >
             Edit Metadata
           </div>
-          <div className="px-[20px] py-[12px] rounded-[16px] text-center text-white bg-[#E3E3E3] w-full cursor-pointer">
+          <div
+            className={`px-[20px] py-[12px] rounded-[16px] text-center text-white w-full 
+            ${
+              islisted
+                ? "bg-black cursor-pointer"
+                : "bg-[#E3E3E3] cursor-not-allowed"
+            }`}
+            onClick={() => {
+              if (islisted) setListNFT(token_id, false, "unibi", 0, 0, []);
+            }}
+          >
             Unlist Property
           </div>
         </div>

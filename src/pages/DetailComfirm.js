@@ -71,7 +71,7 @@ export const DetailConfirm = () => {
           </div>
           <div className="bg-[#E3E3E3] w-full h-[1px] my-[32px]"></div>
 
-          <div className="font-bold text-[18px] mt-[32px]">
+          {/* <div className="font-bold text-[18px] mt-[32px]">
             Meet your Landlord
           </div>
           <div className="flex items-center my-[24px]">
@@ -92,9 +92,9 @@ export const DetailConfirm = () => {
 
           <div className="px-[16px] py-[10px] bg-[#5D00CF] rounded-[16px] text-white w-max mt-[24px]">
             Send message
-          </div>
+          </div> */}
 
-          <div className="bg-[#E3E3E3] w-full h-[1px] my-[32px]"></div>
+          {/* <div className="bg-[#E3E3E3] w-full h-[1px] my-[32px]"></div> */}
 
           {/* <div className="text-[18px] font-bold">
             Last step: share your travel plans
