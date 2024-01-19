@@ -79,7 +79,9 @@ export const LandlordInbox = () => {
                   <div>Deposit Amount</div>
                   <div className="flex items-center gap-[4px]">
                     <img src={NUSD} />
-                    <div className="text-[#5B1DEE] p-[6px] rounded-[4px]"></div>
+                    <div className="text-[#5B1DEE] p-[6px] rounded-[4px]">
+                      {currentNFT.longtermrentalInfo?.tenant?.deposit_amount}
+                    </div>
                     <div className="text-[#B6B6B6]">NUSD</div>
                   </div>
                 </div>
