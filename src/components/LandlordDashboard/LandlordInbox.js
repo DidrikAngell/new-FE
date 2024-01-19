@@ -24,14 +24,13 @@ export const LandlordInbox = () => {
                 <div>Rental</div>
                 <div>
                   You have an offer from
-                  {currentNFT.longtermrentalInfo?.tenant?.tenant_address?.substring(
+                  {currentNFT.longtermrentalInfo?.tenant_address?.substring(
                     0,
                     5
                   ) +
                     "..." +
-                    currentNFT.longtermrentalInfo?.tenant?.tenant_address?.substring(
-                      currentNFT.longtermrentalInfo?.tenant?.tenant_address
-                        ?.length - 4
+                    currentNFT.longtermrentalInfo?.tenant_address?.substring(
+                      currentNFT.longtermrentalInfo?.tenant_address?.length - 4
                     )}
                 </div>
               </div>
