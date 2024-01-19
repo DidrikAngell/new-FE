@@ -45,6 +45,9 @@ export const LandlordInbox = () => {
                 </div>
                 <div className="flex gap-[8px] items-center">
                   <img src={NUSD} />
+                  <div>
+                    {currentNFT.longtermrentalInfo?.landlord.price_per_month}
+                  </div>
                   <div>NUSD</div>
                 </div>
                 <div className="flex w-full justify-around">
