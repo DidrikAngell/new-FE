@@ -16,7 +16,7 @@ export const LandlordInbox = () => {
           {currentNFT ? (
             <>
               <div className="text-[20px]">Rental Details</div>
-              <div className="shadow-md space-y-[6px] p-[8px]">
+              <div className="shadow-md space-y-[6px] p-[12px]">
                 <CarouselCompo
                   metaData={currentNFT?.metaData}
                   onlyImages={true}
@@ -56,6 +56,31 @@ export const LandlordInbox = () => {
                   </div>
                   <div className="text-white px-[20px] py-[8px] bg-[#202020] rounded-[16px] cursor-pointer">
                     Decline
+                  </div>
+                </div>
+              </div>
+              <div className="shadow-md space-y-[8px] p-[12px]">
+                <div className="flex justify-between">
+                  <div>Tenant</div>
+                  <div className="text-[#B6B6B6]">
+                    {currentNFT.longtermrentalInfo?.tenant_address?.substring(
+                      0,
+                      5
+                    ) +
+                      "..." +
+                      currentNFT.longtermrentalInfo?.tenant_address?.substring(
+                        currentNFT.longtermrentalInfo?.tenant_address?.length -
+                          4
+                      )}
+                  </div>
+                </div>
+                <div className="w-full h-[1px] bg-[#B6B6B6]"></div>
+                <div className="flex justify-between">
+                  <div>Deposit Amount</div>
+                  <div className="flex items-center gap-[4px]">
+                    <img src={NUSD} />
+                    <div className="text-[#5B1DEE] p-[6px] rounded-[4px]"></div>
+                    <div className="text-[#B6B6B6]">NUSD</div>
                   </div>
                 </div>
               </div>
