@@ -119,11 +119,11 @@ export const MainPageComponent = () => {
 
         <div
           // id="sortby"
-          className="flex items-center gap-[8px] shadow-md bg-white rounded-[20px] px-[20px] py-[10px] z-[1000] cursor-pointer mr-[240px]"
+          className="flex items-center gap-[8px] shadow-md bg-white rounded-[20px] px-[24px] py-[12px] mt-[8px] z-[1000] cursor-pointer mr-[240px]"
           onClick={handleShow}
         >
           <img src={iconFilter}></img>
-          <div className="text-[#959595]">Filter</div>
+          <div className="">Filter</div>
         </div>
 
         {/* <Modal show={show} onHide={handleClose} dialogClassName="_modal-dialog">
