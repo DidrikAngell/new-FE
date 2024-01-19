@@ -22,6 +22,7 @@ export const Inbox = () => {
   const [searchValue, setSearchValue] = useState(null);
   const isNewMessage = useSelector((state) => state.messages.isNewMessage);
   const newMessages = useSelector((state) => state.messages.messages);
+  const nftId = useSelector((state) => state.nft.currentNFT.tokenId);
   const someoneToContact = useSelector(
     (state) => state.messages.someoneToContact
   );
@@ -54,6 +55,7 @@ export const Inbox = () => {
       newMessage: MessageObj,
       sender: account,
       receiver: receiver,
+      nftId: nftId,
     };
     dispatch(setMessagesToSend(sendingData));
     setMessages([...messages, MessageObj]);

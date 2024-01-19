@@ -61,6 +61,7 @@ export const InboxItem = ({ selected, chatId, time }) => {
     setUnreadMessages(res.data.unreadMessages);
     setLatestTime(res.data.latestMessageTime);
     setReceiverAccount(res.data.receiver);
+    console.log("nftId:", res.data.nftId);
   };
   useEffect(() => {
     getReceiverAccount();
