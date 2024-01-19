@@ -103,11 +103,11 @@ export const Inbox = () => {
     getChats();
   }, []);
 
-  // useEffect(() => {
-  //   if (someoneToContact && chats.length) {
-  //     checkIfExistingChat(someoneToContact);
-  //   }
-  // }, [chats]);
+  useEffect(() => {
+    if (someoneToContact && chats.length) {
+      checkIfExistingChat(someoneToContact);
+    }
+  }, [chats]);
 
   useEffect(() => {
     if (someoneToContact) {
