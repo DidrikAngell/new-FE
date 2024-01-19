@@ -352,7 +352,7 @@ export const DetailPage = () => {
                   submode: 3,
                 })
               );
-              dispatch(setDashboardMode(5));
+              dispatch(setDashboardMode(3));
             }}
           >
             Contact Landlord
