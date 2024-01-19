@@ -3,6 +3,7 @@ import { CarouselCompo } from "../CarouselCompo";
 import { Inbox } from "../Inbox";
 import NUSD from "../../assets/images/NUSD.png";
 import { setPage } from "../../Actions/PageSlice";
+import { setHeaderMode } from "../../Actions/HeaderSlice";
 
 export const TenantInbox = () => {
   const currentNFT = useSelector((state) => state.nft.currentNFT);
@@ -51,7 +52,15 @@ export const TenantInbox = () => {
                 <div className="flex w-full justify-around">
                   <div
                     className="text-white px-[30px] py-[8px] bg-[#5D00CF] rounded-[16px] cursor-pointer"
-                    onClick={() => dispatch(setPage("confirmed"))}
+                    onClick={() => {
+                      dispatch(
+                        setHeaderMode({
+                          mode: 1,
+                          submode: 0,
+                        })
+                      );
+                      dispatch(setPage("confirmed"));
+                    }}
                   >
                     Pay
                   </div>
