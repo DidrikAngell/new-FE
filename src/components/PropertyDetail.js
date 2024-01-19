@@ -75,8 +75,8 @@ export const PropertyDetail = ({ editable }) => {
   useEffect(() => {
     // if (editable) {
     // } else {
-    setDescription(metaDataDescription);
-    setOffers(metaDataOffers);
+    if (metaDataDescription) setDescription(metaDataDescription);
+    if (metaDataOffers) setOffers(metaDataOffers);
     // }
   }, []);
 
@@ -294,7 +294,7 @@ export const PropertyDetail = ({ editable }) => {
               )}
             </div>
             <div className="grid grid-cols-2">
-              {offers.garden_View ? (
+              {offers?.garden_View ? (
                 <div className="flex items-center">
                   <img src={gardenView}></img>
                   <div>Garden View</div>
@@ -302,7 +302,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.city_Skyline_View ? (
+              {offers?.city_Skyline_View ? (
                 <div className="flex items-center">
                   <img src={Cityskylineview}></img>
                   <div>City skyline view</div>
@@ -310,7 +310,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.kitchen ? (
+              {offers?.kitchen ? (
                 <div className="flex items-center">
                   <img src={kitchen}></img>
                   <div>Kitchen</div>
@@ -318,7 +318,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.wifi ? (
+              {offers?.wifi ? (
                 <div className="flex items-center">
                   <img src={wifi}></img>
                   <div>Wifi</div>
@@ -326,7 +326,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.dedicated_Workspace ? (
+              {offers?.dedicated_Workspace ? (
                 <div className="flex items-center">
                   <img src={dework}></img>
                   <div>Dedicated Workspace</div>
@@ -334,7 +334,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.free_Parking_On_Premiese ? (
+              {offers?.free_Parking_On_Premiese ? (
                 <div className="flex items-center">
                   <img src={fpp}></img>
                   <div>Free Parking on premiese</div>
@@ -342,7 +342,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.pool ? (
+              {offers?.pool ? (
                 <div className="flex items-center">
                   <img src={pool}></img>
                   <div>Pool</div>
@@ -350,7 +350,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.carbon_Monoxide_Alarm ? (
+              {offers?.carbon_Monoxide_Alarm ? (
                 <div className="flex items-center">
                   <img src={cma}></img>
                   <div>Carbon monoxide alarm</div>
@@ -358,7 +358,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.smoking_Alarm ? (
+              {offers?.smoking_Alarm ? (
                 <div className="flex items-center">
                   <img src={sa}></img>
                   <div>Smoking alarm</div>
@@ -366,7 +366,7 @@ export const PropertyDetail = ({ editable }) => {
               ) : (
                 <></>
               )}
-              {offers.tv ? (
+              {offers?.tv ? (
                 <div className="flex items-center">
                   <img src={tv}></img>
                   <div>TV</div>
