@@ -519,9 +519,9 @@ export const LandlordNFTs = () => {
                       {...dragProps}
                     >
                       <div className="m-auto flex flex-col items-center space-y-[20px]">
-                        {imageList.length || currentImages.length ? (
+                        {imageList.length || currentImages?.length ? (
                           <div className="flex gap-[10px] w-full overflow-auto">
-                            {currentImages.map((hash, index) => {
+                            {currentImages?.map((hash, index) => {
                               return (
                                 <div className="mx-auto flex flex-col items-center">
                                   <img
