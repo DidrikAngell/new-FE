@@ -34,6 +34,9 @@ import { useDispatch } from "react-redux";
 import { setPage } from "../Actions/PageSlice";
 import { setAmountToPay } from "../Actions/RentSlice";
 import { executeContract } from "../components/InteractToContract";
+import { setSomeoneToContact } from "../Actions/MessageSlice";
+import { setHeaderMode } from "../Actions/HeaderSlice";
+import { setDashboardMode } from "../Actions/DashboardSlice";
 
 export const DetailPayment = () => {
   const [show, setShow] = useState(false);
@@ -78,7 +81,15 @@ export const DetailPayment = () => {
       },
     };
     await executeContract(dispatch, message, account, walletEx);
-    dispatch(setPage("confirmed"));
+    dispatch(setSomeoneToContact(landlord));
+    dispatch(
+      setHeaderMode({
+        mode: 3,
+        submode: 3,
+      })
+    );
+    dispatch(setDashboardMode(3));
+    // dispatch(setPage("confirmed"));
   };
 
   useEffect(() => {

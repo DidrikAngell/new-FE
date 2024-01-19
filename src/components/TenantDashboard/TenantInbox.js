@@ -3,7 +3,7 @@ import { CarouselCompo } from "../CarouselCompo";
 import { Inbox } from "../Inbox";
 import NUSD from "../../assets/images/NUSD.png";
 
-export const LandlordInbox = () => {
+export const TenantInbox = () => {
   const currentNFT = useSelector((state) => state.nft.currentNFT);
 
   return (
@@ -24,15 +24,12 @@ export const LandlordInbox = () => {
 
                 <div className="text-[#B6B6B6]">Rental</div>
                 <div>
-                  You have an offer from
+                  You sent an offer to
                   {" " +
-                    currentNFT.longtermrentalInfo?.tenant_address?.substring(
-                      0,
-                      5
-                    ) +
+                    currentNFT.NftInfo?.access.owner.substring(0, 5) +
                     "..." +
-                    currentNFT.longtermrentalInfo?.tenant_address?.substring(
-                      currentNFT.longtermrentalInfo?.tenant_address?.length - 4
+                    currentNFT.NftInfo?.access.owner.substring(
+                      currentNFT.NftInfo?.access.owner.length - 4
                     )}
                 </div>
                 <div className="text-[#B6B6B6]">
@@ -52,25 +49,21 @@ export const LandlordInbox = () => {
                 </div>
                 <div className="flex w-full justify-around">
                   <div className="text-white px-[20px] py-[8px] bg-[#5D00CF] rounded-[16px] cursor-pointer">
-                    Approve
+                    Pay
                   </div>
                   <div className="text-white px-[20px] py-[8px] bg-[#202020] rounded-[16px] cursor-pointer">
-                    Decline
+                    Cancel
                   </div>
                 </div>
               </div>
               <div className="shadow-md space-y-[8px] p-[12px]">
                 <div className="flex justify-between">
-                  <div>Tenant</div>
+                  <div>Landlord</div>
                   <div className="text-[#B6B6B6]">
-                    {currentNFT.longtermrentalInfo?.tenant_address?.substring(
-                      0,
-                      5
-                    ) +
+                    {currentNFT.NftInfo?.access.owner.substring(0, 5) +
                       "..." +
-                      currentNFT.longtermrentalInfo?.tenant_address?.substring(
-                        currentNFT.longtermrentalInfo?.tenant_address?.length -
-                          4
+                      currentNFT.NftInfo?.access.owner.substring(
+                        currentNFT.NftInfo?.access.owner.length - 4
                       )}
                   </div>
                 </div>
