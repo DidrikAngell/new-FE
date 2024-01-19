@@ -42,7 +42,7 @@ export const Inbox = () => {
     if (!receiver) return;
     if (!text) return;
     if (text == "") return;
-
+    if (!nftId) return;
     let textTosend = text;
     const generatedTime = new Date();
     const MessageObj = {
@@ -103,11 +103,17 @@ export const Inbox = () => {
     getChats();
   }, []);
 
+  // useEffect(() => {
+  //   if (someoneToContact && chats.length) {
+  //     checkIfExistingChat(someoneToContact);
+  //   }
+  // }, [chats]);
+
   useEffect(() => {
-    if (someoneToContact && chats.length) {
+    if (someoneToContact) {
       checkIfExistingChat(someoneToContact);
     }
-  }, [chats]);
+  }, []);
 
   useEffect(() => {
     if (receiverReadingChat)
@@ -169,7 +175,7 @@ export const Inbox = () => {
   }, [messages.length]);
 
   const checkIfExistingChat = async (selectedAccount) => {
-    console.log(selectedAccount, chats.length);
+    // console.log(selectedAccount, chats.length);
     console.log("checking if chat is exist...");
     let isExist = false;
     for (let i = 0; i < chats.length; i++) {
