@@ -75,7 +75,7 @@ export const LandlordInbox = () => {
                   </div>
                 </div>
                 <div className="w-full h-[1px] bg-[#B6B6B6]"></div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <div>Deposit Amount</div>
                   <div className="flex items-center gap-[4px]">
                     <img src={NUSD} />
