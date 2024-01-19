@@ -37,7 +37,7 @@ export const LandlordNFTs = () => {
   const walletEx = useSelector((state) => state.auth.wallet);
 
   const uploadedImages = useSelector(
-    (state) => state.nft.currentNFT.metaData.images
+    (state) => state.nft.currentNFT?.metaData.images
   );
   const [currentImages, setCurrentImages] = useState([]);
   useEffect(() => {
