@@ -52,7 +52,7 @@ export const TenantInbox = () => {
                 </div>
                 <div className="flex w-full justify-around">
                   <div
-                    className="text-white px-[30px] py-[8px] bg-[#5D00CF] rounded-[16px] cursor-pointer"
+                    className="text-white px-[20px] py-[8px] bg-[#5D00CF] rounded-[16px] cursor-pointer"
                     onClick={() => {
                       dispatch(
                         setHeaderMode({
