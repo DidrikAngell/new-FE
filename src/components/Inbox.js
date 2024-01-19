@@ -175,7 +175,7 @@ export const Inbox = () => {
   }, [messages.length]);
 
   const checkIfExistingChat = async (selectedAccount) => {
-    // console.log(selectedAccount, chats.length);
+    console.log("1", chats.length);
     console.log("checking if chat is exist...");
     let isExist = false;
     for (let i = 0; i < chats.length; i++) {
