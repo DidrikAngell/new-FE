@@ -4,6 +4,7 @@ import { Inbox } from "../Inbox";
 import NUSD from "../../assets/images/NUSD.png";
 import { setPage } from "../../Actions/PageSlice";
 import { setHeaderMode } from "../../Actions/HeaderSlice";
+import { ImageView } from "../ImageView";
 
 export const TenantInbox = () => {
   const currentNFT = useSelector((state) => state.nft.currentNFT);
@@ -19,11 +20,11 @@ export const TenantInbox = () => {
             <>
               <div className="text-[20px]">Rental Details</div>
               <div className="shadow-md space-y-[6px] p-[12px]">
-                <CarouselCompo
+                {/* <CarouselCompo
                   metaData={currentNFT?.metaData}
                   onlyImages={true}
-                />
-
+                /> */}
+                <ImageView counts={1} />
                 <div className="text-[#B6B6B6]">Rental</div>
                 <div>
                   You sent an offer to
@@ -62,7 +63,7 @@ export const TenantInbox = () => {
                       dispatch(setPage("confirmed"));
                     }}
                   >
-                    Pay
+                    Confirm
                   </div>
                   <div className="text-white px-[20px] py-[8px] bg-[#202020] rounded-[16px] cursor-pointer">
                     Cancel

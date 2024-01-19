@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { CarouselCompo } from "../CarouselCompo";
 import { Inbox } from "../Inbox";
 import NUSD from "../../assets/images/NUSD.png";
+import { ImageView } from "../ImageView";
 
 export const LandlordInbox = () => {
   const currentNFT = useSelector((state) => state.nft.currentNFT);
@@ -17,10 +18,11 @@ export const LandlordInbox = () => {
             <>
               <div className="text-[20px]">Rental Details</div>
               <div className="shadow-md space-y-[6px] p-[12px]">
-                <CarouselCompo
+                {/* <CarouselCompo
                   metaData={currentNFT?.metaData}
                   onlyImages={true}
-                />
+                /> */}
+                <ImageView counts={1} />
 
                 <div className="text-[#B6B6B6]">Rental</div>
                 <div>
