@@ -15,24 +15,26 @@ export const LandlordInbox = () => {
           {currentNFT ? (
             <>
               <div className="text-[20px]">Rental Details</div>
-              <div className="shadow-md">
+              <div className="shadow-md space-y-[12px]">
                 <CarouselCompo
                   metaData={currentNFT?.metaData}
                   onlyImages={true}
                 />
 
-                <div>Rental</div>
+                <div className="text-[#B6B6B6]">Rental</div>
                 <div>
                   You have an offer from
-                  {currentNFT.longtermrentalInfo?.tenant_address?.substring(
-                    0,
-                    5
-                  ) +
+                  {" " +
+                    currentNFT.longtermrentalInfo?.tenant_address?.substring(
+                      0,
+                      5
+                    ) +
                     "..." +
                     currentNFT.longtermrentalInfo?.tenant_address?.substring(
                       currentNFT.longtermrentalInfo?.tenant_address?.length - 4
                     )}
                 </div>
+                <div>{currentNFT.metaData["Building Name"].buildingNameEn}</div>
               </div>
             </>
           ) : (
