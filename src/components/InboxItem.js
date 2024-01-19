@@ -130,7 +130,7 @@ export const InboxItem = ({ selected, chatId, time }) => {
         </div>
         <div>
           <div className="text-[#B6B6B6]">{buildingName}</div>
-          <div className="text-[#B6B6B6]">Feb 4 - Feb 6 (2 nights)</div>
+          {/* <div className="text-[#B6B6B6]">Feb 4 - Feb 6 (2 nights)</div> */}
           <div className="flex items-center gap-[10px]">
             <img src={NUSD} />
             <div className={`p-[4px] rounded-[8px] font-bold ${shadowBack}`}>
