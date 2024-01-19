@@ -137,7 +137,7 @@ export const Inbox = () => {
         );
         if (isMatching) {
           if (newMessages[i].id == currentChatId) {
-            setMessages([...messages, newMessages[i].message]);
+            // setMessages([...messages, newMessages[i].message]);
           }
         } else {
           setChats([{ chatId: newMessages[i].id }, ...chats]);
