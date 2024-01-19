@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { CarouselCompo } from "../CarouselCompo";
 import { Inbox } from "../Inbox";
+import NUSD from "../../assets/images/NUSD.png";
 
 export const LandlordInbox = () => {
   const currentNFT = useSelector((state) => state.nft.currentNFT);
@@ -41,6 +42,18 @@ export const LandlordInbox = () => {
                   {currentNFT.longtermrentalInfo?.tenant?.renting_period[0] +
                     "~" +
                     currentNFT.longtermrentalInfo?.tenant?.renting_period[1]}
+                </div>
+                <div className="flex gap-[8px] items-center">
+                  <img src={NUSD} />
+                  <div>NUSD</div>
+                </div>
+                <div className="flex w-full justify-around">
+                  <div className="text-white px-[20px] py-[8px] bg-[#5D00CF] rounded-[16px] cursor-pointer">
+                    Approve
+                  </div>
+                  <div className="text-white px-[20px] py-[8px] bg-[#202020] rounded-[16px] cursor-pointer">
+                    Decline
+                  </div>
                 </div>
               </div>
             </>
