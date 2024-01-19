@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import NUSD from "../assets/images/NUSD.png";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setNFT } from "../Actions/NFTSlice";
 
 export const InboxItem = ({ selected, chatId, time }) => {
   const account = useSelector((state) => state.auth.account);
   const [receiver, setReceiverAccount] = useState("");
   const [latestMessageTime, setLatestTime] = useState(time);
   const [unreadMessages, setUnreadMessages] = useState(0);
-
+  const dispatch = useDispatch();
   const isNewMessage = useSelector((state) => state.messages.isNewMessage);
   const newMessages = useSelector((state) => state.messages.messages);
 
@@ -17,6 +18,7 @@ export const InboxItem = ({ selected, chatId, time }) => {
   const allNFTs = useSelector((state) => state.nft.allNFTs);
   const [buildingName, setBuildingName] = useState(null);
   const [price, setPrice] = useState(null);
+  const [tempNFT, setTempNFT] = useState(null);
 
   let back, shadowBack;
   if (selected) {
@@ -79,6 +81,13 @@ export const InboxItem = ({ selected, chatId, time }) => {
         if (allNFTs[i].token_id == nftId) {
           setBuildingName(allNFTs[i].metaData["Building Name"].buildingNameEn);
           setPrice(allNFTs[i].longtermrental_info.landlord.price_per_month);
+
+          setTempNFT({
+            tokenId: allNFTs[i].token_id,
+            NftInfo: allNFTs[i].nft_info,
+            metaData: allNFTs[i].metaData,
+            longtermrentalInfo: allNFTs[i].longtermrental_info,
+          });
         }
       }
     }
@@ -98,11 +107,19 @@ export const InboxItem = ({ selected, chatId, time }) => {
       });
     }
   }, [isNewMessage]);
+
+  const handleSetCurrentNFT = () => {
+    dispatch(setNFT(tempNFT));
+  };
+
   return (
     <>
       <div
         className={`w-full p-[16px] ${back} space-y-[12px] rounded-[4px] shadow-md cursor-pointer`}
-        onClick={() => setUnreadMessages(0)}
+        onClick={() => {
+          handleSetCurrentNFT();
+          setUnreadMessages(0);
+        }}
       >
         <div className="w-full flex items-center justify-between">
           <div className="px-[12px] py-[4px] rounded-[8px] border-[1px] border-[#38A569] text-[#38A569]">
