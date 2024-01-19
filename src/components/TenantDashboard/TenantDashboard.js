@@ -68,7 +68,7 @@ export const TenantDashboard = () => {
         </div>
 
         <div className="flex gap-[20px]">
-          {assets.map((item) => {
+          {/* {assets.map((item) => {
             if (
               item.nft_info.access.owner != account &&
               item.longtermrental_info.tenant_address != account
@@ -83,7 +83,7 @@ export const TenantDashboard = () => {
                   />
                 </div>
               );
-          })}
+          })} */}
         </div>
 
         <div className="flex w-full justify-between my-[10px]">
@@ -95,7 +95,7 @@ export const TenantDashboard = () => {
         </div>
 
         <div className="flex gap-[20px]">
-          {assets.map((item) => {
+          {/* {assets.map((item) => {
             if (
               item.nft_info.access.owner != account &&
               item.longtermrental_info.tenant_address != account
@@ -111,7 +111,7 @@ export const TenantDashboard = () => {
                   />
                 </div>
               );
-          })}
+          })} */}
         </div>
       </div>
     </>

@@ -49,7 +49,7 @@ export const CarouselCompo = ({
     const imagesHash = metaData.images?.split(",");
     if (imagesHash) setImages(imagesHash);
     setLocation(metaData.Area?.areaEn);
-    setTotalPrice(Number(nftInfo.auction.price) * 12);
+    setTotalPrice(Number(nftInfo?.auction.price) * 12);
   }, []);
 
   const handleClick = () => {
