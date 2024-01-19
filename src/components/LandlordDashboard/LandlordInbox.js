@@ -15,7 +15,7 @@ export const LandlordInbox = () => {
           {currentNFT ? (
             <>
               <div className="text-[20px]">Rental Details</div>
-              <div className="shadow-md space-y-[12px]">
+              <div className="shadow-md space-y-[6px] p-[8px]">
                 <CarouselCompo
                   metaData={currentNFT?.metaData}
                   onlyImages={true}
@@ -34,7 +34,14 @@ export const LandlordInbox = () => {
                       currentNFT.longtermrentalInfo?.tenant_address?.length - 4
                     )}
                 </div>
-                <div>{currentNFT.metaData["Building Name"].buildingNameEn}</div>
+                <div className="text-[#B6B6B6]">
+                  {currentNFT.metaData["Building Name"].buildingNameEn}
+                </div>
+                <div className="text-[#B6B6B6]">
+                  {currentNFT.longtermrentalInfo?.tenant?.renting_period[0] +
+                    "~" +
+                    currentNFT.longtermrentalInfo?.tenant?.renting_period[1]}
+                </div>
               </div>
             </>
           ) : (
