@@ -174,9 +174,11 @@ export const LandlordNFTs = () => {
 
   const handleUpdateMetadata = async () => {
     let currentURI = currentToken.nft_info.info.token_uri.replace(gateWay, "");
-    const imageHashes = [...currentImages, ...(await pinFileToIPFS())];
+    let imageHashes = [];
+    if (currentImages)
+      imageHashes = [...currentImages, ...(await pinFileToIPFS())];
+    else imageHashes = [...(await pinFileToIPFS())];
 
-    console.log(imageHashes);
     const newHash = await updateMetadata(currentURI, [
       {
         key: "images",
