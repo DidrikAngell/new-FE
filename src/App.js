@@ -140,7 +140,7 @@ function App() {
               <Route path="account" element={<Account />}></Route>
               <Route path="swap" element={<Swap />}></Route>
 
-              <Route path="yieldestate" element={<Verify />}></Route>
+              <Route path="yieldestate" element={<></>}></Route>
               <Route path="rent" element={<Rent />}></Route>
               {/* <Route path="property" element={<DetailPage />}></Route> */}
               {/* <Route path="payment" element={<DetailPayment />}></Route> */}
