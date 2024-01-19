@@ -12,6 +12,12 @@ export const InboxItem = ({ selected, chatId, time }) => {
   const isNewMessage = useSelector((state) => state.messages.isNewMessage);
   const newMessages = useSelector((state) => state.messages.messages);
 
+  const [nftId, setNftId] = useState(null);
+
+  const allNFTs = useSelector((state) => state.nft.allNFTs);
+  const [buildingName, setBuildingName] = useState(null);
+  const [price, setPrice] = useState(null);
+
   let back, shadowBack;
   if (selected) {
     back = "bg-[#F6F6F6]";
@@ -68,6 +74,17 @@ export const InboxItem = ({ selected, chatId, time }) => {
   }, []);
 
   useEffect(() => {
+    if (nftId) {
+      for (let i = 0; i < allNFTs.length; i++) {
+        if (allNFTs[i].token_id == nftId) {
+          setBuildingName(allNFTs[i].metaData["Building Name"].buildingNameEn);
+          setPrice(allNFTs[i].longtermrental_info.landlord.price_per_month);
+        }
+      }
+    }
+  }, [nftId]);
+
+  useEffect(() => {
     if (time != null) setLatestTime(time);
   }, [time]);
 
@@ -112,12 +129,12 @@ export const InboxItem = ({ selected, chatId, time }) => {
           )}
         </div>
         <div>
-          <div className="text-[#B6B6B6]">Modern Apartment in Bergen</div>
+          <div className="text-[#B6B6B6]">{buildingName}</div>
           <div className="text-[#B6B6B6]">Feb 4 - Feb 6 (2 nights)</div>
           <div className="flex items-center gap-[10px]">
             <img src={NUSD} />
             <div className={`p-[4px] rounded-[8px] font-bold ${shadowBack}`}>
-              1000
+              {price}
             </div>
             <div className="text-[#B6B6B6]">NUSD</div>
           </div>
