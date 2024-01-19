@@ -1,11 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CarouselCompo } from "../CarouselCompo";
 import { Inbox } from "../Inbox";
 import NUSD from "../../assets/images/NUSD.png";
+import { setPage } from "../../Actions/PageSlice";
 
 export const TenantInbox = () => {
   const currentNFT = useSelector((state) => state.nft.currentNFT);
-
+  const dispatch = useDispatch();
   return (
     <>
       <div className="bg-[#F6F6F6] rounded-[8px] w-full h-full flex gap-[5px]">
@@ -48,7 +49,10 @@ export const TenantInbox = () => {
                   <div>NUSD</div>
                 </div>
                 <div className="flex w-full justify-around">
-                  <div className="text-white px-[20px] py-[8px] bg-[#5D00CF] rounded-[16px] cursor-pointer">
+                  <div
+                    className="text-white px-[30px] py-[8px] bg-[#5D00CF] rounded-[16px] cursor-pointer"
+                    onClick={() => dispatch(setPage("confirmed"))}
+                  >
                     Pay
                   </div>
                   <div className="text-white px-[20px] py-[8px] bg-[#202020] rounded-[16px] cursor-pointer">
