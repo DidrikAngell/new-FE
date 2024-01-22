@@ -15,7 +15,7 @@ const updateAssets = async (token_id, dispatch) => {
   // dispatch(setMyNFTs(mynfts));
   const updatedAsset = await getAllInfo(token_id);
   console.log("updated asset:", updatedAsset);
-  // dispatch(updateNFT(updatedAsset));
+  dispatch(updateNFT(updatedAsset));
 };
 
 export const executeContract = async (
