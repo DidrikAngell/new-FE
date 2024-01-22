@@ -151,7 +151,7 @@ export const LandlordNFTs = () => {
   const editMetaData = () => setActionMode(false);
 
   const pinFileToIPFS = async () => {
-    toast.info("Uploading images..");
+    if (images.length) toast.info("Uploading images..");
     const hashes = [];
     for (let i = 0; i < images.length; i++) {
       const formData = new FormData();
@@ -183,8 +183,10 @@ export const LandlordNFTs = () => {
         console.log(error);
       }
     }
-    toast.dismiss();
-    toast.success("Images uploaded.", { autoClose: 1000 });
+    if (images.length) {
+      toast.dismiss();
+      toast.success("Images uploaded.", { autoClose: 1000 });
+    }
     return hashes;
   };
 
