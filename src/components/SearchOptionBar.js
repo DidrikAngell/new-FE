@@ -349,7 +349,7 @@ export const SearchOptionBar = () => {
                     </div>
                   }
                 />
-                <SelectionItem
+                {/* <SelectionItem
                   SelectedItem={
                     <div className="w-[120px] rounded-[10px] flex items-center justify-center gap-[10px] shadow-md font-bold text-black">
                       <div>Flexible</div>
@@ -367,7 +367,7 @@ export const SearchOptionBar = () => {
                       <div>Flexible</div>
                     </div>
                   }
-                />
+                /> */}
               </SelectionGroup>
             </div>
 

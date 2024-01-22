@@ -59,7 +59,7 @@ export const executeContract = async (
     toast.success("Transaction is confirmed!", {
       autoClose: 1000,
     });
-    toast.info("Updating assets with new data..");
+    toast.loading("Updating assets with new data..");
     await updateAssets(token_id, dispatch);
     toast.dismiss();
     toast.success("Assets updated with new data.", {

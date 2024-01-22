@@ -196,10 +196,10 @@ export const Dashboard = () => {
           {dashboardMode == 1 ? <LandlordTenantOverview /> : <></>}
           {dashboardMode == 2 ? <LandlordNFTs /> : <></>}
           {dashboardMode == 3 ? <LandlordTransaction /> : <></>}
-          {dashboardMode == 4 ? <DashboardListing /> : <></>}
-          {dashboardMode == 5 ? <LandlordCalendar /> : <></>}
+          {/* {dashboardMode == 4 ? <DashboardListing /> : <></>} */}
+          {/* {dashboardMode == 5 ? <LandlordCalendar /> : <></>} */}
 
-          {dashboardMode == 6 ? <LandlordInbox /> : <></>}
+          {dashboardMode == 4 ? <LandlordInbox /> : <></>}
         </>
       ) : (
         <></>

@@ -89,6 +89,17 @@ export const MainPageComponent = () => {
     7, 22, 1, 93, 48, 8, 67, 9, 55,
   ];
 
+  const defaultEssentials = {
+    wifi: true,
+    kitchen: false,
+    washer: false,
+    airConditioning: false,
+    dryer: false,
+    heating: false,
+  };
+
+  const [essentials, setEssentials] = useState(defaultEssentials);
+
   return (
     <div className="bg-white w-full rounded-[8px] relative">
       <div className="flex justify-between px-[20px] h-[70px] items-center">
@@ -649,28 +660,73 @@ export const MainPageComponent = () => {
                   <div className="text-[18px] font-semibold">Amenities</div>
                   <div className="font-semibold">Essentials</div>
                   <div className="grid grid-cols-2 font-semibold">
-                    <div className="flex items-center gap-[8px]">
-                      <Checkbox />
+                    <div
+                      className="flex items-center gap-[8px] cursor-pointer"
+                      onClick={() =>
+                        setEssentials({ ...essentials, wifi: !essentials.wifi })
+                      }
+                    >
+                      <Checkbox checked={essentials.wifi} />
                       <div>Wifi</div>
                     </div>
-                    <div className="flex items-center gap-[8px]">
-                      <Checkbox />
+                    <div
+                      className="flex items-center gap-[8px] cursor-pointer"
+                      onClick={() =>
+                        setEssentials({
+                          ...essentials,
+                          kitchen: !essentials.kitchen,
+                        })
+                      }
+                    >
+                      <Checkbox checked={essentials.kitchen} />
                       <div>Kitchen</div>
                     </div>
-                    <div className="flex items-center gap-[8px]">
-                      <Checkbox />
+                    <div
+                      className="flex items-center gap-[8px] cursor-pointer"
+                      onClick={() =>
+                        setEssentials({
+                          ...essentials,
+                          washer: !essentials.washer,
+                        })
+                      }
+                    >
+                      <Checkbox checked={essentials.washer} />
                       <div>Washer</div>
                     </div>
-                    <div className="flex items-center gap-[8px]">
-                      <Checkbox />
+                    <div
+                      className="flex items-center gap-[8px] cursor-pointer"
+                      onClick={() =>
+                        setEssentials({
+                          ...essentials,
+                          airConditioning: !essentials.airConditioning,
+                        })
+                      }
+                    >
+                      <Checkbox checked={essentials.airConditioning} />
                       <div>Air conditioning</div>
                     </div>
-                    <div className="flex items-center gap-[8px]">
-                      <Checkbox />
+                    <div
+                      className="flex items-center gap-[8px] cursor-pointer"
+                      onClick={() =>
+                        setEssentials({
+                          ...essentials,
+                          dryer: !essentials.dryer,
+                        })
+                      }
+                    >
+                      <Checkbox checked={essentials.dryer} />
                       <div>Dryer</div>
                     </div>
-                    <div className="flex items-center gap-[8px]">
-                      <Checkbox />
+                    <div
+                      className="flex items-center gap-[8px] cursor-pointer"
+                      onClick={() =>
+                        setEssentials({
+                          ...essentials,
+                          heating: !essentials.heating,
+                        })
+                      }
+                    >
+                      <Checkbox checked={essentials.heating} />
                       <div>Heating</div>
                     </div>
                   </div>

@@ -24,6 +24,9 @@ import image from "../../assets/images/image.jpg";
 import bookLet from "../../assets/images/dashboard/Hotel, Booklet.png";
 import messageschat from "../../assets/images/dashboard/Messages, Chat.png";
 import homehousebig from "../../assets/images/dashboard/home-house-big.png";
+
+import empty from "../../assets/images/Frame 1000005568.png";
+
 export const TenantMyRental = () => {
   const [viewDetailFlag, setViewDetailFlag] = useState(false);
   const [viewMapFlag, setViewMapFlag] = useState(false);
@@ -35,6 +38,17 @@ export const TenantMyRental = () => {
 
   const [daysRentedOut, setDaysRentedOut] = useState(0);
   const [daysLeftOfRental, setDaysLeftOfRental] = useState(0);
+
+  const [myRentingAssets, setMyRentingAssets] = useState([]);
+
+  useEffect(() => {
+    const tempArray = [];
+    for (let i = 0; i < assets.length; i++) {
+      if (assets[i].longtermrental_info.tenant_address == account)
+        tempArray.push(assets[i]);
+    }
+    setMyRentingAssets(tempArray);
+  }, [assets]);
 
   function calculateDifferenceDays(date1, date2) {
     // To calculate the time difference of two dates
@@ -137,7 +151,7 @@ export const TenantMyRental = () => {
       ) : (
         <>
           {!viewDetailFlag ? (
-            <div className="w-full p-[16px]">
+            <div className="w-full p-[16px] h-full flex flex-col">
               <div className="font-bold text-[18px]">Rental Overview</div>
               <div className="flex justify-between my-[24px]">
                 <div>
@@ -229,6 +243,19 @@ export const TenantMyRental = () => {
                   </div>
                 </div>
               </div>
+
+              {myRentingAssets.length ? (
+                <></>
+              ) : (
+                <>
+                  <div className="w-full shadow-md bg-[#F6F6F6] h-full flex flex-col">
+                    <div className="m-auto flex flex-col">
+                      <img src={empty} className="m-auto"></img>
+                      <div>No Rentals Yet</div>
+                    </div>
+                  </div>
+                </>
+              )}
               {rentingAssetsFlag == 1 ? (
                 <div className="w-full flex gap-[16px]">
                   {assets.map((item) => {
