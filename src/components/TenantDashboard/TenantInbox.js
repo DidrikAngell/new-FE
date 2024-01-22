@@ -20,10 +20,6 @@ export const TenantInbox = () => {
             <>
               <div className="text-[20px]">Rental Details</div>
               <div className="shadow-md space-y-[6px] p-[12px]">
-                {/* <CarouselCompo
-                  metaData={currentNFT?.metaData}
-                  onlyImages={true}
-                /> */}
                 <ImageView counts={1} />
                 <div className="text-[#B6B6B6]">Rental</div>
                 <div>

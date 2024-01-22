@@ -21,10 +21,19 @@ export const MainLayout = () => {
   const dispatch = useDispatch();
   const [socket, setSocket] = useState(null);
 
-  const getMyAssets = async () => {
-    const result = await getMyNFTsInfo(account);
-    dispatch(setMyNFTs(result));
-  };
+  const allNFTs = useSelector((state) => state.nft.allNFTs);
+
+  // const getMyAssets = async () => {
+  //   const result = await getMyNFTsInfo(account);
+  // };
+
+  useEffect(() => {
+    const myNFTs = [];
+    for (let i = 0; i < allNFTs.length; i++) {
+      if (allNFTs[i].nft_info.access.owner == account) myNFTs.push(allNFTs[i]);
+    }
+    dispatch(setMyNFTs(myNFTs));
+  }, [allNFTs]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -41,7 +50,7 @@ export const MainLayout = () => {
       });
       setSocket(temp_socket);
 
-      getMyAssets();
+      // getMyAssets();
     }
     if (!isAuthenticated) {
       if (socket !== null) socket.disconnect();
