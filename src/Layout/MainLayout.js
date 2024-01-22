@@ -13,6 +13,9 @@ import {
 import { getMyNFTsInfo } from "../components/NFTs";
 import { setMyNFTs } from "../Actions/NFTSlice";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const MainLayout = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const account = useSelector((state) => state.auth.account);
@@ -71,6 +74,17 @@ export const MainLayout = () => {
       <div className="pt-[60px]">
         <Outlet />
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        theme="light"
+        // transition: Bounce,
+      />
     </div>
   );
 };

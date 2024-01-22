@@ -15,6 +15,8 @@ import { getMyNFTsInfo } from "../NFTs";
 import { useNavigate } from "react-router-dom";
 import verifyIcon from "../../assets/images/dashboard/Frame 1000005568.png";
 import { setNFTsSection } from "../../Actions/NFTSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const LandlordDashboard = () => {
   const dispatch = useDispatch();
@@ -51,7 +53,6 @@ export const LandlordDashboard = () => {
         extension: {},
       },
     };
-
     await executeContract(dispatch, token_id, mintMessage, account, walletEx);
     setUpdateFlag(!updateFlag);
   };

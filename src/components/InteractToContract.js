@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NibiruTxClient, NibiruQuerier, Testnet } from "@nibiruchain/nibijs";
 import { setAllNFTs, setMyNFTs, updateNFT } from "../Actions/NFTSlice";
 import { getAllInfo, getAllNFTsInfo, getMyNFTsInfo } from "./NFTs";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const chain = Testnet(1);
 const contractAddr =
   // "nibi1yvgh8xeju5dyr0zxlkvq09htvhjj20fncp5g58np4u25g8rkpgjswdkz05";
@@ -27,6 +28,8 @@ export const executeContract = async (
   tokenToSend
 ) => {
   try {
+    toast.loading("Transaction is pending...");
+
     const signer = await window[walletEx].getOfflineSigner(chain.chainId);
     const signingClient = await NibiruTxClient.connectWithSigner(
       chain.endptTm,
@@ -51,10 +54,27 @@ export const executeContract = async (
       );
       console.log(tx.transactionHash);
     }
+    toast.dismiss();
+
+    toast.success("Transaction is confirmed!", {
+      autoClose: 1000,
+    });
+    toast.info("Updating assets with new data..");
     await updateAssets(token_id, dispatch);
+    toast.dismiss();
+    toast.success("Assets updated with new data.", {
+      autoClose: 2000,
+    });
     return true;
   } catch (error) {
     console.log(error);
+    toast.dismiss();
+    toast.error(
+      `Transaction failed with following errors ${error.toString()}`,
+      {
+        autoClose: 1000,
+      }
+    );
     return false;
   }
 };

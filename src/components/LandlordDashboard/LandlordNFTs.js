@@ -26,6 +26,8 @@ import { PropertyDetail } from "../PropertyDetail";
 import { PropertyAddress } from "../PropertyAddress";
 import { ImageView } from "../ImageView";
 import { PropertyListingDetail } from "../PropertyListingDetail";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const LandlordNFTs = () => {
   const [totalListedNFTsCount, setTotalListedNFTsCount] = useState(0);
@@ -149,7 +151,7 @@ export const LandlordNFTs = () => {
   const editMetaData = () => setActionMode(false);
 
   const pinFileToIPFS = async () => {
-    console.log("Uploading newly added images...");
+    toast.info("Uploading images..");
     const hashes = [];
     for (let i = 0; i < images.length; i++) {
       const formData = new FormData();
@@ -171,10 +173,18 @@ export const LandlordNFTs = () => {
         console.log(res.data);
         hashes.push(res.data.IpfsHash);
       } catch (error) {
+        toast.dismiss();
+        toast.error(
+          `Uploading failed with following errors ${error.toString()}`,
+          {
+            autoClose: 1000,
+          }
+        );
         console.log(error);
       }
     }
-
+    toast.dismiss();
+    toast.success("Images uploaded.", { autoClose: 1000 });
     return hashes;
   };
 

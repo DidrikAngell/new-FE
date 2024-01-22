@@ -1,6 +1,10 @@
 import { queryContract } from "./InteractToContract";
 import axios from "axios";
 import sampleMetadata from "../metadata.json";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const jwt =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzMWEyZjc5ZS1iNDQyLTQzOWUtOGNlNC0wZmRiMTIzYmNkNDciLCJlbWFpbCI6ImJsb2NrY2hhaW5zdGFyMThAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImJkZjAxNDE1NGYxOTBhZjY4M2Y3Iiwic2NvcGVkS2V5U2VjcmV0IjoiZDUxNGZjOTljMGZkMGJlYTA1NzA4OTkzOGFkZGQyOTI5OWQ1ZjkyZTUyOGY2NWRjZjQ0NGIzODdmOTQ2YmEyMCIsImlhdCI6MTcwMjk2NDQxOX0.2KDJPbgRnpIbvgYbvGZnkwnjAZw7NiRhtif_SqW1z2E";
 export const getMetadata = async (token_uri) => {
@@ -14,6 +18,7 @@ export const getMetadata = async (token_uri) => {
 };
 
 export const pinMetadata = async (metadata) => {
+  toast.info("Uploading Metadata..");
   const options = {
     method: "POST",
     headers: {
@@ -34,8 +39,14 @@ export const pinMetadata = async (metadata) => {
       options
     );
     const res = await response.json();
+    toast.dismiss();
+    toast.success("Metadata uploaded.", { autoClose: 1000 });
     return res.IpfsHash;
   } catch (error) {
+    toast.dismiss();
+    toast.error(`Uploading failed with following errors ${error.toString()}`, {
+      autoClose: 1000,
+    });
     console.error(error);
   }
 };

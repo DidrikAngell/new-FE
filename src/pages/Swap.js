@@ -264,7 +264,7 @@ export const Swap = () => {
 
   return (
     <div className="bg-[#F2F2F2] w-full height flex py-[10px]">
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={2000}
         hideProgressBar
@@ -275,7 +275,7 @@ export const Swap = () => {
         draggable
         pauseOnHover
         theme="light"
-      />
+      /> */}
       <div className="w-[80%] mx-auto h-full bg-white shadow-md p-[24px] flex">
         <div className="m-auto w-[600px]">
           <SelectionGroup
