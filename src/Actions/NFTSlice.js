@@ -28,7 +28,7 @@ export const NFTSlice = createSlice({
       let tempArray = state.allNFTs;
       let flag = false;
       for (let i = 0; i < tempArray.length; i++) {
-        if (tempArray[i].token_id == action.payload.token_id) {
+        if (tempArray[i]?.token_id == action.payload.token_id) {
           tempArray[i] = action.payload;
           flag = true;
         }
