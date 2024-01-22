@@ -30,7 +30,7 @@ export const MainLayout = () => {
   useEffect(() => {
     const myNFTs = [];
     for (let i = 0; i < allNFTs.length; i++) {
-      if (allNFTs[i].nft_info.access.owner == account) myNFTs.push(allNFTs[i]);
+      if (allNFTs[i]?.nft_info.access.owner == account) myNFTs.push(allNFTs[i]);
     }
     dispatch(setMyNFTs(myNFTs));
   }, [allNFTs]);
