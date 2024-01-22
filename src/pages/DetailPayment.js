@@ -80,7 +80,7 @@ export const DetailPayment = () => {
         ],
       },
     };
-    await executeContract(dispatch, message, account, walletEx);
+    await executeContract(dispatch, token_id, message, account, walletEx);
     dispatch(setSomeoneToContact(landlord));
     dispatch(
       setHeaderMode({

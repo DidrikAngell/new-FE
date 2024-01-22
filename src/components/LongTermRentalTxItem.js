@@ -64,7 +64,14 @@ export const LongTermRentalTxItem = () => {
         denom: "unibi",
       },
     ];
-    await executeContract(dispatch, message, account, walletEx, tokenToSend);
+    await executeContract(
+      dispatch,
+      token_id,
+      message,
+      account,
+      walletEx,
+      tokenToSend
+    );
   };
 
   useEffect(() => {

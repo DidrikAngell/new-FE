@@ -1,22 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NibiruTxClient, NibiruQuerier, Testnet } from "@nibiruchain/nibijs";
-import { setAllNFTs, setMyNFTs } from "../Actions/NFTSlice";
-import { getAllNFTsInfo, getMyNFTsInfo } from "./NFTs";
+import { setAllNFTs, setMyNFTs, updateNFT } from "../Actions/NFTSlice";
+import { getAllInfo, getAllNFTsInfo, getMyNFTsInfo } from "./NFTs";
 
 const chain = Testnet(1);
 const contractAddr =
   // "nibi1yvgh8xeju5dyr0zxlkvq09htvhjj20fncp5g58np4u25g8rkpgjswdkz05";
   "nibi1aaf9r6s7nxhysuegqrxv0wpm27ypyv4886medd3mrkrw6t4yfcnsc0dumz";
 
-const updateAssets = async (account, dispatch) => {
-  const allnfts = await getAllNFTsInfo();
-  dispatch(setAllNFTs(allnfts));
-  const mynfts = await getMyNFTsInfo(account);
-  dispatch(setMyNFTs(mynfts));
+const updateAssets = async (token_id, dispatch) => {
+  // const allnfts = await getAllNFTsInfo();
+  // dispatch(setAllNFTs(allnfts));
+  // const mynfts = await getMyNFTsInfo(account);
+  // dispatch(setMyNFTs(mynfts));
+  const updatedAsset = await getAllInfo(token_id);
+  dispatch(updateNFT(updatedAsset));
 };
 
 export const executeContract = async (
   dispatch,
+  token_id,
   CONTRACT_MESSAGE,
   account,
   walletEx,
@@ -47,7 +50,7 @@ export const executeContract = async (
       );
       console.log(tx.transactionHash);
     }
-    await updateAssets(account, dispatch);
+    await updateAssets(token_id, dispatch);
     return true;
   } catch (error) {
     console.log(error);

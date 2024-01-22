@@ -151,7 +151,13 @@ export const Dashboard = () => {
         available_period: available_period,
       },
     };
-    await executeContract(dispatch, listingMessage, account, walletEx);
+    await executeContract(
+      dispatch,
+      token_id,
+      listingMessage,
+      account,
+      walletEx
+    );
     setUpdateFlag(!updateFlag);
     dispatch(setDashboardMode(2));
   };

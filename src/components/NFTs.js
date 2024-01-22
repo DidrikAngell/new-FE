@@ -40,7 +40,7 @@ export const pinMetadata = async (metadata) => {
   }
 };
 
-const getAllInfo = async (token_id) => {
+export const getAllInfo = async (token_id) => {
   const messageForItem = {
     all_nft_info: {
       token_id: token_id,

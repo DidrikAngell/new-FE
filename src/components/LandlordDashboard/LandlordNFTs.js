@@ -100,7 +100,7 @@ export const LandlordNFTs = () => {
         token_uri: newTokenURI,
       },
     };
-    await executeContract(dispatch, updateMessage, account, walletEx);
+    await executeContract(dispatch, token_id, updateMessage, account, walletEx);
     // setUpdateFlag(!updateFlag);
     // dispatch(setDashboardMode(2));
   };
@@ -134,7 +134,13 @@ export const LandlordNFTs = () => {
         available_period: available_period,
       },
     };
-    await executeContract(dispatch, listingMessage, account, walletEx);
+    await executeContract(
+      dispatch,
+      token_id,
+      listingMessage,
+      account,
+      walletEx
+    );
 
     setActionMode(null);
     dispatch(setNFTsSection(2));

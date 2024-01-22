@@ -52,7 +52,7 @@ export const LandlordDashboard = () => {
       },
     };
 
-    await executeContract(dispatch, mintMessage, account, walletEx);
+    await executeContract(dispatch, token_id, mintMessage, account, walletEx);
     setUpdateFlag(!updateFlag);
   };
 

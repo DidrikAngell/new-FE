@@ -34,6 +34,7 @@ export const LandlordTransaction = () => {
     ];
     const res = await executeContract(
       dispatch,
+      token_id,
       message,
       account,
       walletEx,
