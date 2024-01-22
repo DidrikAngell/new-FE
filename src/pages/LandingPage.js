@@ -55,8 +55,8 @@ import NetworkManager from "@xdefi/wallets-connector";
 
 import { OverlayTrigger } from "react-bootstrap";
 import { Tooltip } from "react-bootstrap";
-import { setAllNFTs } from "../Actions/NFTSlice";
-import { getAllNFTsInfo } from "../components/NFTs";
+import { setAllNFTs, updateNFT } from "../Actions/NFTSlice";
+import { getAllTokenIds, getAllInfo } from "../components/NFTs";
 
 export const LandingPage = () => {
   const [show, setShow] = useState(false);
@@ -143,8 +143,12 @@ export const LandingPage = () => {
   };
 
   const getAllAssets = async () => {
-    const result = await getAllNFTsInfo();
-    dispatch(setAllNFTs(result));
+    const tokens = await getAllTokenIds();
+    for (let i = 0; i < tokens.length; i++) {
+      const item = await getAllInfo(tokens[i]);
+      dispatch(updateNFT(item));
+    }
+    // dispatch(setAllNFTs(result));
   };
 
   useEffect(() => {

@@ -25,7 +25,6 @@ export const NFTSlice = createSlice({
       state.myNFTs = action.payload;
     },
     updateNFT: (state, action) => {
-      // let tempArray = state.allNFTs;
       let flag = false;
       for (let i = 0; i < state.allNFTs.length; i++) {
         if (state.allNFTs[i]?.token_id == action.payload.token_id) {
@@ -34,7 +33,6 @@ export const NFTSlice = createSlice({
         }
       }
       if (!flag) state.allNFTs.push(action.payload);
-      // state.allNFTs = tempArray;
     },
     setNFTsSection: (state, action) => {
       state.NFTsSection = action.payload;

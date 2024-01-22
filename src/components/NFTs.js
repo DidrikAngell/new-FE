@@ -61,17 +61,18 @@ export const getAllInfo = async (token_id) => {
     nft_info: nftInfo,
   };
 };
-export const getAllNFTsInfo = async () => {
+export const getAllTokenIds = async () => {
   const message = {
     all_tokens: {},
   };
   const tokens = (await queryContract(message)).tokens;
-  const array = [];
-  for (let i = 0; i < tokens.length; i++) {
-    const item = await getAllInfo(tokens[i]);
-    array.push(item);
-  }
-  return array;
+  // const array = [];
+  // for (let i = 0; i < tokens.length; i++) {
+  //   const item = await getAllInfo(tokens[i]);
+  //   array.push(item);
+  // }
+  // return array;
+  return tokens;
 };
 
 export const getMyNFTsInfo = async (account) => {
