@@ -33,7 +33,7 @@ export const NFTSlice = createSlice({
           flag = true;
         }
       }
-      if (!flag) state.allNFTs.push(state.payload);
+      if (!flag) state.allNFTs.push(action.payload);
       // state.allNFTs = tempArray;
     },
     setNFTsSection: (state, action) => {
