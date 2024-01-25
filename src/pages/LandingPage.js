@@ -392,32 +392,35 @@ export const LandingPage = () => {
         </div>
         <img
           src={homeCanada}
-          className="absolute top-[8vw] left-[10vw] rounded-[50%]"
+          className="absolute top-[8vw] left-[10vw] rounded-[50%] z-[100] transition ease-in-out hover:scale-150 duration-300 hover:-translate-y-1"
         ></img>
         <img
           src={homeUS}
-          className="absolute top-[16vw] left-[20vw] rounded-[50%]"
+          className="absolute top-[16vw] left-[20vw] rounded-[50%] z-[100] transition ease-in-out hover:scale-150 duration-300 hover:-translate-y-1"
         ></img>
         <img
           src={homeGreenland}
-          className="absolute top-[4vw] left-[35vw] rounded-[50%]"
+          className="absolute top-[4vw] left-[35vw] rounded-[50%] z-[100] transition ease-in-out hover:scale-150 duration-300 hover:-translate-y-1"
         ></img>
         <img
           src={homeBrazil}
-          className="absolute top-[32vw] left-[30vw] rounded-[50%]"
+          className="absolute top-[32vw] left-[30vw] rounded-[50%] z-[100] transition ease-in-out hover:scale-150 duration-300 hover:-translate-y-1"
         ></img>
         <img
           src={homeFinland}
-          className="absolute top-[8vw] left-[62vw] rounded-[50%]"
+          className="absolute top-[8vw] left-[62vw] rounded-[50%] z-[100] transition ease-in-out hover:scale-150 duration-300 hover:-translate-y-1"
         ></img>
         <img
           src={homeRussia}
-          className="absolute top-[9vw] left-[78vw] rounded-[50%] z-[5]"
+          className="absolute top-[9vw] left-[78vw] rounded-[50%] z-[100] transition ease-in-out hover:scale-150 duration-300 hover:-translate-y-1"
         ></img>
-        <img src={Card} className="absolute top-[10vw] left-[80vw]"></img>
+        <img
+          src={Card}
+          className="absolute top-[10vw] left-[80vw] z-[90] transition ease-in-out hover:scale-110 duration-300 hover:-translate-y-1"
+        ></img>
         <img
           src={homeIndonesia}
-          className="absolute top-[28vw] left-[78vw] rounded-[50%]"
+          className="absolute top-[28vw] left-[78vw] rounded-[50%] z-[100] transition ease-in-out hover:scale-150 duration-300 hover:-translate-y-1"
         ></img>
       </div>
 
